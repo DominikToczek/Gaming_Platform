@@ -9,7 +9,7 @@ namespace FiveCardsPoker
         private Card[] computerHand;
         private Card[] sortedPlayerHand;
         private Card[] sortedComputerHand;
-        private int counter = 0;
+        private int counter;
         private readonly Layout layout = new Layout();
 
         public Card[] GetPlayerHand()

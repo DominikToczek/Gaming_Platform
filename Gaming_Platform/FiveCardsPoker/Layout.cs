@@ -6,7 +6,7 @@ namespace FiveCardsPoker
     public class Layout
     {
         public int HandValue { get; set; } = 0;
-        private int heartsSum = 0, diamondsSum = 0, spadesSum = 0, clubsSum = 0;
+        private int heartsSum, diamondsSum, spadesSum, clubsSum;
 
         private Card[] sortedHand;
 
@@ -15,25 +15,25 @@ namespace FiveCardsPoker
             GetSortedHand(hand);
             GetSum(sortedHand);
 
-            if (IsRoyalFlush(sortedHand))
+            if (IsRoyalFlush())
                 return Hand.RoyalFlush;
-            else if (IsStraightFlush(sortedHand))
+            if (IsStraightFlush())
                 return Hand.StraightFlush;
-            else if (IsFourOfKind(sortedHand))
+            if (IsFourOfKind(sortedHand))
                 return Hand.FourOfKind;
-            else if (IsFullHouse(sortedHand))
+            if (IsFullHouse(sortedHand))
                 return Hand.FullHouse;
-            else if (IsFlush(sortedHand))
+            if (IsFlush(sortedHand))
                 return Hand.Flush;
-            else if (IsStraight(sortedHand))
+            if (IsStraight(sortedHand))
                 return Hand.Straight;
-            else if (IsThreeOfKind(sortedHand))
+            if (IsThreeOfKind(sortedHand))
                 return Hand.ThreeOfKind;
-            else if (IsTwoPair(sortedHand))
+            if (IsTwoPair(sortedHand))
                 return Hand.TwoPair;
-            else if (IsOnePair(sortedHand))
+            if (IsOnePair(sortedHand))
                 return Hand.OnePair;
-            else return Hand.HighCard;
+            return Hand.HighCard;
         }
 
         private void HandOfSortedCards()
@@ -56,38 +56,50 @@ namespace FiveCardsPoker
         {
             for (int i = 0; i < 5; i++)
             {
-                if (hand[i].CardSuit == Card.SUIT.HEARTS)
-                    heartsSum++;
-                else if (hand[i].CardSuit == Card.SUIT.DIAMONDS)
-                    diamondsSum++;
-                else if (hand[i].CardSuit == Card.SUIT.CLUBS)
-                    clubsSum++;
-                else spadesSum++;
+                switch (hand[i].CardSuit)
+                {
+                    case Card.SUIT.HEARTS:
+                        heartsSum++;
+                        break;
+                    case Card.SUIT.DIAMONDS:
+                        diamondsSum++;
+                        break;
+                    case Card.SUIT.CLUBS:
+                        clubsSum++;
+                        break;
+                    default:
+                        spadesSum++;
+                        break;
+                }
             }
         }
 
-        private bool IsRoyalFlush(Card[] hand)
+        private bool IsRoyalFlush()
         {
             if (IsFlush(sortedHand))
+            {
                 if (IsStraight(sortedHand) && sortedHand[0].CardValue == Card.VALUE.TEN)
                 {
                     HandValue = 1000 + (int)sortedHand[4].CardValue;
                     return true;
                 }
-                else return false;
-            else return false;
+                return false;
+            }
+            return false;
         }
 
-        private bool IsStraightFlush(Card[] hand)
+        private bool IsStraightFlush()
         {
             if (IsFlush(sortedHand))
+            {
                 if (IsStraight(sortedHand))
                 {
                     HandValue = 900 + (int)sortedHand[4].CardValue;
                     return true;
                 }
-                else return false;
-            else return false;
+                return false;
+            }
+            return false;
         }
 
         private bool IsFourOfKind(Card[] hand)
@@ -97,7 +109,7 @@ namespace FiveCardsPoker
                 HandValue = 800 + (int)hand[3].CardValue;
                 return true;
             }
-            else return false;
+            return false;
         }
 
         private bool IsFullHouse(Card[] hand)
@@ -107,12 +119,12 @@ namespace FiveCardsPoker
                 HandValue = 700 + (int)hand[2].CardValue;
                 return true;
             }
-            else if (hand[0].CardValue == hand[1].CardValue && hand[2].CardValue == hand[4].CardValue)
+            if (hand[0].CardValue == hand[1].CardValue && hand[2].CardValue == hand[4].CardValue)
             {
                 HandValue = 700 + (int)hand[4].CardValue;
                 return true;
             }
-            else return false;
+            return false;
         }
 
         private bool IsFlush(Card[] hand)
@@ -122,7 +134,7 @@ namespace FiveCardsPoker
                 HandValue = 600 + (int)hand[4].CardValue;
                 return true;
             }
-            else return false;
+            return false;
         }
 
         private bool IsStraight(Card[] hand)
@@ -135,7 +147,7 @@ namespace FiveCardsPoker
                 HandValue = 500 + (int)hand[4].CardValue;
                 return true;
             }
-            else return false;
+            return false;
         }
 
         private bool IsThreeOfKind(Card[] hand)
@@ -147,7 +159,7 @@ namespace FiveCardsPoker
                 HandValue = 400 + (int)hand[2].CardValue;
                 return true;
             }
-            else return false;
+            return false;
         }
 
         private bool IsTwoPair(Card[] hand)
@@ -159,7 +171,7 @@ namespace FiveCardsPoker
                 HandValue = 300 + Math.Max((int)hand[1].CardValue, (int)hand[3].CardValue);
                 return true;
             }
-            else return false;
+            return false;
         }
 
         private bool IsOnePair(Card[] hand)
@@ -169,26 +181,26 @@ namespace FiveCardsPoker
                 HandValue = 200 + (int)hand[1].CardValue;
                 return true;
             }
-            else if (hand[1].CardValue == hand[2].CardValue)
+            if (hand[1].CardValue == hand[2].CardValue)
             {
                 HandValue = 200 + (int)hand[2].CardValue;
                 return true;
             }
-            else if (hand[2].CardValue == hand[3].CardValue)
+            if (hand[2].CardValue == hand[3].CardValue)
             {
                 HandValue = 200 + (int)hand[3].CardValue;
                 return true;
             }
-            else if (hand[3].CardValue == hand[4].CardValue)
+            if (hand[3].CardValue == hand[4].CardValue)
             {
                 HandValue = 200 + (int)hand[4].CardValue;
                 return true;
             }
-            else return false;
+            return false;
         }
     }
 
-    public enum Hand : int
+    public enum Hand
     {
         HighCard,
         OnePair,

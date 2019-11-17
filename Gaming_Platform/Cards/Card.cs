@@ -13,7 +13,7 @@
             SPADES
         }
 
-        public enum VALUE : int
+        public enum VALUE
         {
             TWO,
             THREE,
