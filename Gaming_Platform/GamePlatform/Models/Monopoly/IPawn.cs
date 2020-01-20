@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GamePlatform.Models
+{
+    public interface  IPawn
+    {
+         string Color { get; }
+         int Number { get; }
+
+      
+    }
+}
