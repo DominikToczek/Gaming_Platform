@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiveCardsPoker", "FiveCards
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cards", "Cards\Cards.csproj", "{B8B34C1B-C9C5-48B0-8652-B18B72EE2F93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamePlatform", "GamePlatform\GamePlatform.csproj", "{B2B792A0-8357-40F1-8126-694DB2192087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamePlatform", "GamePlatform\GamePlatform.csproj", "{B2B792A0-8357-40F1-8126-694DB2192087}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
