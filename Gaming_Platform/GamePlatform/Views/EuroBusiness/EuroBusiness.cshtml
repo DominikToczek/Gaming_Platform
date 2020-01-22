@@ -1,7 +1,13 @@
 ﻿
 @{
-    ViewData["Title"] = "EuroBusiness";
+                ViewData["Title"] = "EuroBusiness";
 }
 
 <h1>EuroBusiness</h1>
+<p>
+    @TempData["DiceValue"]
+</p>
+<form>
+    <button name="button" value="losuj" asp-action="roll">@TempData["DiceValue"]</button>
 
+</form>
