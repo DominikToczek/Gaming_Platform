@@ -1,4 +1,5 @@
 ﻿$board-size: 650px; //must be divisible by 13
+$dice-size: 36px;
 
 body {
     overflow: hidden;
@@ -8,13 +9,14 @@ body {
 //board styling responsive to consider?
 .board-container {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     .board {
         width: $board-size;
         position: relative;
+        transform: perspective($board-size*2) rotateX(45deg) rotate(25deg);
 
         .board-section-1, .board-section-3 {
             height: $board-size / 13 * 2;
@@ -50,6 +52,130 @@ body {
                 width: $board-size - $board-size / 13 * 4;
                 height: $board-size - $board-size / 13 * 4;
                 background-color: red;
+            }
+        }
+
+        .dice {
+            width: $dice-size;
+            height: $dice-size;
+            position: absolute;
+            top: $board-size/2;
+            left: $board-size/2;
+            transform-style: preserve-3d;
+            transform: perspective(0) rotateZ(245deg) rotateY(280deg) rotateX(120deg);
+            //#1 transform: perspective(0) rotateZ(245deg) rotateY(110deg) rotateX(160deg);
+            //#2 transform: perspective(0) rotateZ(0deg) rotateY(-10deg) rotateX(20deg);
+            //#3 transform: perspective(0) rotateZ(0deg) rotateY(-10deg) rotateX(290deg);
+            //#4 transform: perspective(0) rotateZ(0deg) rotateY(-10deg) rotateX(200deg);
+            //#5 transform: perspective(0) rotateZ(0deg) rotateY(-10deg) rotateX(110deg);
+            //#6 transform: perspective(0) rotateZ(245deg) rotateY(280deg) rotateX(120deg);
+            .side {
+                position: absolute;
+                width: $dice-size;
+                height: $dice-size;
+                background: #fff;
+                box-shadow: inset 0 0 $dice-size/6 #ccc;
+                border-radius: $dice-size/6;
+                padding: $dice-size/12;
+
+                .dot {
+                    position: absolute;
+                    width: $dice-size/6;
+                    height: $dice-size/6;
+                    border-radius: $dice-size/12;
+                    background: #444;
+                    box-shadow: inset 5px 0 10px #000;
+                }
+
+                .dot--left {
+                    margin-left: $dice-size/12;
+                }
+
+                .dot--right {
+                    margin-left: $dice-size/12*7;
+                }
+
+                .dot--top {
+                    margin-top: $dice-size/12;
+                }
+
+                .dot--center {
+                    margin-top: $dice-size/3;
+                }
+
+                .dot--center-center {
+                    margin: $dice-size/3 0 0 $dice-size/3;
+                }
+
+                .dot--bottom {
+                    margin-top: $dice-size/12*7;
+                }
+            }
+
+            .side--front {
+                transform: translateZ($dice-size/2) rotateY(0deg);
+            }
+
+            .side--front.inner {
+                transform: translateZ($dice-size/2-1);
+            }
+
+            .side--back {
+                transform: rotateX(180deg) translateZ($dice-size/2);
+            }
+
+            .side--back.inner {
+                transform: translateZ($dice-size/2-1);
+            }
+
+            .side--bottom {
+                transform: rotateX(-90deg) translateZ($dice-size/2);
+            }
+
+            .side--bottom.inner {
+                transform: translateZ($dice-size/2-1);
+            }
+
+            .side--left {
+                transform: rotateY(-90deg) translateZ($dice-size/2);
+            }
+
+            .side--left.inner {
+                transform: translateZ($dice-size/2-1);
+            }
+
+            .side--right {
+                transform: rotateY(90deg) translateZ($dice-size/2);
+            }
+
+            .side--right.inner {
+                transform: translateZ($dice-size/2-1);
+            }
+
+            .side--top {
+                transform: rotateX(90deg) translateZ($dice-size/2);
+            }
+
+            .side--top.inner {
+                transform: translateZ($dice-size/2-1);
+            }
+
+            .inner, .cover {
+                background: #e0e0e0;
+                box-shadow: none;
+            }
+
+            .cover {
+                border-radius: 0;
+                transform: translateZ(0);
+            }
+
+            .cover.x {
+                transform: rotateY(90deg);
+            }
+
+            .cover.z {
+                transform: rotateX(90deg);
             }
         }
     }
