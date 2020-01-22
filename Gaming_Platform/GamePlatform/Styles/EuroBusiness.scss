@@ -1,0 +1,176 @@
+﻿$board-size: 650px; //must be divisible by 13
+
+body {
+    overflow: hidden;
+}
+
+
+//board styling responsive to consider?
+.board-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .board {
+        width: $board-size;
+        position: relative;
+
+        .board-section-1, .board-section-3 {
+            height: $board-size / 13 * 2;
+
+            .space {
+                float: left;
+                height: $board-size / 13 * 2;
+                background-color: green;
+                width: $board-size / 13;
+                border: 1px solid black;
+            }
+
+            #space-20, #space-30, #space-1, #space-11 {
+                width: $board-size / 13 * 2;
+            }
+        }
+
+        .board-section-2 {
+            height: $board-size - ($board-size / 13 * 4);
+
+            .subsection-1, .subsection-3, .subsection-2 {
+                float: left;
+
+                .space {
+                    width: $board-size / 13 * 2;
+                    height: $board-size / 13;
+                    background-color: green;
+                    border: 1px black solid;
+                }
+            }
+
+            .subsection-2 {
+                width: $board-size - $board-size / 13 * 4;
+                height: $board-size - $board-size / 13 * 4;
+                background-color: red;
+            }
+        }
+    }
+
+    .pawn {
+        position: absolute;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+    }
+
+    .pawn-player-1 {
+        right: 20px;
+        bottom: 20px;
+        background-color: blueviolet;
+    }
+
+    .pawn-player-2 {
+        right: 20px;
+        bottom: 60px;
+        background-color: yellow;
+    }
+
+    .pawn-player-3 {
+        right: 60px;
+        bottom: 20px;
+        background-color: aqua;
+    }
+
+    .pawn-player-4 {
+        right: 60px;
+        bottom: 60px;
+        background-color: gray;
+    }
+}
+
+//players styles
+.player {
+    background-color: blue;
+    position: absolute;
+
+    .player-avatar {
+        border-radius: 10%;
+        width: 80px;
+        height: 80px;
+        background: #fda;
+        position: absolute;
+    }
+
+    .player-data {
+        font-weight: bold;
+        color: #fff;
+        min-width: 200px;
+        padding: 0 10px;
+
+        .player-name {
+            padding: 5px 0;
+        }
+
+        .player-money {
+            padding: 5px 0;
+        }
+    }
+}
+
+.player-1 {
+    top: 0;
+    left: 0;
+
+    .player-avatar {
+        left: 5px;
+        top: 5px;
+    }
+
+    .player-data {
+        text-align: right;
+        padding-left: 90px;
+    }
+}
+
+.player-2 {
+    top: 0;
+    right: 0;
+
+    .player-avatar {
+        right: 5px;
+        top: 5px;
+    }
+
+    .player-data {
+        text-align: left;
+        padding-right: 90px;
+    }
+}
+
+.player-3 {
+    bottom: 0;
+    left: 0;
+
+    .player-avatar {
+        left: 5px;
+        bottom: 5px;
+    }
+
+    .player-data {
+        text-align: right;
+        padding-left: 90px;
+    }
+}
+
+.player-4 {
+    bottom: 0;
+    right: 0;
+
+    .player-avatar {
+        right: 5px;
+        bottom: 5px;
+    }
+
+    .player-data {
+        text-align: left;
+        padding-right: 90px;
+    }
+}

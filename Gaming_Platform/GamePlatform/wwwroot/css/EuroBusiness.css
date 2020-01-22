@@ -1,0 +1,168 @@
+﻿body {
+    overflow: hidden
+}
+
+.board-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+    .board-container .board {
+        width: 650px;
+        position: relative
+    }
+
+        .board-container .board .board-section-1, .board-container .board .board-section-3 {
+            height: 100px
+        }
+
+            .board-container .board .board-section-1 .space, .board-container .board .board-section-3 .space {
+                float: left;
+                height: 100px;
+                background-color: green;
+                width: 50px;
+                border: 1px solid #000
+            }
+
+            .board-container .board .board-section-1 #space-1, .board-container .board .board-section-1 #space-11, .board-container .board .board-section-1 #space-20, .board-container .board .board-section-1 #space-30, .board-container .board .board-section-3 #space-1, .board-container .board .board-section-3 #space-11, .board-container .board .board-section-3 #space-20, .board-container .board .board-section-3 #space-30 {
+                width: 100px
+            }
+
+        .board-container .board .board-section-2 {
+            height: 450px
+        }
+
+            .board-container .board .board-section-2 .subsection-1, .board-container .board .board-section-2 .subsection-2, .board-container .board .board-section-2 .subsection-3 {
+                float: left
+            }
+
+                .board-container .board .board-section-2 .subsection-1 .space, .board-container .board .board-section-2 .subsection-2 .space, .board-container .board .board-section-2 .subsection-3 .space {
+                    width: 100px;
+                    height: 50px;
+                    background-color: green;
+                    border: 1px solid #000
+                }
+
+            .board-container .board .board-section-2 .subsection-2 {
+                width: 450px;
+                height: 450px;
+                background-color: red
+            }
+
+    .board-container .pawn {
+        position: absolute;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px
+    }
+
+    .board-container .pawn-player-1 {
+        right: 20px;
+        bottom: 20px;
+        background-color: #8a2be2
+    }
+
+    .board-container .pawn-player-2 {
+        right: 20px;
+        bottom: 60px;
+        background-color: #ff0
+    }
+
+    .board-container .pawn-player-3 {
+        right: 60px;
+        bottom: 20px;
+        background-color: #0ff
+    }
+
+    .board-container .pawn-player-4 {
+        right: 60px;
+        bottom: 60px;
+        background-color: grey
+    }
+
+.player {
+    background-color: #00f;
+    position: absolute
+}
+
+    .player .player-avatar {
+        border-radius: 10%;
+        width: 80px;
+        height: 80px;
+        background: #fda;
+        position: absolute
+    }
+
+    .player .player-data {
+        font-weight: 700;
+        color: #fff;
+        min-width: 200px;
+        padding: 0 10px
+    }
+
+        .player .player-data .player-money, .player .player-data .player-name {
+            padding: 5px 0
+        }
+
+.player-1 {
+    top: 0;
+    left: 0
+}
+
+    .player-1 .player-avatar {
+        left: 5px;
+        top: 5px
+    }
+
+    .player-1 .player-data {
+        text-align: right;
+        padding-left: 90px
+    }
+
+.player-2 {
+    top: 0;
+    right: 0
+}
+
+    .player-2 .player-avatar {
+        right: 5px;
+        top: 5px
+    }
+
+    .player-2 .player-data {
+        text-align: left;
+        padding-right: 90px
+    }
+
+.player-3 {
+    bottom: 0;
+    left: 0
+}
+
+    .player-3 .player-avatar {
+        left: 5px;
+        bottom: 5px
+    }
+
+    .player-3 .player-data {
+        text-align: right;
+        padding-left: 90px
+    }
+
+.player-4 {
+    bottom: 0;
+    right: 0
+}
+
+    .player-4 .player-avatar {
+        right: 5px;
+        bottom: 5px
+    }
+
+    .player-4 .player-data {
+        text-align: left;
+        padding-right: 90px
+    }

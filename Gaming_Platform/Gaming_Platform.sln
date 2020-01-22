@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiveCardsPoker", "FiveCardsPoker\FiveCardsPoker.csproj", "{071D774D-E0FC-4417-8DE8-BCC36AA13878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiveCardsPoker", "FiveCardsPoker\FiveCardsPoker.csproj", "{071D774D-E0FC-4417-8DE8-BCC36AA13878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cards", "Cards\Cards.csproj", "{B8B34C1B-C9C5-48B0-8652-B18B72EE2F93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cards", "Cards\Cards.csproj", "{B8B34C1B-C9C5-48B0-8652-B18B72EE2F93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamePlatform", "GamePlatform\GamePlatform.csproj", "{B2B792A0-8357-40F1-8126-694DB2192087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamePlatform", "GamePlatform\GamePlatform.csproj", "{B2B792A0-8357-40F1-8126-694DB2192087}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
