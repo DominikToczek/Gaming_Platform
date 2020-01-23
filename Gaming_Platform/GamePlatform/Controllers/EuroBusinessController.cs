@@ -14,23 +14,36 @@ namespace GamePlatform.Controllers
 
         public EuroBusinessController()
         {
-           
 
         }
-
-        public IActionResult EuroBusiness()
+         List<IPlayer> initializationPlayer()
         {
-            players = new List<IPlayer>();
-            players.Add(new Player("Kamil", 313131));
+            List<IPlayer> players =new List<IPlayer>(); ;
+            players.Add(new Player("Kamil", 0));
             players.Add(new Player("Ola", 1314));
             players.Add(new Player("Daniel", 1331));
             players.Add(new Player("Kuba", 1313114));
+            return players;
+        }
 
-
+        public ViewResult EuroBusiness()
+        {
+            players = initializationPlayer();
             ViewData["Players"] = players;
             return View();
         }
 
-      
+        public IActionResult click(int button)
+        {
+
+            players[button].AddMoney(1000);
+            ViewData["Players"] = players;
+            return PartialView("EuroBusiness");
+        }
+
+       
     }
-}
+
+
+
+    }
