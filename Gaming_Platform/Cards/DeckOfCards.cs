@@ -2,7 +2,7 @@
 
 namespace Cards
 {
-    public class DeckOfCards
+    public class DeckOfCards : IDeckOfCards
     {
         public Card[] Deck { get; private set; }
 
