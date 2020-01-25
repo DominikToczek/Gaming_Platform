@@ -1,9 +1,10 @@
 ﻿using Cards;
+using System;
 using System.Linq;
 
 namespace FiveCardsPoker
 {
-    public class Deal : DeckOfCards
+    public class Deal : DeckOfCards, IDeal
     {
         private Card[] playerHand;
         private Card[] computerHand;
@@ -14,12 +15,31 @@ namespace FiveCardsPoker
 
         public Card[] GetPlayerHand()
         {
+            if (playerHand is null)
+                throw new NullReferenceException();
+
             return playerHand;
         }
 
         public Card[] GetComputerHand()
         {
+            if (computerHand is null)
+                throw new NullReferenceException();
             return computerHand;
+        }
+
+        public Card[] GetSortedPlayerHand()
+        {
+            if (computerHand is null)
+                throw new NullReferenceException();
+            return sortedPlayerHand;
+        }
+
+        public Card[] GetSortedComputerHand()
+        {
+            if (computerHand is null)
+                throw new NullReferenceException();
+            return sortedComputerHand;
         }
 
         public void DealCards()
@@ -31,6 +51,8 @@ namespace FiveCardsPoker
 
         public void ChangeCard(int cardNumber)
         {
+            if (cardNumber < 1 || cardNumber > 5)
+                throw new ArgumentOutOfRangeException();
             playerHand[cardNumber - 1] = Deck[counter];
             counter++;
         }
