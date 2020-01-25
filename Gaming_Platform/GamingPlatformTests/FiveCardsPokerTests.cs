@@ -122,10 +122,10 @@ namespace GamingPlatformTests
             Card[] hand =
             {
                 new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
-                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.TEN),
                 new Card(Card.SUIT.HEARTS, Card.VALUE.FOUR),
                 new Card(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
-                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+                new Card(Card.SUIT.SPADES, Card.VALUE.ACE)
             };
 
             var expected = Hand.OnePair;
@@ -140,10 +140,10 @@ namespace GamingPlatformTests
             Card[] hand =
             {
                 new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
-                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
-                new Card(Card.SUIT.HEARTS, Card.VALUE.FOUR),
                 new Card(Card.SUIT.DIAMONDS, Card.VALUE.FOUR),
-                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+                new Card(Card.SUIT.HEARTS, Card.VALUE.TEN),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.SPADES, Card.VALUE.FOUR)
             };
 
             var expected = Hand.TwoPair;
@@ -158,10 +158,10 @@ namespace GamingPlatformTests
             Card[] hand =
             {
                 new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
-                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.TEN),
                 new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
                 new Card(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
-                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+                new Card(Card.SUIT.SPADES, Card.VALUE.ACE)
             };
 
             var expected = Hand.ThreeOfKind;
@@ -176,9 +176,9 @@ namespace GamingPlatformTests
             Card[] hand =
             {
                 new Card(Card.SUIT.CLUBS, Card.VALUE.FOUR),
-                new Card(Card.SUIT.DIAMONDS, Card.VALUE.FIVE),
-                new Card(Card.SUIT.HEARTS, Card.VALUE.SIX),
                 new Card(Card.SUIT.DIAMONDS, Card.VALUE.SEVEN),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.SIX),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.FIVE),
                 new Card(Card.SUIT.SPADES, Card.VALUE.EIGHT)
             };
 
@@ -212,10 +212,10 @@ namespace GamingPlatformTests
             Card[] hand =
             {
                 new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
-                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
                 new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
                 new Card(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
-                new Card(Card.SUIT.SPADES, Card.VALUE.QUEEN)
+                new Card(Card.SUIT.SPADES, Card.VALUE.ACE)
             };
 
             var expected = Hand.FullHouse;
@@ -231,9 +231,9 @@ namespace GamingPlatformTests
             {
                 new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
                 new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
-                new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.TEN),
                 new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
-                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+                new Card(Card.SUIT.SPADES, Card.VALUE.ACE)
             };
 
             var expected = Hand.FourOfKind;
@@ -247,10 +247,10 @@ namespace GamingPlatformTests
             Layout _layout = new Layout();
             Card[] hand =
             {
-                new Card(Card.SUIT.CLUBS, Card.VALUE.SIX),
+                new Card(Card.SUIT.CLUBS, Card.VALUE.NINE),
                 new Card(Card.SUIT.CLUBS, Card.VALUE.SEVEN),
                 new Card(Card.SUIT.CLUBS, Card.VALUE.EIGHT),
-                new Card(Card.SUIT.CLUBS, Card.VALUE.NINE),
+                new Card(Card.SUIT.CLUBS, Card.VALUE.SIX),
                 new Card(Card.SUIT.CLUBS, Card.VALUE.TEN)
             };
 
@@ -265,9 +265,9 @@ namespace GamingPlatformTests
             Layout _layout = new Layout();
             Card[] hand =
             {
-                new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
-                new Card(Card.SUIT.HEARTS, Card.VALUE.KING),
                 new Card(Card.SUIT.HEARTS, Card.VALUE.QUEEN),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.KING),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
                 new Card(Card.SUIT.HEARTS, Card.VALUE.JACK),
                 new Card(Card.SUIT.HEARTS, Card.VALUE.TEN)
             };
