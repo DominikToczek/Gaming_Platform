@@ -3,7 +3,7 @@ using System;
 
 namespace FiveCardsPoker
 {
-    public class Layout
+    public class Layout : ILayout
     {
         public int HandValue { get; set; } = 0;
         private int heartsSum, diamondsSum, spadesSum, clubsSum;

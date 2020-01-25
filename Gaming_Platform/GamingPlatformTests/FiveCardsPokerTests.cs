@@ -96,5 +96,185 @@ namespace GamingPlatformTests
                 Assert.LessOrEqual(sortedHand[i].CardValue, sortedHand[i + 1].CardValue);
             }
         }
+
+        [Test]
+        public void CardsLayout_WhenHighCardHand_ReturnsHighCardType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.EIGHT),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.FOUR),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
+                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+            };
+
+            var expected = Hand.HighCard;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenOnePairHand_ReturnsOnePairType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.FOUR),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
+                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+            };
+
+            var expected = Hand.OnePair;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenTwoPairHand_ReturnsTwoPairType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.FOUR),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.FOUR),
+                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+            };
+
+            var expected = Hand.TwoPair;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenThreeOfKindHand_ReturnsThreeOfKindType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
+                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+            };
+
+            var expected = Hand.ThreeOfKind;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenStraightHand_ReturnsStraightType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.CLUBS, Card.VALUE.FOUR),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.FIVE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.SIX),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.SEVEN),
+                new Card(Card.SUIT.SPADES, Card.VALUE.EIGHT)
+            };
+
+            var expected = Hand.Straight;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenFlushHand_ReturnsFlushType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.EIGHT),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.FOUR),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.QUEEN),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.TEN)
+            };
+
+            var expected = Hand.Flush;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenFullHouseHand_ReturnsFullHouseType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN),
+                new Card(Card.SUIT.SPADES, Card.VALUE.QUEEN)
+            };
+
+            var expected = Hand.FullHouse;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenFourOfKindHand_ReturnsFourOfKindType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.CLUBS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
+                new Card(Card.SUIT.DIAMONDS, Card.VALUE.ACE),
+                new Card(Card.SUIT.SPADES, Card.VALUE.TEN)
+            };
+
+            var expected = Hand.FourOfKind;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenStraightFlushHand_ReturnsStraightFlushType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.CLUBS, Card.VALUE.SIX),
+                new Card(Card.SUIT.CLUBS, Card.VALUE.SEVEN),
+                new Card(Card.SUIT.CLUBS, Card.VALUE.EIGHT),
+                new Card(Card.SUIT.CLUBS, Card.VALUE.NINE),
+                new Card(Card.SUIT.CLUBS, Card.VALUE.TEN)
+            };
+
+            var expected = Hand.StraightFlush;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void CardsLayout_WhenRoyalFlushHand_ReturnsRoyalFlushType()
+        {
+            Layout _layout = new Layout();
+            Card[] hand =
+            {
+                new Card(Card.SUIT.HEARTS, Card.VALUE.ACE),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.KING),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.QUEEN),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.JACK),
+                new Card(Card.SUIT.HEARTS, Card.VALUE.TEN)
+            };
+
+            var expected = Hand.RoyalFlush;
+            var actual = _layout.CardsLayout(hand);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
