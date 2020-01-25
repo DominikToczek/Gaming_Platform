@@ -1,5 +1,6 @@
 ﻿using Cards;
 using System;
+using System.Linq;
 
 namespace FiveCardsPoker
 {
@@ -43,9 +44,13 @@ namespace FiveCardsPoker
 
         private void GetSortedHand(Card[] hand)
         {
+            var handOfCards = from cards in hand
+                         orderby cards.CardValue
+                         select cards;
+
             HandOfSortedCards();
             int i = 0;
-            foreach (var card in hand)
+            foreach (var card in handOfCards.ToList())
             {
                 sortedHand[i] = card;
                 i++;
