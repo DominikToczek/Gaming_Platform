@@ -1,0 +1,154 @@
+﻿@{
+    ViewData["Title"] = "EuroBusiness";
+    Layout = "_Layout_2";
+    var players = ViewData["Players"] as List<IPlayer>;
+}
+
+@section Scripts {
+    <script src="~/js/EuroBusiness.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/EuroBusiness.css" />
+}
+
+<div class="board-container">
+    <div class="board">
+        <div class="board-section-1">
+            <div class="space" id="space-20"></div>
+            <div class="space" id="space-21"></div>
+            <div class="space" id="space-22"></div>
+            <div class="space" id="space-23"></div>
+            <div class="space" id="space-24"></div>
+            <div class="space" id="space-25"></div>
+            <div class="space" id="space-26"></div>
+            <div class="space" id="space-27"></div>
+            <div class="space" id="space-28"></div>
+            <div class="space" id="space-29"></div>
+            <div class="space" id="space-30"></div>
+        </div>
+        <div class="board-section-2">
+            <div class="subsection-1">
+                <div class="space" id="space-19"></div>
+                <div class="space" id="space-18"></div>
+                <div class="space" id="space-17"></div>
+                <div class="space" id="space-16"></div>
+                <div class="space" id="space-15"></div>
+                <div class="space" id="space-14"></div>
+                <div class="space" id="space-13"></div>
+                <div class="space" id="space-12"></div>
+                <div class="space" id="space-11"></div>
+            </div>
+            <div class="subsection-2"></div>
+            <div class="subsection-3">
+                <div class="space" id="space-31"></div>
+                <div class="space" id="space-32"></div>
+                <div class="space" id="space-33"></div>
+                <div class="space" id="space-34"></div>
+                <div class="space" id="space-35"></div>
+                <div class="space" id="space-36"></div>
+                <div class="space" id="space-37"></div>
+                <div class="space" id="space-38"></div>
+                <div class="space" id="space-39"></div>
+            </div>
+        </div>
+        <div class="board-section-3">
+            <div class="space" id="space-11"></div>
+            <div class="space" id="space-10"></div>
+            <div class="space" id="space-9"></div>
+            <div class="space" id="space-8"></div>
+            <div class="space" id="space-7"></div>
+            <div class="space" id="space-6"></div>
+            <div class="space" id="space-5"></div>
+            <div class="space" id="space-4"></div>
+            <div class="space" id="space-3"></div>
+            <div class="space" id="space-2"></div>
+            <div class="space" id="space-1"></div>
+        </div>
+        <div class="pawn pawn-player-1"></div>
+        <div class="pawn pawn-player-2"></div>
+        <div class="pawn pawn-player-3"></div>
+        <div class="pawn pawn-player-4"></div>
+
+        <div class="dice throw-6">
+            <div class="side side--front">
+                <div class="dot dot--top dot--left"></div>
+                <div class="dot dot--bottom dot--right"></div>
+            </div>
+            <div class="side side--front inner"></div>
+            <div class="side side--top">
+                <div class="dot dot--top dot--left"></div>
+                <div class="dot dot--center-center"></div>
+                <div class="dot dot--bottom dot--right"></div>
+            </div>
+            <div class="side side--top inner"></div>
+            <div class="side side--back">
+                <div class="dot dot--top dot--left"></div>
+                <div class="dot dot--bottom dot--right"></div>
+                <div class="dot dot--bottom dot--left"></div>
+                <div class="dot dot--top dot--right"></div>
+            </div>
+            <div class="side side--back inner"></div>
+            <div class="side side--bottom">
+                <div class="dot dot--top dot--left"></div>
+                <div class="dot dot--bottom dot--right"></div>
+                <div class="dot dot--center-center"></div>
+                <div class="dot dot--bottom dot--left"></div>
+                <div class="dot dot--top dot--right"></div>
+            </div>
+            <div class="side side--bottom inner"></div>
+            <div class="side side--left">
+                <div class="dot dot--center-center"></div>
+            </div>
+            <div class="side side--left inner"></div>
+            <div class="side side--right">
+                <div class="dot dot--top dot--left"></div>
+                <div class="dot dot--bottom dot--right"></div>
+                <div class="dot dot--center dot--right"></div>
+                <div class="dot dot--center dot--left"></div>
+                <div class="dot dot--bottom dot--left"></div>
+                <div class="dot dot--top dot--right"></div>
+            </div>
+            <div class="side side--right inner"></div>
+            <div class="side cover x"></div>
+            <div class="side cover y"></div>
+            <div class="side cover z"></div>
+        </div>
+    </div>
+</div>
+
+<div class="pawn pawn-player-1"></div>
+<div class="pawn pawn-player-2"></div>
+<div class="pawn pawn-player-3"></div>
+<div class="pawn pawn-player-4"></div>
+
+
+
+<div class="player player-1">
+    <div class="player-avatar"></div>
+    <div class="player-data">
+        <div class="player-name">@players[0].Name</div>
+        <div class="player-money">@players[0].Money</div>
+    </div>
+</div>
+<div class="player player-2">
+    <div class="player-avatar"></div>
+    <div class="player-data">
+        <div class="player-name"> @players[1].Name</div>
+        <div class="player-money">@players[1].Money</div>
+    </div>
+</div>
+<div class="player player-3">
+    <div class="player-avatar"></div>
+    <div class="player-data">
+        <div class="player-name">@players[2].Name</div>
+        <div class="player-money">@players[2].Money</div>
+    </div>
+</div>
+<div class="player player-4">
+    <div class="player-avatar"></div>
+    <div class="player-data">
+        <div class="player-name">@players[3].Name</div>
+        <div class="player-money">@players[3].Money</div>
+    </div>
+</div>
