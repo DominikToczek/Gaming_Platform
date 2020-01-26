@@ -21,7 +21,7 @@ namespace GamePlatform.Models
         
         public int FieldCost
         {
-            get => FieldCost * (int) _fieldState;
+            get => _fieldCost * (int) _fieldState;
 
             set
             {
@@ -68,16 +68,19 @@ namespace GamePlatform.Models
 
         public bool BuyField(Player player)
         {
-            if( player.Money <= FieldCost)
+
+            if (player.Money < FieldCost || player == Ower)
             {
                 return false;
             }
             else
             {
-                Ower = player;
+                SetOwer(player);
                 player.spendMoney(FieldCost);
                 return true;
             }
+
+
         }
 
         public bool SellField(Player player)
@@ -96,6 +99,7 @@ namespace GamePlatform.Models
 
         public bool PayForStay(Player player)
         {
+            
             if(player.Money >= StayOnFieldCost)
             {
                 player.spendMoney(StayOnFieldCost);
@@ -109,7 +113,7 @@ namespace GamePlatform.Models
 
         public bool BuyHome(Player player)
         {
-            if(player.spendMoney(FieldCost))
+            if(player.spendMoney(FieldCost) &&  _fieldState == FieldState.EmptyField)
             {
                 _fieldState = FieldState.Home;
                 return true;
@@ -123,7 +127,7 @@ namespace GamePlatform.Models
 
         public bool BuyHotel(Player player)
         {
-            if (player.spendMoney(FieldCost))
+            if (player.spendMoney(FieldCost) &&  _fieldState== FieldState.Home)
             {
                 _fieldState = FieldState.Hotel;
                 return true;
