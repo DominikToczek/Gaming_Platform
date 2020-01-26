@@ -68,7 +68,7 @@ namespace GamePlatform.Models
 
         public bool BuyField(Player player)
         {
-            if(player==Ower || player.Money <= FieldCost)
+            if( player.Money <= FieldCost)
             {
                 return false;
             }
