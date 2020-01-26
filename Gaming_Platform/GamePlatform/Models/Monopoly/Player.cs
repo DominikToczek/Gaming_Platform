@@ -8,14 +8,15 @@ namespace GamePlatform.Models
 {
     public class Player :IPlayer
     {
-        public int Money { get; private set; }
-        public string Name { get; }
-       // public List<Pawn> Pawns { get; }
+        public int Money { get;  set; }
+        public string Name { get;  set; }
+        public Pawn Pawns { get; set; }
 
-        public Player(string name , int money)
+        public Player(string name , int money , Pawn pawn)
         {
             Name = name;
             Money = money;
+            Pawns = pawn;
         }
 
 
@@ -26,15 +27,18 @@ namespace GamePlatform.Models
 
         public bool spendMoney(int Money)
         {
-           if(this.Money <= 0 &&  (this.Money - Money)<=0 )
+           if(this.Money >= 0 &&  (this.Money - Money)>=0 )
             {
                 this.Money -= Money;
                 return true;
             }
+           else
+            {
+                return false;
 
-            return false;
+            }
+
         }
-
 
     }
 }

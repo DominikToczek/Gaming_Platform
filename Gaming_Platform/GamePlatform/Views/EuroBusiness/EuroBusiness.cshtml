@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "EuroBusiness";
     Layout = "_Layout_2";
-    var players = ViewData["Players"] as List<IPlayer>;
+    var players = ViewData["Players"] as List<Player>;
 }
 
 @section Scripts {
@@ -123,16 +123,16 @@
             <div class="pawn pawn-player-3"></div>
             <div class="pawn pawn-player-4"></div>
         
-    </div>
-</div>
 
-<div class="player player-1">
-    <div class="player-avatar"></div>
-    <div class="player-data">
-        <div class="player-name">@players[0].Name</div>
-        <div class="player-money">@players[0].Money</div>
-    </div>
-</div>
+            <div class="player player-1">
+                <div class="player-avatar"></div>
+
+                <div class="player-data">
+                    <div class="player-name">@players[0].Name</div>
+                    <div class="player-money">@players[0].Money</div>
+                </div>
+              
+            </div>
 <div class="player player-2">
     <div class="player-avatar"></div>
     <div class="player-data">

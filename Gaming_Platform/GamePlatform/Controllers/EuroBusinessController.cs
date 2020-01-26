@@ -9,21 +9,24 @@ namespace GamePlatform.Controllers
 {
     public class EuroBusinessController : Controller
     {
-        List<IPlayer> players;
+        List<Player> players;
 
 
         public EuroBusinessController()
         {
 
         }
-         List<IPlayer> initializationPlayer()
+        List<Player> initializationPlayer()
         {
-            List<IPlayer> players =new List<IPlayer>(); ;
-            players.Add(new Player("Kamil", 0));
-            players.Add(new Player("Ola", 1314));
-            players.Add(new Player("Daniel", 1331));
-            players.Add(new Player("Kuba", 1313114));
+            var pawn = new Pawn("red", 1, 1);
+            List<Player> players = new List<Player>(); ;
+            players.Add(new Player("Kamil", 13, pawn));
+            players.Add(new Player("Ola", 0, pawn));
+            players.Add(new Player("Daniel", 0, pawn));
+            players.Add(new Player("Kuba", 0, pawn));
             return players;
+
+
         }
 
         public ViewResult EuroBusiness()
@@ -40,10 +43,10 @@ namespace GamePlatform.Controllers
             ViewData["Players"] = players;
             return PartialView("EuroBusiness");
         }
-
-       
-    }
-
-
+      
 
     }
+
+
+
+}

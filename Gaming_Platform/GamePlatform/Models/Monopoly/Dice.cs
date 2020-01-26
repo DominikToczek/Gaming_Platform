@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GamePlatform.Models.Monopoly
+namespace GamePlatform.Models
 {
     public class Dice
     {

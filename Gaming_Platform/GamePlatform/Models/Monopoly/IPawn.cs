@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GamePlatform.Models
+﻿namespace GamePlatform.Models
 {
-    public interface  IPawn
+    public interface IPawn
     {
-         string Color { get; }
-         int Number { get; }
+        string Color { get; set; }
+        int Number { get; set; }
+        int ActualPosition { get; set; }
 
-      
+        void Move(int number,int numberOfField);
+        bool SetOnField(int number ,int numberOfField);
+
+
     }
 }
