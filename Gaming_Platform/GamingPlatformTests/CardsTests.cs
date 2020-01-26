@@ -1,6 +1,6 @@
-﻿using Cards;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
+using GamePlatform.Models;
 
 namespace GamingPlatformTests
 {
