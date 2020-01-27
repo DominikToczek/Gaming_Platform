@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace GamePlatform.Models
 {
-    public class Player :IPlayer
+    public class Player : IPlayer
     {
         public int Money { get;  set; }
         public string Name { get;  set; }
+        public string Avatar { get; set; }
         public Pawn Pawns { get; set; }
 
-        public Player(string name , int money , Pawn pawn)
+        public Player(string name, string avatar, int money , Pawn pawn)
         {
             Name = name;
+            Avatar = avatar;
             Money = money;
             Pawns = pawn;
         }

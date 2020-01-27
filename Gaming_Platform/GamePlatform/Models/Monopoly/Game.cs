@@ -12,7 +12,7 @@ namespace GamePlatform.Models
 
         public Game()
         {
-            Players = initializationPlayer();
+            /*Players = initializationPlayer();*/
 
 
         }
@@ -22,17 +22,17 @@ namespace GamePlatform.Models
             return Players[id - 1];
         }
 
-        List<Player> initializationPlayer()
+        /*List<Player> initializationPlayer(players)
         {
             var pawn = new Pawn("red", 1, 1);
-            List<Player> players = new List<Player>(); ;
+            List<Player> players = new List<Player>();
             players.Add(new Player("Kamil", 0, pawn));
             players.Add(new Player("Ola", 0, pawn));
             players.Add(new Player("Daniel", 0, pawn));
             players.Add(new Player("Kuba", 0, pawn));
             return players;
 
-          
-        }
+
+        }*/
     }
 }

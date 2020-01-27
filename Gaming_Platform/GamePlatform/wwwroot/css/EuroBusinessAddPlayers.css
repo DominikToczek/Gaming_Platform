@@ -6,17 +6,22 @@
     transform: translate(-50%,-50%)
 }
 
-    .players-container .player-container {
+    .players-container .players .player-container {
         padding: 10px 0;
         height: 80px
     }
 
-        .players-container .player-container .player-data {
+        .players-container .players .player-container .player-data {
+            width: calc(100% - 60px);
             padding-left: 20px;
             float: left
         }
 
-        .players-container .player-container .player-avatar {
+            .players-container .players .player-container .player-data .player-name {
+                width: 100%
+            }
+
+        .players-container .players .player-container .player-avatar {
             float: left;
             width: 60px;
             height: 60px;
@@ -41,45 +46,29 @@
         background-color: #e61616
     }
 
-    .players-container .player-3 {
-        display: none
+    .players-container .player-3 .player-avatar {
+        background-image: url(/assets/img/avatar-3.jpg);
+        border-color: #ffea2a;
+        background-color: #ffea2a
     }
 
-        .players-container .player-3 .player-avatar {
-            background-image: url(/assets/img/avatar-3.jpg);
-            border-color: #ffea2a;
-            background-color: #ffea2a
-        }
-
-    .players-container .player-4 {
-        display: none
+    .players-container .player-4 .player-avatar {
+        background-image: url(/assets/img/avatar-4.jpg);
+        border-color: #048c7f;
+        background-color: #048c7f
     }
 
-        .players-container .player-4 .player-avatar {
-            background-image: url(/assets/img/avatar-4.jpg);
-            border-color: #048c7f;
-            background-color: #048c7f
-        }
-
-    .players-container .player-5 {
-        display: none
+    .players-container .player-5 .player-avatar {
+        background-image: url(/assets/img/avatar-5.jpg);
+        border-color: #da1984;
+        background-color: #da1984
     }
 
-        .players-container .player-5 .player-avatar {
-            background-image: url(/assets/img/avatar-5.jpg);
-            border-color: #da1984;
-            background-color: #da1984
-        }
-
-    .players-container .player-6 {
-        display: none
+    .players-container .player-6 .player-avatar {
+        background-image: url(/assets/img/avatar-6.jpg);
+        border-color: #f2ac29;
+        background-color: #f2ac29
     }
-
-        .players-container .player-6 .player-avatar {
-            background-image: url(/assets/img/avatar-6.jpg);
-            border-color: #f2ac29;
-            background-color: #f2ac29
-        }
 
     .players-container .add-new-player {
         margin-top: 20px;
@@ -96,6 +85,17 @@
             font-size: 25px;
             padding: 0 5px
         }
+
+    .players-container .start-game {
+        margin-top: 20px;
+        height: 50px;
+        width: 250px;
+        margin-left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        border-radius: 20px;
+        background-color: #90ee90
+    }
 
 #alert-max-players {
     text-align: center
@@ -134,3 +134,18 @@
 .avatar--6 {
     background-image: url(/assets/img/avatar-6.jpg)
 }
+
+#select-avatar-popup .modal-body {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap
+}
+
+    #select-avatar-popup .modal-body .avatar {
+        margin: 10px
+    }
+
+    #select-avatar-popup .modal-body .selected {
+        border: 5px solid #000;
+        border-radius: 10px
+    }
