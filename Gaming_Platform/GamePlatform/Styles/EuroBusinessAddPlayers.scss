@@ -1,0 +1,142 @@
+﻿/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Start game SCSS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.players-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .player-container {
+        padding: 10px 0;
+        height: 80px;
+
+        .player-data {
+            padding-left: 20px;
+            float: left;
+        }
+
+        .player-avatar {
+            float: left;
+            width: 60px;
+            height: 60px;
+            background-position: top center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            border-width: 6px;
+            border-style: solid;
+            border-radius: 10px;
+        }
+    }
+
+    .player-1 {
+        .player-avatar {
+            background-image: url("/assets/img/avatar-1.jpg");
+            border-color: #00a3e0;
+            background-color: #00a3e0;
+        }
+    }
+
+    .player-2 {
+        .player-avatar {
+            background-image: url("/assets/img/avatar-2.jpg");
+            border-color: rgb(230, 22, 22);
+            background-color: rgb(230, 22, 22);
+        }
+    }
+
+    .player-3 {
+        display: none;
+
+        .player-avatar {
+            background-image: url("/assets/img/avatar-3.jpg");
+            border-color: #ffea2a;
+            background-color: #ffea2a;
+        }
+    }
+
+    .player-4 {
+        display: none;
+
+        .player-avatar {
+            background-image: url("/assets/img/avatar-4.jpg");
+            border-color: #048c7f;
+            background-color: #048c7f;
+        }
+    }
+
+    .player-5 {
+        display: none;
+
+        .player-avatar {
+            background-image: url("/assets/img/avatar-5.jpg");
+            border-color: #da1984;
+            background-color: #da1984;
+        }
+    }
+
+    .player-6 {
+        display: none;
+
+        .player-avatar {
+            background-image: url("/assets/img/avatar-6.jpg");
+            border-color: #f2ac29;
+            background-color: #f2ac29;
+        }
+    }
+
+    .add-new-player {
+        margin-top: 20px;
+        padding: 5px 0;
+        height: 50px;
+        width: 180px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        border-radius: 20px;
+
+        i {
+            font-size: 25px;
+            padding: 0 5px;
+        }
+    }
+}
+
+#alert-max-players {
+    text-align: center;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    float: left;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.avatar--1 {
+    background-image: url("/assets/img/avatar-1.jpg");
+}
+
+.avatar--2 {
+    background-image: url("/assets/img/avatar-2.jpg");
+}
+
+.avatar--3 {
+    background-image: url("/assets/img/avatar-3.jpg");
+}
+
+.avatar--4 {
+    background-image: url("/assets/img/avatar-4.jpg");
+}
+
+.avatar--5 {
+    background-image: url("/assets/img/avatar-5.jpg");
+}
+
+.avatar--6 {
+    background-image: url("/assets/img/avatar-6.jpg");
+}

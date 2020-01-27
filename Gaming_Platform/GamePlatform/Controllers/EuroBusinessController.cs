@@ -43,7 +43,12 @@ namespace GamePlatform.Controllers
             ViewData["Players"] = players;
             return PartialView("EuroBusiness");
         }
-      
+
+
+        public IActionResult AddPlayers()
+        {
+            return View();
+        }
 
     }
 
