@@ -75,34 +75,25 @@ window.addEventListener('load', () => {
         var count = 0
         var kamil = "kami"
 
-        var results = new Array();
-
-        var emp1 = { "ID": "12", "Name": "Manas" };
-        results.push(emp1);
-
-        var emp2 = { "ID": "2", "Name": "Tester" };
-        results.push(emp2); 
-        var postData = { empList: results };
-  
-
-            $.ajax({
-                url: "/EuroBusiness/StartGame",
-                data: ' { name: "Kamil" }',
-                type: 'POST',
-                contentType: 'application/json',
-                dataType: 'json',
-              
-                success: function (response) {
-                    console.log(response)
-                    window.location = "/EuroBusiness/EuroBusiness"
-                },
-                error: function (response) {
-                    console.log("Coś poszło nie tak" + response)
+        if (validate(handler)) {
+            handler.forEach(a => {
+                var myData = {
+                    Name: a.children[1].children[1].value,
+                    Avatar: a.children[0].dataset.avatar,
+                    Color: pawnColors[count]
                 }
+                count++
+                data.push(myData)
             })
-       
 
-        console.log(postData)
+            localStorage.setItem('players', JSON.stringify(data))
+
+            window.location = "/EuroBusiness/EuroBusiness"
+
+        } else {
+            $('#alert-not-validate').modal('show')
+        }
+
     }
 
     function validate(a) {

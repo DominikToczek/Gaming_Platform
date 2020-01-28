@@ -9,44 +9,30 @@ namespace GamePlatform.Controllers
 {
     public class EuroBusinessController : Controller
     {
-        public List<Player> players;
-
-
-        public EuroBusinessController()
-        {
-
-        }
-        List<Player> initializationPlayer(Player[] playersData)
+        List<Player> players = new List<Player>();
+        List<Player> initializationPlayer(DataFromForm[] playersData)
         {
             List<Player> players = new List<Player>();
 
-            foreach (Player a in playersData)
+            for(int i=0; i<playersData.Length; i++)
             {
-                players.Add(new Player(a.Name, a.Avatar, a.Money, a.Pawns));
+                Pawn pawn = new Pawn(playersData[i].Color, 1, 0);
+                players.Add(new Player(playersData[i].Name, playersData[i].Avatar, 5000, pawn));
             }
             return players;
         }
 
         public ViewResult EuroBusiness()
         {
-
-            ViewData["Players"] = players;
+            ViewData["payers"] = players;
             return View();
         }
+
         [HttpPost]
-        public JsonResult StartGame(string name)
+        public JsonResult StartGame(DataFromForm[] playersData)
         {
-            var tmp = name;
-            //players = initializationPlayer(data);
-            return Json(new  {name = "dad" });
-        }
-
-        public IActionResult click(int button)
-        {
-
-            players[button].AddMoney(1000);
-            ViewData["Players"] = players;
-            return PartialView("EuroBusiness");
+            players = initializationPlayer(playersData);
+            return Json(players);
         }
 
         public IActionResult AddPlayers()
