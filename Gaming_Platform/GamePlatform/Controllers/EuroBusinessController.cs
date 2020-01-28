@@ -20,7 +20,7 @@ namespace GamePlatform.Controllers
         {
             List<Player> players = new List<Player>();
 
-            foreach(Player a in playersData)
+            foreach (Player a in playersData)
             {
                 players.Add(new Player(a.Name, a.Avatar, a.Money, a.Pawns));
             }
@@ -29,15 +29,16 @@ namespace GamePlatform.Controllers
 
         public ViewResult EuroBusiness()
         {
-            initializationPlayer(data)
+
             ViewData["Players"] = players;
             return View();
         }
-
-        public JsonResult StartGame(Player[] data)
+        [HttpPost]
+        public JsonResult StartGame(string name)
         {
-            players = initializationPlayer(data);
-            return Json(players);
+            var tmp = name;
+            //players = initializationPlayer(data);
+            return Json(new  {name = "dad" });
         }
 
         public IActionResult click(int button)
