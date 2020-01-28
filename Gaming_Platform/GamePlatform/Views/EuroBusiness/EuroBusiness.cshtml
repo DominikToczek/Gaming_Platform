@@ -1,8 +1,9 @@
 ﻿
+@model Player
+
 @{
     ViewData["Title"] = "EuroBusiness";
     Layout = "_Layout_2";
-    var players = ViewData["Players"] as List<Player>;
 }
 
 @section Scripts {
@@ -128,30 +129,17 @@
                 <div class="player-avatar"></div>
 
                 <div class="player-data">
-                    <div class="player-name">@players[0].Name</div>
-                    <div class="player-money">@players[0].Money</div>
+                    <div class="player-name">Adam</div>
+                    <div class="player-money">50000</div>
                 </div>
               
             </div>
-<div class="player player-2">
-    <div class="player-avatar"></div>
-    <div class="player-data">
-        <div class="player-name"> @players[1].Name</div>
-        <div class="player-money">@players[1].Money</div>
-    </div>
-</div>
-<div class="player player-3">
-    <div class="player-avatar"></div>
-    <div class="player-data">
-        <div class="player-name">@players[2].Name</div>
-        <div class="player-money">@players[2].Money</div>
-    </div>
-</div>
-<div class="player player-4">
-    <div class="player-avatar"></div>
-    <div class="player-data">
-        <div class="player-name">@players[3].Name</div>
-        <div class="player-money">@players[3].Money</div>
-    </div>
-</div>
+            <div class="player player-2">
+                <div class="player-avatar"></div>
+                <div class="player-data">
+                    <div class="player-name"> Robert </div>
+                    <div class="player-money">114541</div>
+                </div>
+            </div>
+
 
