@@ -8,19 +8,26 @@ namespace GamePlatform.Models
 {
     public class Player : IPlayer
     {
+        public int Id { get; set; }
         public int Money { get;  set; }
         public string Name { get;  set; }
         public string Avatar { get; set; }
-        public Pawn Pawns { get; set; }
+        public Pawn Pawn { get; set; }
 
-        public Player(string name, string avatar, int money , Pawn pawn)
+       public Player()
         {
+
+        }
+
+
+        public Player(int id , string name, string avatar, int money , Pawn pawn)
+        {
+            Id = id;
             Name = name;
             Avatar = avatar;
             Money = money;
-            Pawns = pawn;
+            Pawn = pawn;
         }
-
 
         public void AddMoney(int Money)
         {
@@ -42,7 +49,8 @@ namespace GamePlatform.Models
 
         }
 
-      
 
     }
+
+   
 }

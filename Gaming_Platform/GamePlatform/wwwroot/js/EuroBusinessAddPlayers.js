@@ -80,8 +80,8 @@ window.addEventListener('load', () => {
                 var myData = {
                     Name: a.children[1].children[1].value,
                     Avatar: a.children[0].dataset.avatar,
-                    Color: pawnColors[count]
-                }
+                    Pawn: { Color: pawnColors[count]}
+                }   
                 count++
                 data.push(myData)
             })

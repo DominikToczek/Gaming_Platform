@@ -12,6 +12,12 @@ namespace GamePlatform.Models
         public int Number { get; set; }
         public int ActualPosition { get;  set; }
 
+
+        public Pawn()
+        {
+
+        }
+
         public Pawn(string color , int number, int actualPosition)
         {
             Color = color;
