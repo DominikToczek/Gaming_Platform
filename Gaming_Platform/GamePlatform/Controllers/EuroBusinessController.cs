@@ -25,9 +25,58 @@ namespace GamePlatform.Controllers
             return Json(game.InitPlayer(playersData));
         }
 
-        public IActionResult AddPlayers()
+        public ViewResult AddPlayers()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult DiceThrow()
+        {
+            //Tej metody będę używał do wywołania rzutu kostką jako wynik będzie zwracany obiekt z flagami
+            return Json("fdsfasd");
+        }
+
+        [HttpPost]
+        public ActionResult BuyHouse()
+        {
+            /*Tej metody będę używał do zakupu domków przez użytkownika. Otrzymasz taki obiekt
+             * {
+                numer_gracza: 1,
+                ilosc_domków: 3,
+                numer_pola: 31
+                } 
+
+
+                w odpowiedzi oczekuję
+                {
+                    numer_gracza: 1,
+                    stan_konta: 34212
+                }
+             */
+
+            return Json("fdsfasd");
+        }
+
+        [HttpPost]
+        public ActionResult SellField()
+        {
+            //w przypadku gdy player może zostać bankrutem może sprzedać swoje pola i do tego służy ta metoda 
+            /*
+                Przesyłany obiekt:
+                {
+                    numer_gracza: 1,
+                    numer_pola: 21
+                }
+
+                w odpowiedzi oczekuję
+                {
+                    numer_gracza: 1,
+                    stan_konta: 34212
+                }
+             */
+
+            return Json("fdsfasd");
         }
     }
 }
