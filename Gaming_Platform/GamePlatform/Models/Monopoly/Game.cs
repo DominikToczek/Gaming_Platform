@@ -9,8 +9,8 @@ namespace GamePlatform.Models
     {
         public List<Player> Players { get; private set; }
         public Board board { get; private set; }
-        private Dice dice;
-
+        public Player SelectedPlayer => _selectedPlayer;
+        Dice dice;
         Player _selectedPlayer;
 
         public Game()
@@ -30,14 +30,27 @@ namespace GamePlatform.Models
             return dice.Rol();
         }
 
+        public void BuyHome(int numberOfHome , int idFild)
+        {
+            for(int i =0; i< numberOfHome; i++)
+            {
+                (board.GetFiels(idFild) as FieldWithCity).BuyHome(_selectedPlayer);
+            }
+        }
+
         public void MovePawn(int number)
         {
             _selectedPlayer.Pawn.Move(number, board.NumberOfField);
         }
 
-        public void SelectedPlayer(int number)
+        public void SelectPlayer(int number)
         {
             _selectedPlayer = Players[number];
+        }
+
+        public void SellField(int idFild)
+        {
+            (board.GetFiels(idFild) as FieldWithCity).SellField(_selectedPlayer);
         }
 
         public List<Player> InitPlayer(Player[] playersData)

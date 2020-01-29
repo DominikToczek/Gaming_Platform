@@ -30,14 +30,14 @@ namespace GamingPlatformTests
         [Test]
         public void CreatePlayer()
         {
-            var expected = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var expected = new Player(1,"", "kamil", 1000, new Pawn("Red", 1, 0));
             Assert.NotNull(expected);
         }
 
         [Test]
         public void Player_AddMony()
         {
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             player.AddMoney(1000);
             Assert.AreEqual(player.Money, 2000);
         }
@@ -45,7 +45,7 @@ namespace GamingPlatformTests
         [Test]
         public void Player_SpendMony_DontHaveEnoughtMoney()
         {
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             Assert.False(player.spendMoney(10000));
             Assert.AreEqual(player.Money, 1000);
         }
@@ -53,7 +53,7 @@ namespace GamingPlatformTests
         [Test]
         public void Player_SpendMony_HaveEnoughtMoney()
         {
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             Assert.True(player.spendMoney(1000));
             Assert.AreEqual(player.Money, 0);
         }
@@ -108,7 +108,7 @@ namespace GamingPlatformTests
         public void FieldWithCity_SetOwer_OwerIsNull()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             Assert.True(field.SetOwer(player));
             Assert.IsNotNull(field.Ower);
             Assert.AreSame(field.Ower,player);
@@ -118,7 +118,7 @@ namespace GamingPlatformTests
         public void FieldWithCity_SetOwer_OwerIsNotNull()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             field.SetOwer(player);
             Assert.False(field.SetOwer(player));
             
@@ -128,7 +128,7 @@ namespace GamingPlatformTests
         public void FieldWithCity_BuyField()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             Assert.True(field.BuyField(player));
             
         }
@@ -137,7 +137,7 @@ namespace GamingPlatformTests
         public void FieldWithCity_BuyField_PlayerDontHaveEnoughtMoney()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 500, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 500, new Pawn("Red", 1, 0));
             Assert.False(field.BuyField(player));
         }
 
@@ -145,7 +145,7 @@ namespace GamingPlatformTests
         public void FieldWithCity_BuyField_OwerIsPlayer()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             field.SetOwer(player);
             Assert.False(field.BuyField(player)); 
         }
@@ -154,7 +154,7 @@ namespace GamingPlatformTests
         public void FieldWithCity_SellField_PlayerIsNotOwer()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             Assert.False(field.SellField(player));
             Assert.AreEqual(player.Money, 1000);
         }
@@ -163,7 +163,7 @@ namespace GamingPlatformTests
         public void FieldWithCity_SellField_PlayerIsOwer()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             field.SetOwer(player);
             Assert.True(field.SellField(player));
             Assert.AreEqual(player.Money, 2000);
@@ -173,7 +173,8 @@ namespace GamingPlatformTests
         public void FieldWithCity_PayForStay_PlayerHaveEnoughtMoney()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
+            field.SetOwer(new Player(2, "", "Kuba", 1000, new Pawn("Red", 1, 0)));
             Assert.True(field.PayForStay(player));
             Assert.AreEqual(player.Money, 0);
         }
@@ -182,15 +183,19 @@ namespace GamingPlatformTests
         public void FieldWithCity_PayForStay_PlayerDontHaveEnoughtMoney()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 500, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 500, new Pawn("Red", 1, 0));
+            field.SetOwer(new Player(2, "", "Kuba", 1000, new Pawn("Red", 1, 0)));
             Assert.False(field.PayForStay(player));
             Assert.AreEqual(player.Money, 500);
         }
+
+
         [Test]
         public void FieldWithCity_BuyHome_PlayerHaveEnoughtMoney()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 2000, new Pawn("Red", 1, 0));
+            field.BuyField(player);
             Assert.True(field.BuyHome(player));
             Assert.AreEqual(player.Money, 0);
             Assert.AreEqual(field.FieldCost, 2000);
@@ -199,10 +204,12 @@ namespace GamingPlatformTests
         public void FieldWithCity_BuyHome_PlayerHaveNotEnoughtMoney()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 500, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
+            field.BuyField(player);
             Assert.False(field.BuyHome(player));
-            Assert.AreEqual(player.Money, 500);
+            Assert.AreEqual(player.Money, 0);
             Assert.AreEqual(field.FieldCost, 1000);
+            Assert.AreEqual(field.GetFieldState, FieldState.EmptyField);
         }
 
 
@@ -210,22 +217,28 @@ namespace GamingPlatformTests
          public void FieldWithCity_BuyHotel_PlayerHaveEnoughtMoney()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 3000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 11000, new Pawn("Red", 1, 0));
+            field.BuyField(player);
+            field.BuyHome(player);
+            field.BuyHome(player);
             field.BuyHome(player);
             Assert.True(field.BuyHotel(player));
             Assert.AreEqual(player.Money, 0);
-            Assert.AreEqual(field.FieldCost, 4000);
+            Assert.AreEqual(field.FieldCost, 5000);
         }
 
         [Test]
         public void FieldWithCity_BuyHotel_PlayerHaveNotEnoughtMoney()
         {
             var field = new FieldWithCity("Brazylia", 1000, 1000);
-            var player = new Player("kamil", "", 2000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
+            field.BuyField(player);
+            field.BuyHome(player);
+            field.BuyHome(player);
             field.BuyHome(player);
             Assert.False(field.BuyHotel(player));
-            Assert.AreEqual(player.Money, 1000);
-            Assert.AreEqual(field.FieldCost, 2000);
+            Assert.AreEqual(player.Money, 0);
+            Assert.AreEqual(field.FieldCost, 1000);
         }
 
 
@@ -240,7 +253,7 @@ namespace GamingPlatformTests
         public void StartField_AddMoneyForStaty()
         {
             var startField = new StartField();
-            var player = new Player("kamil","", 1000, new Pawn("Red", 1, 0));
+            var player = new Player(1, "", "kamil", 1000, new Pawn("Red", 1, 0));
             startField.AddMoneyForStaty(player);
             Assert.AreEqual(player.Money, 2000);
         }

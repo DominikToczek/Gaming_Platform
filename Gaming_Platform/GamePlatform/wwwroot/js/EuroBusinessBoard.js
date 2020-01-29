@@ -17,6 +17,6 @@
 
 
     var a = {
-        Numer_pola: numer pola na którym stoi gracz
+        numer_pola: numer pola na którym stoi gracz
     }
 })

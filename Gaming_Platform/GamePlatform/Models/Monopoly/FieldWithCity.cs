@@ -1,47 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public enum FieldState
+﻿public enum FieldState
 {
-    EmptyField=1,
-    Home=2,
-    Hotel=4
+    EmptyField = 1,
+    Home = 2,
+    Home2 = 3,
+    Home3 = 4,
+    Hotel = 5
 }
 
 namespace GamePlatform.Models
 {
-    public class FieldWithCity:IField
+    public class FieldWithCity : IField
     {
         int _fieldCost;
         int _stayOnFieldCost;
 
-        
         public int FieldCost
         {
-            get => _fieldCost * (int) _fieldState;
+            get => _fieldCost * (int)_fieldState;
 
-            private set
-            {
-                _fieldCost = value;
-            }
+            private set => _fieldCost = value;
         }
         public int StayOnFieldCost
         {
             get => _stayOnFieldCost * (int)_fieldState;
-            private set
-            {
-                _stayOnFieldCost = value;
-            }
+            private set => _stayOnFieldCost = value;
         }
         public string Name { get; }
         public Player Ower { get; private set; }
+        public FieldState GetFieldState => _fieldState;
         private FieldState _fieldState;
 
 
-        public FieldWithCity(string name , int fieldCost ,int stayOnFieldCost )
+        public FieldWithCity(string name, int fieldCost, int stayOnFieldCost)
         {
             Name = name;
             FieldCost = fieldCost;
@@ -57,7 +47,7 @@ namespace GamePlatform.Models
         /// <returns>Zwraca false jak pole już do kogoś należy</returns>
         public bool SetOwer(Player player)
         {
-            if(Ower is null)
+            if (Ower is null)
             {
                 Ower = player;
                 return true;
@@ -68,28 +58,42 @@ namespace GamePlatform.Models
 
         public bool BuyField(Player player)
         {
-
-            if (player.Money < FieldCost || player == Ower)
+            if (Ower is null)
             {
-                return false;
+                if (player.Money < FieldCost)
+                {
+                    return false;
+                }
+                else
+                {
+                    SetOwer(player);
+                    player.spendMoney(FieldCost);
+                    return true;
+                }
             }
             else
             {
-                SetOwer(player);
-                player.spendMoney(FieldCost);
-                return true;
+                return false;
             }
+
 
 
         }
 
         public bool SellField(Player player)
         {
-            if(player==Ower)
+            if (!(Ower is null))
             {
-                Ower = null;
-                player.AddMoney(FieldCost);
-                return true;
+                if (player.Id == Ower.Id)
+                {
+                    Ower = null;
+                    player.AddMoney(FieldCost);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
@@ -99,43 +103,82 @@ namespace GamePlatform.Models
 
         public bool PayForStay(Player player)
         {
-            
-            if(player.Money >= StayOnFieldCost)
+            if (!(Ower is null))
             {
-                player.spendMoney(StayOnFieldCost);
-                return true;
+                if (player.Money >= StayOnFieldCost)
+                {
+                    player.spendMoney(StayOnFieldCost);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
+
         }
 
         public bool BuyHome(Player player)
         {
-            if(player.spendMoney(FieldCost) &&  _fieldState == FieldState.EmptyField)
+            if (!(Ower is null))
             {
-                _fieldState = FieldState.Home;
-                return true;
+                if (
+                                (player.spendMoney(FieldCost) &&
+                                (_fieldState >= FieldState.EmptyField && _fieldState < FieldState.Home3)) &&
+                                player.Id == Ower.Id)
+                {
+                    switch (_fieldState)
+                    {
+                        case FieldState.EmptyField:
+                            _fieldState = FieldState.Home;
+                            break;
+                        case FieldState.Home:
+                            _fieldState = FieldState.Home2;
+                            break;
+                        case FieldState.Home2:
+                            _fieldState = FieldState.Home3;
+                            break;
+
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
+
             else
             {
                 return false;
             }
-            
+
         }
 
         public bool BuyHotel(Player player)
         {
-            if (player.spendMoney(FieldCost) &&  _fieldState== FieldState.Home)
+            if(!(Ower is null))
             {
-                _fieldState = FieldState.Hotel;
-                return true;
+                if ((player.spendMoney(FieldCost) && _fieldState == FieldState.Home3) &&
+               player.Id == Ower.Id)
+                {
+                    _fieldState = FieldState.Hotel;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
+           
 
         }
 
