@@ -23,7 +23,7 @@ namespace GamePlatform.Models
         {
             get => _fieldCost * (int) _fieldState;
 
-            set
+            private set
             {
                 _fieldCost = value;
             }
@@ -31,7 +31,7 @@ namespace GamePlatform.Models
         public int StayOnFieldCost
         {
             get => _stayOnFieldCost * (int)_fieldState;
-            set
+            private set
             {
                 _stayOnFieldCost = value;
             }

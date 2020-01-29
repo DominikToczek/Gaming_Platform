@@ -9,6 +9,9 @@ namespace GamePlatform.Models
     {
         public string Name { get; private set; }
         public bool IsOccupied { get ; set ; }
+        public Player Ower => null;
+        public int StayOnFieldCost => 0;
+
         int _moneyForStay = 1000;
 
         public StartField()

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace GamePlatform.Models
 {
-    public interface  IField
+    public interface IField
     {
          string Name { get;  }
+         Player Ower { get;  }
+         int StayOnFieldCost { get;  }
     }
 }

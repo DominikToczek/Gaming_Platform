@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GamePlatform.Models
 {
-    class Board
+    public class Board
     {
         List<IField> _fields;
         public int NumberOfField => _fields.Count;
@@ -20,7 +20,12 @@ namespace GamePlatform.Models
 
         public IField GetFiels(int id)
         {
-            return _fields[id - 1];
+            return _fields[id];
+        }
+
+        public List<IField> GetAllFields(Player player)
+        {
+            return _fields.Where(x => x.Ower.Id == player.Id).ToList();
         }
 
 
