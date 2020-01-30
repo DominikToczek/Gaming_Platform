@@ -16,31 +16,34 @@ namespace GamePlatform.Controllers
         {
 
         }
-         List<IPlayer> initializationPlayer()
-        {
-            List<IPlayer> players =new List<IPlayer>(); ;
-            players.Add(new Player("Arek", 0));
-            return players;
-        }
 
         public ViewResult Poker()
         {
-            players = initializationPlayer();
-            ViewData["Players"] = players;
             return View();
         }
 
-        public IActionResult click(int button)
+        [HttpPost]
+        public JsonResult DealCards()
         {
-
-            players[button].AddMoney(1000);
-            ViewData["Players"] = players;
-            return PartialView("Poker");
+            return Json("Tu Backendowe dealcards");
         }
 
-       
+        [HttpPost]
+        public ActionResult GetPlayerHand()
+        {
+            return Json("backend player hand");
+        }
+
+        [HttpPost]
+        public ActionResult GetComputerHand()
+        {
+            return Json("backend computer hand");
+        }
+
+        [HttpPost]
+        public ActionResult ChangeCard(int? Id)
+        {
+            return Json("index to " + Id);
+        }
     }
-
-
-
-    }
+}

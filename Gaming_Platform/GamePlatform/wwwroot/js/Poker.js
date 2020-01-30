@@ -1,27 +1,91 @@
 ﻿function newGame() {
-    console.log("Nowa gra");
+    dealCards();
+    getPlayerHand();
+    getComputerHand();
 }
 
 function checkGame() {
-    console.log("Sprawdz");
+    $.ajax({
+        type: "POST",
+        url: "/Poker/CheckGame",
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak" + response)
+        }
+    })
 }
 
 function changeCard1() {
-    console.log("Karta 1");
+    changeCard(1);
 }
 
 function changeCard2() {
-    console.log("Karta 2");
+    changeCard(2);
 }
 
 function changeCard3() {
-    console.log("Karta 3");
+    changeCard(3);
 }
 
 function changeCard4() {
-    console.log("Karta 4");
+    changeCard(4);
 }
 
 function changeCard5() {
-    console.log("Karta 5");
+    changeCard(5);
+}
+
+function dealCards() {
+    $.ajax({
+        type: "POST",
+        url: "/Poker/DealCards",
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak" + response)
+        }
+    })
+}
+
+function getPlayerHand() {
+    $.ajax({
+        type: "POST",
+        url: "/Poker/GetPlayerHand",
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak" + response)
+        }
+    })
+}
+
+function getComputerHand() {
+    $.ajax({
+        type: "POST",
+        url: "/Poker/GetComputerHand",
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak" + response)
+        }
+    })
+}
+
+function changeCard(Id) {
+    $.ajax({
+        type: "POST",
+        data: { Id },
+        url: "/Poker/changeCard",
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak" + response)
+        }
+    })
 }
