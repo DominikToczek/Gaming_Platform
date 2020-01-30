@@ -334,6 +334,14 @@
     background-image: url(/assets/img/avatar-6.jpg)
 }
 
+#throw-dice-button {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 100px;
+    height: 40px
+}
+
 @-webkit-keyframes throw-1 {
     0% {
         -webkit-transform: perspective(0) rotate(245deg) rotateY(500deg) rotateX(160deg);

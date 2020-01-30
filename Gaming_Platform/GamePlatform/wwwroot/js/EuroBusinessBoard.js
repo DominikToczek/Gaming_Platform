@@ -1,23 +1,32 @@
-﻿window.addEventListener('load', () => {
-
+﻿
+window.addEventListener('load', () => {
     var players = localStorage.getItem('players')
-    players = JSON.parse(players)
+    var playersDataFromServer
+    var playersHandle
+    var pawnHandle
+    var diceHandle
+    var spacesBoard
+    var throwDiceButton = document.querySelector("#throw-dice-button")
 
+    configGame()
+    players = JSON.parse(players)
     startGame(players)
+
+    throwDiceButton.addEventListener("click", throwDice)
 })
 
-function startGame(playersData) {
+function startGame(a) {
     $.ajax({
         type: "POST",
-        data: { playersData: playersData },
+        data: { playersData: a },
         url: "/EuroBusiness/StartGame",
         success: function (response) {
-            console.log(response)
-            playersData = response
-
-            playersData.forEach(a => {
+            response.forEach(a => {
                 addPlayer(a)
             })
+
+            playersDataFromServer = response
+            configGame()
         },
         error: function (response) {
             console.log("Coś poszło nie tak" + response.error)
@@ -67,8 +76,8 @@ function addPawn(c, b) {
     pawn.style.backgroundColor = `${c}`
     pawn.dataset.pawnNumber = b
     pawn.dataset.currentPosition = 1
-    pawn.dataset.currentPositionX = pawnPosition[b-1][0]
-    pawn.dataset.currentPositionY = pawnPosition[b-1][1]
+    pawn.dataset.currentPositionX = pawnPosition[b - 1][0]
+    pawn.dataset.currentPositionY = pawnPosition[b - 1][1]
     pawnContainer.appendChild(pawn)
 }
 
@@ -287,4 +296,39 @@ function movePawn(pawn, space) {
         pawn.style.bottom = moveY
         pawn.dataset.currentPosition = a
     }
+}
+
+function loadWelcomeScreen() {
+    //dopisać wyskakujące okienko na początku gry
+}
+
+function configGame() {
+    playersHandle = document.querySelectorAll(".player")
+    pawnHandle = document.querySelectorAll(".pawn")
+    diceHandle = document.querySelector(".dice")
+    spacesBoard = document.querySelectorAll(".space")
+
+
+    console.log(playersHandle)
+    console.log(pawnHandle)
+    console.log(diceHandle)
+    console.log(spacesBoard)
+}
+
+
+function throwDice() {
+    $.ajax({
+        type: "POST",
+        url: "/EuroBusiness/DiceThrow",
+        success: function (response) {
+            response.forEach(a => {
+                console.log(response)
+            })
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak z rzutem kostką" + response)
+        }
+    })
+
+    console.log("fdsafasdfasd")
 }

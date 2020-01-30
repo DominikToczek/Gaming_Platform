@@ -343,6 +343,14 @@ body {
     }
 }
 
+#throw-dice-button {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 100px;
+    height: 40px;
+}
+
 @keyframes throw-1 {
     0% {
         transform: perspective(0) rotateZ(245deg) rotateY(500deg) rotateX(160deg);
