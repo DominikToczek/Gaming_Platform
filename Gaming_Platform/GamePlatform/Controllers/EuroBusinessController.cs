@@ -10,7 +10,8 @@ namespace GamePlatform.Controllers
     public class EuroBusinessController : Controller
     {
 
-        Game game;
+        Game game = new Game();
+
    
 
         public ViewResult EuroBusiness()
@@ -22,6 +23,7 @@ namespace GamePlatform.Controllers
         [HttpPost]
         public JsonResult StartGame(Player[] playersData)
         {
+            Player[] a = playersData;
             return Json(game.InitPlayer(playersData));
         }
 

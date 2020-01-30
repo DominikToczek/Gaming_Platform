@@ -5,7 +5,7 @@
 .board-container {
     position: absolute;
     top: 40%;
-    left: 50%;
+    left: 60%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%)
 }
@@ -29,7 +29,7 @@
                 border: 1px solid #000
             }
 
-            .board-container .board .board-section-1 #space-1, .board-container .board .board-section-1 #space-11, .board-container .board .board-section-1 #space-20, .board-container .board .board-section-1 #space-30, .board-container .board .board-section-3 #space-1, .board-container .board .board-section-3 #space-11, .board-container .board .board-section-3 #space-20, .board-container .board .board-section-3 #space-30 {
+            .board-container .board .board-section-1 #space-1, .board-container .board .board-section-1 #space-11, .board-container .board .board-section-1 #space-21, .board-container .board .board-section-1 #space-31, .board-container .board .board-section-3 #space-1, .board-container .board .board-section-3 #space-11, .board-container .board .board-section-3 #space-21, .board-container .board .board-section-3 #space-31 {
                 width: 100px
             }
 
@@ -221,117 +221,118 @@
     .board-container .pawn {
         position: absolute;
         border-radius: 50%;
-        width: 20px;
-        height: 20px
+        width: 15px;
+        height: 15px;
+        -webkit-transition: 2s;
+        transition: 2s
     }
 
-    .board-container .pawn-player-1 {
-        right: 20px;
-        bottom: 20px;
+    .board-container .pawn--1 {
+        right: 30px;
+        bottom: 10px;
         background-color: #8a2be2
     }
 
-    .board-container .pawn-player-2 {
-        right: 20px;
-        bottom: 60px;
+    .board-container .pawn--2 {
+        right: 30px;
+        bottom: 30px;
         background-color: #ff0
     }
 
-    .board-container .pawn-player-3 {
-        right: 60px;
-        bottom: 20px;
+    .board-container .pawn--3 {
+        right: 30px;
+        bottom: 50px;
         background-color: #0ff
     }
 
-    .board-container .pawn-player-4 {
-        right: 60px;
-        bottom: 60px;
+    .board-container .pawn--4 {
+        right: 50px;
+        bottom: 50px;
         background-color: grey
     }
 
-.player {
-    background-color: #00f;
+    .board-container .pawn--5 {
+        right: 50px;
+        bottom: 30px;
+        background-color: red
+    }
+
+    .board-container .pawn--6 {
+        right: 50px;
+        bottom: 10px;
+        background-color: orange
+    }
+
+.player-container {
+    top: 0;
+    left: 0;
     position: absolute
 }
 
-    .player .player-avatar {
-        border-radius: 10%;
-        width: 80px;
-        height: 80px;
-        background: #fda;
-        position: absolute
+    .player-container .player {
+        background-color: #00f;
+        position: relative;
+        width: 250px;
+        margin-top: 10px;
+        border-radius: 0 15px 15px 0
     }
 
-    .player .player-data {
-        font-weight: 700;
-        color: #fff;
-        min-width: 200px;
-        padding: 0 10px
-    }
-
-        .player .player-data .player-money, .player .player-data .player-name {
-            padding: 5px 0
+        .player-container .player .player-avatar {
+            border-radius: 35%;
+            width: 50px;
+            height: 50px;
+            background: #fda;
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            background-position: top;
+            background-size: cover
         }
 
-.player-1 {
-    top: 0;
-    left: 0
+        .player-container .player .player-data {
+            font-weight: 700;
+            color: #fff;
+            min-width: 200px;
+            font-size: 13px;
+            padding: 0 10px 0 90px;
+            text-align: right
+        }
+
+            .player-container .player .player-data .player-money, .player-container .player .player-data .player-name {
+                padding: 2px 0
+            }
+
+#player--active {
+    width: 280px
 }
 
-    .player-1 .player-avatar {
-        left: 5px;
-        top: 5px
+    #player--active .player-data {
+        font-size: 15px
     }
 
-    .player-1 .player-data {
-        text-align: right;
-        padding-left: 90px
-    }
-
-.player-2 {
-    top: 0;
-    right: 0
+.player-1 .player-avatar {
+    background-image: url(/assets/img/avatar-1.jpg)
 }
 
-    .player-2 .player-avatar {
-        right: 5px;
-        top: 5px
-    }
-
-    .player-2 .player-data {
-        text-align: left;
-        padding-right: 90px
-    }
-
-.player-3 {
-    bottom: 0;
-    left: 0
+.player-2 .player-avatar {
+    background-image: url(/assets/img/avatar-2.jpg)
 }
 
-    .player-3 .player-avatar {
-        left: 5px;
-        bottom: 5px
-    }
-
-    .player-3 .player-data {
-        text-align: right;
-        padding-left: 90px
-    }
-
-.player-4 {
-    bottom: 0;
-    right: 0
+.player-3 .player-avatar {
+    background-image: url(/assets/img/avatar-3.jpg)
 }
 
-    .player-4 .player-avatar {
-        right: 5px;
-        bottom: 5px
-    }
+.player-4 .player-avatar {
+    background-image: url(/assets/img/avatar-4.jpg)
+}
 
-    .player-4 .player-data {
-        text-align: left;
-        padding-right: 90px
-    }
+.player-5 .player-avatar {
+    background-image: url(/assets/img/avatar-5.jpg)
+}
+
+.player-6 .player-avatar {
+    background-image: url(/assets/img/avatar-6.jpg)
+}
 
 @-webkit-keyframes throw-1 {
     0% {

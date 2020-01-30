@@ -58,7 +58,7 @@ namespace GamePlatform.Models
             List<Player> players = new List<Player>();
             for (int i = 0; i < playersData.Length; i++)
             {
-                Pawn pawn = new Pawn(playersData[i].Pawn.Color, 1, 0);
+                Pawn pawn = new Pawn(playersData[i].Pawn.Color, i + 1, 1);
                 players.Add(new Player(i + 1, playersData[i].Name, playersData[i].Avatar, 10000, pawn));
             }
             _selectedPlayer = players[0];

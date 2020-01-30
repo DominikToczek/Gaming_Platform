@@ -5,20 +5,20 @@ body {
     overflow: hidden;
 }
 
-
 //board styling responsive to consider?
 .board-container {
     position: absolute;
     top: 40%;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, -50%);
 
     .board {
         width: $board-size;
         position: relative;
-        transform: perspective($board-size*2) rotateX(45deg) rotate(25deg);
+        transform: perspective($board-size * 2) rotateX(45deg) rotate(25deg);
 
-        .board-section-1, .board-section-3 {
+        .board-section-1,
+        .board-section-3 {
             height: $board-size / 13 * 2;
 
             .space {
@@ -29,7 +29,10 @@ body {
                 border: 1px solid black;
             }
 
-            #space-20, #space-30, #space-1, #space-11 {
+            #space-21,
+            #space-31,
+            #space-1,
+            #space-11 {
                 width: $board-size / 13 * 2;
             }
         }
@@ -37,7 +40,9 @@ body {
         .board-section-2 {
             height: $board-size - ($board-size / 13 * 4);
 
-            .subsection-1, .subsection-3, .subsection-2 {
+            .subsection-1,
+            .subsection-3,
+            .subsection-2 {
                 float: left;
 
                 .space {
@@ -91,7 +96,7 @@ body {
                 }
 
                 .dot--right {
-                    margin-left: $dice-size/12*7;
+                    margin-left: $dice-size/12 * 7;
                 }
 
                 .dot--top {
@@ -107,7 +112,7 @@ body {
                 }
 
                 .dot--bottom {
-                    margin-top: $dice-size/12*7;
+                    margin-top: $dice-size/12 * 7;
                 }
             }
 
@@ -159,7 +164,8 @@ body {
                 transform: translateZ($dice-size/2-1);
             }
 
-            .inner, .cover {
+            .inner,
+            .cover {
                 background: #e0e0e0;
                 box-shadow: none;
             }
@@ -206,124 +212,136 @@ body {
     .pawn {
         position: absolute;
         border-radius: 50%;
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
+        transition: 2s;
     }
 
-    .pawn-player-1 {
-        right: 20px;
-        bottom: 20px;
+    .pawn--1 {
+        right: ($board-size / 13) - 15px - ($board-size / 13) / 10;
+        bottom: ($board-size / 13) / 5;
         background-color: blueviolet;
     }
 
-    .pawn-player-2 {
-        right: 20px;
-        bottom: 60px;
+    .pawn--2 {
+        right: ($board-size / 13) - 15px - ($board-size / 13) / 10;
+        bottom: ($board-size / 13) / 5 * 3;
         background-color: yellow;
     }
 
-    .pawn-player-3 {
-        right: 60px;
-        bottom: 20px;
+    .pawn--3 {
+        right: ($board-size / 13) - 15px - ($board-size / 13) / 10;
+        bottom: ($board-size / 13) / 5 * 5;
         background-color: aqua;
     }
 
-    .pawn-player-4 {
-        right: 60px;
-        bottom: 60px;
+    .pawn--4 {
+        right: ($board-size / 13);
+        bottom: ($board-size / 13 / 5 * 5);
         background-color: gray;
+    }
+
+    .pawn--5 {
+        right: ($board-size / 13);
+        bottom: ($board-size / 13)/5 * 3;
+        background-color: red;
+    }
+
+    .pawn--6 {
+        right: ($board-size / 13);
+        bottom: ($board-size / 13)/5;
+        background-color: orange;
     }
 }
 
 //players styles
-.player {
-    background-color: blue;
+.player-container {
+    top: 0;
+    left: 0;
     position: absolute;
 
-    .player-avatar {
-        border-radius: 10%;
-        width: 80px;
-        height: 80px;
-        background: #fda;
-        position: absolute;
+    .player {
+        background-color: blue;
+        position: relative;
+        width: 250px;
+        margin-top: 10px;
+        border-radius: 0 15px 15px 0;
+
+        .player-avatar {
+            border-radius: 35%;
+            width: 50px;
+            height: 50px;
+            background: #fda;
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            background-position: top center;
+            background-size: cover;
+        }
+
+        .player-data {
+            font-weight: bold;
+            color: #fff;
+            min-width: 200px;
+            padding: 0 10px;
+            font-size: 13px;
+            padding-left: 90px;
+            text-align: right;
+
+            .player-name {
+                padding: 2px 0;
+            }
+
+            .player-money {
+                padding: 2px 0;
+            }
+        }
     }
+}
+
+#player--active {
+    width: 280px;
 
     .player-data {
-        font-weight: bold;
-        color: #fff;
-        min-width: 200px;
-        padding: 0 10px;
-
-        .player-name {
-            padding: 5px 0;
-        }
-
-        .player-money {
-            padding: 5px 0;
-        }
+        font-size: 15px;
     }
 }
 
 .player-1 {
-    top: 0;
-    left: 0;
-
     .player-avatar {
-        left: 5px;
-        top: 5px;
-    }
-
-    .player-data {
-        text-align: right;
-        padding-left: 90px;
+        background-image: url("/assets/img/avatar-1.jpg");
     }
 }
 
 .player-2 {
-    top: 0;
-    right: 0;
-
     .player-avatar {
-        right: 5px;
-        top: 5px;
-    }
-
-    .player-data {
-        text-align: left;
-        padding-right: 90px;
+        background-image: url("/assets/img/avatar-2.jpg");
     }
 }
 
 .player-3 {
-    bottom: 0;
-    left: 0;
-
     .player-avatar {
-        left: 5px;
-        bottom: 5px;
-    }
-
-    .player-data {
-        text-align: right;
-        padding-left: 90px;
+        background-image: url("/assets/img/avatar-3.jpg");
     }
 }
 
 .player-4 {
-    bottom: 0;
-    right: 0;
-
     .player-avatar {
-        right: 5px;
-        bottom: 5px;
-    }
-
-    .player-data {
-        text-align: left;
-        padding-right: 90px;
+        background-image: url("/assets/img/avatar-4.jpg");
     }
 }
 
+.player-5 {
+    .player-avatar {
+        background-image: url("/assets/img/avatar-5.jpg");
+    }
+}
+
+.player-6 {
+    .player-avatar {
+        background-image: url("/assets/img/avatar-6.jpg");
+    }
+}
 
 @keyframes throw-1 {
     0% {
@@ -400,8 +418,6 @@ body {
         left: $board-size/2;
     }
 }
-
-
 
 @keyframes throw-3 {
     0% {
