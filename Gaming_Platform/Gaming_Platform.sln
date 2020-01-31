@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamePlatform", "GamePlatfor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingPlatformTests", "GamingPlatformTests\GamingPlatformTests.csproj", "{916E6A03-325D-4C7F-93EE-FC2C41D16C68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingPlatformSeleniumTests", "GamingPlatformSeleniumTests\GamingPlatformSeleniumTests.csproj", "{4D1327AE-95D8-42CC-98F1-D6C95870357B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{916E6A03-325D-4C7F-93EE-FC2C41D16C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{916E6A03-325D-4C7F-93EE-FC2C41D16C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{916E6A03-325D-4C7F-93EE-FC2C41D16C68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D1327AE-95D8-42CC-98F1-D6C95870357B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D1327AE-95D8-42CC-98F1-D6C95870357B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D1327AE-95D8-42CC-98F1-D6C95870357B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D1327AE-95D8-42CC-98F1-D6C95870357B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
