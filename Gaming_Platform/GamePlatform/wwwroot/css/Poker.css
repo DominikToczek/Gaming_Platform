@@ -1,0 +1,41 @@
+﻿.board-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 600px;
+    background-color: green;
+}
+
+.cards-container {
+    position: relative;
+    margin: 40px;
+    height: 420px;
+    border: solid;
+    padding: 50px
+}
+
+.poker-card {
+    position: relative;
+    display: inline-block;
+    height: 300px;
+    width: 150px;
+    border: solid;
+    margin: 4px;
+}
+
+.buttons-container {
+    text-align: center;
+}
+
+.change-card {
+    position: relative;
+    text-align: center;
+    top: 250px
+}
+
+.card-game-button {
+    margin: 0 40px;
+    min-width: 120px;
+}

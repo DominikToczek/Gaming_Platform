@@ -1,14 +1,33 @@
-﻿using Moq;
-using NUnit.Framework;
-using Cards;
-using System.Linq;
+﻿using NUnit.Framework;
 using System;
+using GamePlatform.Models;
 
 namespace GamingPlatformTests
 {
     [TestFixture]
     class CardsTests
     {
+        [TestCase(Card.SUIT.CLUBS, Card.VALUE.KING)]
+        [TestCase(Card.SUIT.CLUBS, Card.VALUE.FOUR)]
+        [TestCase(Card.SUIT.CLUBS, Card.VALUE.NINE)]
+        [TestCase(Card.SUIT.DIAMONDS, Card.VALUE.ACE)]
+        [TestCase(Card.SUIT.DIAMONDS, Card.VALUE.QUEEN)]
+        [TestCase(Card.SUIT.DIAMONDS, Card.VALUE.THREE)]
+        [TestCase(Card.SUIT.HEARTS, Card.VALUE.TWO)]
+        [TestCase(Card.SUIT.HEARTS, Card.VALUE.SIX)]
+        [TestCase(Card.SUIT.HEARTS, Card.VALUE.SEVEN)]
+        [TestCase(Card.SUIT.SPADES, Card.VALUE.JACK)]
+        [TestCase(Card.SUIT.SPADES, Card.VALUE.EIGHT)]
+        [TestCase(Card.SUIT.SPADES, Card.VALUE.FIVE)]
+        public void CardConstructorWithParameters_WhenCalled_CardObjectCreated(Card.SUIT suit, Card.VALUE value)
+        {
+            Card card = new Card(suit, value);
+            var expected = new Tuple<Card.SUIT, Card.VALUE>(suit, value);
+            var actual = new Tuple<Card.SUIT, Card.VALUE>(card.CardSuit, card.CardValue);
+
+            Assert.AreEqual(expected, actual);
+        }
+
         [Test]
         public void CreateDeck_WhenCalled_DeckOfCardsEquals52Cards()
         {
