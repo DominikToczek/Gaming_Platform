@@ -6,18 +6,28 @@ using System.Threading.Tasks;
 
 namespace GamePlatform.Models
 {
-    public class Player :IPlayer
+    public class Player : IPlayer
     {
-        public int Money { get; private set; }
-        public string Name { get; }
-       // public List<Pawn> Pawns { get; }
+        public int Id { get; set; }
+        public int Money { get;  set; }
+        public string Name { get;  set; }
+        public string Avatar { get; set; }
+        public Pawn Pawn { get; set; }
 
-        public Player(string name , int money)
+       public Player()
         {
-            Name = name;
-            Money = money;
+
         }
 
+
+        public Player(int id , string name, string avatar, int money , Pawn pawn)
+        {
+            Id = id;
+            Name = name;
+            Avatar = avatar;
+            Money = money;
+            Pawn = pawn;
+        }
 
         public void AddMoney(int Money)
         {
@@ -26,15 +36,21 @@ namespace GamePlatform.Models
 
         public bool spendMoney(int Money)
         {
-           if(this.Money <= 0 &&  (this.Money - Money)<=0 )
+           if(this.Money >= 0 &&  (this.Money - Money)>=0 )
             {
                 this.Money -= Money;
                 return true;
             }
+           else
+            {
+                return false;
 
-            return false;
+            }
+
         }
 
 
     }
+
+   
 }

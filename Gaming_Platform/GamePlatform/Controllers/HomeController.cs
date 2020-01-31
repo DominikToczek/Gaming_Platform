@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GamePlatform.Models;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace GamePlatform.Controllers
 {
@@ -20,6 +22,11 @@ namespace GamePlatform.Controllers
             return View();
         }
 
+        public JsonResult JsonR()
+        {
+            return Json(new { Name = "Kamil" });
+        }
+
         public IActionResult a()
         {
             return View();
@@ -30,5 +37,8 @@ namespace GamePlatform.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
     }
 }

@@ -1,12 +1,13 @@
 ﻿
+@model Player
+
 @{
     ViewData["Title"] = "EuroBusiness";
     Layout = "_Layout_2";
-    var players = ViewData["Players"] as List<IPlayer>;
 }
 
 @section Scripts {
-    <script src="~/js/EuroBusiness.js"></script>
+    <script src="~/js/EuroBusinessBoard.js"></script>
 }
 
 @section Styles {
@@ -16,7 +17,6 @@
 <div class="board-container">
     <div class="board">
         <div class="board-section-1">
-            <div class="space" id="space-20"></div>
             <div class="space" id="space-21"></div>
             <div class="space" id="space-22"></div>
             <div class="space" id="space-23"></div>
@@ -27,9 +27,11 @@
             <div class="space" id="space-28"></div>
             <div class="space" id="space-29"></div>
             <div class="space" id="space-30"></div>
+            <div class="space" id="space-31"></div>
         </div>
         <div class="board-section-2">
             <div class="subsection-1">
+                <div class="space" id="space-20"></div>
                 <div class="space" id="space-19"></div>
                 <div class="space" id="space-18"></div>
                 <div class="space" id="space-17"></div>
@@ -38,11 +40,9 @@
                 <div class="space" id="space-14"></div>
                 <div class="space" id="space-13"></div>
                 <div class="space" id="space-12"></div>
-                <div class="space" id="space-11"></div>
             </div>
             <div class="subsection-2"></div>
             <div class="subsection-3">
-                <div class="space" id="space-31"></div>
                 <div class="space" id="space-32"></div>
                 <div class="space" id="space-33"></div>
                 <div class="space" id="space-34"></div>
@@ -51,6 +51,7 @@
                 <div class="space" id="space-37"></div>
                 <div class="space" id="space-38"></div>
                 <div class="space" id="space-39"></div>
+                <div class="space" id="space-40"></div>
             </div>
         </div>
         <div class="board-section-3">
@@ -66,10 +67,10 @@
             <div class="space" id="space-2"></div>
             <div class="space" id="space-1"></div>
         </div>
-        <div class="pawn pawn-player-1"></div>
-        <div class="pawn pawn-player-2"></div>
-        <div class="pawn pawn-player-3"></div>
-        <div class="pawn pawn-player-4"></div>
+
+        <div class="pawn-container">
+
+        </div>
 
         <div class="dice throw-6">
             <div class="side side--front">
@@ -117,41 +118,9 @@
         </div>
     </div>
 </div>
-        
-            <div class="pawn pawn-player-1"></div>
-            <div class="pawn pawn-player-2"></div>
-            <div class="pawn pawn-player-3"></div>
-            <div class="pawn pawn-player-4"></div>
-        
-    </div>
+
+<div class="player-container">
+
 </div>
 
-<div class="player player-1">
-    <div class="player-avatar"></div>
-    <div class="player-data">
-        <div class="player-name">@players[0].Name</div>
-        <div class="player-money">@players[0].Money</div>
-    </div>
-</div>
-<div class="player player-2">
-    <div class="player-avatar"></div>
-    <div class="player-data">
-        <div class="player-name"> @players[1].Name</div>
-        <div class="player-money">@players[1].Money</div>
-    </div>
-</div>
-<div class="player player-3">
-    <div class="player-avatar"></div>
-    <div class="player-data">
-        <div class="player-name">@players[2].Name</div>
-        <div class="player-money">@players[2].Money</div>
-    </div>
-</div>
-<div class="player player-4">
-    <div class="player-avatar"></div>
-    <div class="player-data">
-        <div class="player-name">@players[3].Name</div>
-        <div class="player-money">@players[3].Money</div>
-    </div>
-</div>
-
+<button id="throw-dice-button">Throw Dice</button>

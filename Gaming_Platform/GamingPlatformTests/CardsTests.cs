@@ -46,7 +46,7 @@ namespace GamingPlatformTests
             var expected = _deck.Deck;
             _deck.ShuffleDeck();
             var actual = _deck.Deck;
-            for (int i = 0; i < expected.Length - 1; i++)
+            for (int i=0; i<expected.Length-1; i++)
             {
                 Assert.AreNotSame(
                     new Tuple<Card.SUIT, Card.VALUE>(expected[i].CardSuit, expected[i].CardValue),

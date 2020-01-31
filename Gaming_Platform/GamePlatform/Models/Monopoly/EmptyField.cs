@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GamePlatform.Models
+﻿namespace GamePlatform.Models
 {
-    class EmptyField : IField
+    public class EmptyField : IField
     {
         public string Name { get; }
-        public bool IsOccupied { get; set; }
 
+        public Player Ower => null;
+
+        public int StayOnFieldCost => 0;
+
+        public EmptyField()
+        {
+            Name = "Empty";
+        
+        }
+
+
+        
     }
 }

@@ -6,17 +6,42 @@ using System.Threading.Tasks;
 
 namespace GamePlatform.Models
 {
-    public abstract class Pawn:IPawn
+    public  class Pawn:IPawn
     {
-        public string Color { get; }
-        public int Number { get; }
+        public string Color { get; set; }
+        public int Number { get; set; }
+        public int ActualPosition { get;  set; }
 
-        public Pawn() { }
 
-        public Pawn(string Color , int Number)
+        public Pawn()
         {
-            this.Color = Color;
-            this.Number = Number;
+
+        }
+
+        public Pawn(string color , int number, int actualPosition)
+        {
+            Color = color;
+            Number = number;
+            ActualPosition = actualPosition;
+        }
+
+        public void Move(int number, int numberOfField)
+        {
+            ActualPosition = (number + ActualPosition) % numberOfField;
+        }
+
+        public bool SetOnField(int number, int numberOfField)
+        {
+            if(number<= numberOfField-1)
+            {
+                ActualPosition = number;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

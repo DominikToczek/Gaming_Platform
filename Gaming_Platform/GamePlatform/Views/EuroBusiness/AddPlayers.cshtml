@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "EuroBusiness";
+    Layout = "_Layout_2";
+}
+
+@section Scripts {
+    <script src="~/js/EuroBusinessAddPlayers.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/EuroBusinessAddPlayers.css" />
+}
+
+<div class="players-container">
+    <div class="players">
+        <div class="player-container player-1">
+            <div class="player-avatar" data-avatar="/assets/img/avatar-1.jpg"></div>
+            <div class="player-data">
+                <label>Name:</label>
+                <input type="text" name="player-name" class="player-name" id="player-1-name">
+            </div>
+        </div>
+
+        <div class="player-container player-2">
+            <div class="player-avatar" data-avatar="/assets/img/avatar-2.jpg"></div>
+            <div class="player-data">
+                <label>Name:</label>
+                <input type="text" name="player-name" class="player-name" id="player-2-name">
+            </div>
+        </div>
+    </div>
+    <button class="add-new-player">
+        <i class="fas fa-plus"></i>
+        Add new player
+    </button>
+    
+    <button class="start-game">
+        Start Game
+    </button>
+</div>
+
+<!-- Alert - max players -->
+<div class="modal fade bd-example-modal-sm" id="alert-max-players" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">Limit players</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Maximum number of players reached!
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Change avatar Popup -->
+<div class="modal fade bd-example-modal-lg" id="select-avatar-popup" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">Select your avatar</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="avatar avatar--1" data-url="/assets/img/avatar-1.jpg"></div>
+                <div class="avatar avatar--2" data-url="/assets/img/avatar-2.jpg"></div>
+                <div class="avatar avatar--3" data-url="/assets/img/avatar-3.jpg"></div>
+                <div class="avatar avatar--4" data-url="/assets/img/avatar-4.jpg"></div>
+                <div class="avatar avatar--5" data-url="/assets/img/avatar-5.jpg"></div>
+                <div class="avatar avatar--6" data-url="/assets/img/avatar-6.jpg"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm" id="alert-not-validate" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">Something is wrong...</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Complete the names of all players!
+            </div>
+        </div>
+    </div>
+</div>

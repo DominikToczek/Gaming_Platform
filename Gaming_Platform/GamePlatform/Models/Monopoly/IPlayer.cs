@@ -1,13 +1,20 @@
-﻿namespace GamePlatform.Models
+﻿using System.Collections.Generic;
+
+namespace GamePlatform.Models
 {
     public interface IPlayer
     {
-        string Name { get; }
-        //List<Pawn>  Pawns { get; }
-        int Money { get; }
-        bool spendMoney(int Money);
+        int Id { get; set; }
+        string Name { get; set; }
+        string Avatar { get; set; }
+        Pawn  Pawn { get; set; }
 
-        void AddMoney(int Money);
+        int Money { get; set; }
+        bool spendMoney(int money);
+        void AddMoney(int money);
+
+ 
+       
 
     }
 }
