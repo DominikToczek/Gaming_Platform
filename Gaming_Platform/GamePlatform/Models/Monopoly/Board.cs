@@ -25,9 +25,9 @@ namespace GamePlatform.Models
 
         public List<IField> GetAllFields(Player player)
         {
-            return _fields.Where(x => x.Ower.Id == player.Id).ToList();
+            return _fields.Where(x => x.Ower?.Id == player.Id).ToList();
         }
-
+        public List<IField> GetAllField => _fields;
 
         private void CreateBoard()
         {
