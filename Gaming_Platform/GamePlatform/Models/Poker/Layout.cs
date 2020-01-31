@@ -10,6 +10,11 @@ namespace GamePlatform.Models
 
         private Card[] sortedHand;
 
+        public int GetHandValue()
+        {
+            return HandValue;
+        }
+
         public Hand CardsLayout(Card[] hand)
         {
             GetSortedHand(hand);
