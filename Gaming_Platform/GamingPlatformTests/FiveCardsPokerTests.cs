@@ -1,7 +1,6 @@
-﻿using Cards;
-using FiveCardsPoker;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
+using GamePlatform.Models;
 
 namespace GamingPlatformTests
 {

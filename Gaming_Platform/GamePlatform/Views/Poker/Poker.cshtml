@@ -1,0 +1,41 @@
+﻿@section Scripts {
+    <script src="~/js/Poker.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Poker.css" />
+}
+
+<div class="board-container">
+    <div class="cards-container">
+        <div class="poker-card" id="card-1">
+            <div class="change-card" id="change-1">
+                <button onclick="changeCard1()">Change card</button>
+            </div>
+        </div>
+        <div class="poker-card" id="card-2">
+            <div class="change-card" id="change-2">
+                <button onclick="changeCard2()">Change card</button>
+            </div>
+        </div>
+        <div class="poker-card" id="card-3">
+            <div class="change-card" id="change-3">
+                <button onclick="changeCard3()">Change card</button>
+            </div>
+        </div>
+        <div class="poker-card" id="card-4">
+            <div class="change-card" id="change-4">
+                <button onclick="changeCard4()">Change card</button>
+            </div>
+        </div>
+        <div class="poker-card" id="card-5">
+            <div class="change-card" id="change-5">
+                <button onclick="changeCard5()">Change card</button>
+            </div>
+        </div>
+    </div>
+    <div class="buttons-container">
+        <button class="card-game-button" onclick="newGame()">New Game</button>
+        <button class="card-game-button" onclick="checkGame()">Check</button>
+    </div>
+</div>
