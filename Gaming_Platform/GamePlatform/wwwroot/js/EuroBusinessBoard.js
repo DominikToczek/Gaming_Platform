@@ -1,13 +1,13 @@
-﻿
-window.addEventListener('load', () => {
-    var players = localStorage.getItem('players')
-    var playersDataFromServer
-    var playersHandle
-    var pawnHandle
-    var diceHandle
-    var spacesBoard
-    var throwDiceButton = document.querySelector("#throw-dice-button")
+﻿let playersDataFromServer
+let playersHandle
+let pawnHandle
+let diceHandle
+let Board
+let throwDiceButton = document.querySelector("#throw-dice-button")
 
+
+window.addEventListener('load', () => {
+    let players = localStorage.getItem('players')
     configGame()
     players = JSON.parse(players)
     startGame(players)
@@ -35,12 +35,12 @@ function startGame(a) {
 }
 
 function addPlayer(a) {
-    var players = document.querySelector(".player-container")
-    var playerContainer = document.createElement("div")
-    var playerAvatar = document.createElement("div")
-    var playerData = document.createElement("div")
-    var playerName = document.createElement("div")
-    var playerMoney = document.createElement("div")
+    let players = document.querySelector(".player-container")
+    let playerContainer = document.createElement("div")
+    let playerAvatar = document.createElement("div")
+    let playerData = document.createElement("div")
+    let playerName = document.createElement("div")
+    let playerMoney = document.createElement("div")
 
     playerContainer.classList.add("player", `player-${a.pawn.number}`)
     playerAvatar.classList.add("player-avatar")
@@ -61,9 +61,9 @@ function addPlayer(a) {
 }
 
 function addPawn(c, b) {
-    var pawnContainer = document.querySelector(".pawn-container")
-    var pawn = document.createElement("div")
-    var pawnPosition = [
+    let pawnContainer = document.querySelector(".pawn-container")
+    let pawn = document.createElement("div")
+    let pawnPosition = [
         [30, 10],
         [30, 30],
         [30, 50],
@@ -76,19 +76,19 @@ function addPawn(c, b) {
     pawn.style.backgroundColor = `${c}`
     pawn.dataset.pawnNumber = b
     pawn.dataset.currentPosition = 1
-    pawn.dataset.currentPositionX = pawnPosition[b - 1][0]
-    pawn.dataset.currentPositionY = pawnPosition[b - 1][1]
+    pawn.dataset.currentPositionX = pawnPosition[b-1][0]
+    pawn.dataset.currentPositionY = pawnPosition[b-1][1]
     pawnContainer.appendChild(pawn)
 }
 
 function movePawn(pawn, space) {
-    var smallSpaceWidth = document.querySelector("#space-2").offsetWidth
-    var moveX = 0
-    var moveY = 0
-    var rotateX = 0
-    var rotateY = 0
-    var scale = document.querySelector(".board").offsetWidth / 650
-    var currentPosition = pawn.dataset.currentPosition
+    let smallSpaceWidth = document.querySelector("#space-2").offsetWidth
+    let moveX = 0
+    let moveY = 0
+    let rotateX = 0
+    let rotateY = 0
+    let scale = document.querySelector(".board").offsetWidth / 650
+    let currentPosition = pawn.dataset.currentPosition
 
     if (pawn.dataset.pawnNumber == 1) {
         rotateX = [40 * scale, -20 * scale, 45 * scale, 30 * scale]
@@ -299,36 +299,68 @@ function movePawn(pawn, space) {
 }
 
 function loadWelcomeScreen() {
-    //dopisać wyskakujące okienko na początku gry
+    showComunicate("Welcome!", "/photo/fdsa", "Welcome to eurobusiness. Have fun!")
 }
 
 function configGame() {
     playersHandle = document.querySelectorAll(".player")
     pawnHandle = document.querySelectorAll(".pawn")
     diceHandle = document.querySelector(".dice")
-    spacesBoard = document.querySelectorAll(".space")
+    Board = document.querySelectorAll(".space")
+    loadWelcomeScreen()
+
 
 
     console.log(playersHandle)
     console.log(pawnHandle)
     console.log(diceHandle)
-    console.log(spacesBoard)
+    console.log(Board)
 }
 
 
-function throwDice() {
+function throwDice(){
+    let responceFromServer
     $.ajax({
         type: "POST",
         url: "/EuroBusiness/DiceThrow",
         success: function (response) {
-            response.forEach(a => {
-                console.log(response)
-            })
+            responceFromServer = responce
         },
         error: function (response) {
             console.log("Coś poszło nie tak z rzutem kostką" + response)
         }
     })
 
-    console.log("fdsafasdfasd")
+    turnStart(responceFromServer)
+}
+
+function showComunicate(title, photo, message){
+    let titleHandle = document.querySelector(".comunication-modal .modal-title")
+    let bodyHandle = document.querySelector(".comunication-modal .modal-body .modal-message")
+    let photoHandle = document.querySelector(".comunication-modal .modal-body .modal-body-photo")
+
+    
+    console.log(photoHandle)
+    photoHandle.style.backgroundImage = `url(${photo})`
+    titleHandle.innerHTML = title
+    bodyHandle.innerHTML = message
+    $('.comunication-modal').modal('show')
+}
+
+function turnStart(responce){
+    diceHandle.classList.add(`throw-${responceFromServer.iloscOczek}`)
+    if (responce.RodzajPola) {
+        checkField()
+    }
+    else {
+        startAction() //funkcja do dopisania
+    }
+
+}
+
+function addMoney(player, money) {
+    let actualMoney = parseInt(player.children[1].children[1].innerHTML)
+    let newMoney = actualMoney + money
+
+    player.children[1].children[1].innerHTML = newMoney
 }

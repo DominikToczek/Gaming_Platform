@@ -61,7 +61,8 @@
             top: 325px;
             left: 325px;
             -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d
+            transform-style: preserve-3d;
+            display: none;
         }
 
             .board-container .board .dice .side {
