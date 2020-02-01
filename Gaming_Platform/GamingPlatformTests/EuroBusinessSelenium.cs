@@ -21,18 +21,18 @@ namespace GamingPlatformTests
     {
         private IWebDriver _driver;
         private IJavaScriptExecutor js;
-        [SetUp]
+        [OneTimeSetUp]
         public void StartBrowser()
         {
-            _driver = new ChromeDriver(@"C:\");
+            _driver = new ChromeDriver(".");
             js = (IJavaScriptExecutor)_driver;
         }
 
         [Test]
         public void CheckAddPlayersToGame()
         {
-            _driver.Navigate().GoToUrl("http://localhost:5001/");
-            _driver.FindElement(By.Id("eurobusiness")).Click();
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
+            _driver.FindElement(By.ClassName("eurobusiness")).Click();
             Thread.Sleep(500);
             _driver.FindElement(By.Id("player-1-name")).Click();
             js.ExecuteScript("document.getElementById('player-1-name').value='Player 1';");
@@ -73,8 +73,8 @@ namespace GamingPlatformTests
         {
             IWebElement modal;
 
-            _driver.Navigate().GoToUrl("http://localhost:5001/");
-            _driver.FindElement(By.Id("eurobusiness")).Click();
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
+            _driver.FindElement(By.ClassName("eurobusiness")).Click();
             modal = _driver.FindElement(By.Id("alert-not-validate"));
 
 
@@ -91,7 +91,7 @@ namespace GamingPlatformTests
         {
             IWebElement modal;
 
-            _driver.Navigate().GoToUrl("http://localhost:5001/EuroBusiness/AddPlayers");
+            _driver.Navigate().GoToUrl("http://localhost:61406/EuroBusiness/AddPlayers");
             //_driver.FindElement(By.Id("eurobusiness")).Click();
             modal = _driver.FindElement(By.Id("alert-max-players"));
 
@@ -108,8 +108,8 @@ namespace GamingPlatformTests
         [Test]
         public void UpdateMoney()
         {
-            _driver.Navigate().GoToUrl("http://localhost:5001/");
-            _driver.FindElement(By.Id("eurobusiness")).Click();
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
+            _driver.FindElement(By.ClassName("eurobusiness")).Click();
             _driver.FindElement(By.Id("player-1-name")).Click();
             js.ExecuteScript("document.getElementById('player-1-name').value='Player 1';");
             _driver.FindElement(By.Id("player-2-name")).Click();
@@ -128,7 +128,7 @@ namespace GamingPlatformTests
 
 
 
-        [TearDown]
+        [OneTimeTearDown]
         public void CloseBrowser()
         {
             _driver.Close();
