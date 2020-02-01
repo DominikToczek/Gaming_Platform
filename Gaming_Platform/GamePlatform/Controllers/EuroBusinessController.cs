@@ -10,21 +10,21 @@ namespace GamePlatform.Controllers
     public class EuroBusinessController : Controller
     {
 
-        Game game = new Game();
+        public Game game = new Game();
 
    
 
         public ViewResult EuroBusiness()
         {
-            game = new Game();
             return View();
         }
 
         [HttpPost]
         public JsonResult StartGame(Player[] playersData)
         {
-            Player[] a = playersData;
-            return Json(game.InitPlayer(playersData));
+            List<Player> a = game.InitPlayer(playersData);
+            
+            return Json(a);
         }
 
         public ViewResult AddPlayers()

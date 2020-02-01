@@ -9,18 +9,18 @@ namespace GamePlatform.Models
     public class Player : IPlayer
     {
         public int Id { get; set; }
-        public int Money { get;  set; }
-        public string Name { get;  set; }
+        public int Money { get; set; }
+        public string Name { get; set; }
         public string Avatar { get; set; }
         public Pawn Pawn { get; set; }
 
-       public Player()
+        public Player()
         {
 
         }
 
 
-        public Player(int id , string name, string avatar, int money , Pawn pawn)
+        public Player(int id, string name, string avatar, int money, Pawn pawn)
         {
             Id = id;
             Name = name;
@@ -36,12 +36,12 @@ namespace GamePlatform.Models
 
         public bool spendMoney(int Money)
         {
-           if(this.Money >= 0 &&  (this.Money - Money)>=0 )
+            if (this.Money >= 0 && (this.Money - Money) >= 0)
             {
                 this.Money -= Money;
                 return true;
             }
-           else
+            else
             {
                 return false;
 
@@ -52,5 +52,5 @@ namespace GamePlatform.Models
 
     }
 
-   
+
 }

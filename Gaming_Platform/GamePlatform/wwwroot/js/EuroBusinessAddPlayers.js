@@ -73,7 +73,6 @@ window.addEventListener('load', () => {
         var handler = document.querySelectorAll(".player-container")
         var data = new Array()
         var count = 0
-        var kamil = "kami"
 
         if (validate(handler)) {
             handler.forEach(a => {
