@@ -30,9 +30,9 @@ namespace GamePlatform.Models
             return dice.Rol();
         }
 
-        public void BuyHome(int numberOfHome , int idFild)
+        public void BuyHome(int numberOfHome, int idFild)
         {
-            for(int i =0; i< numberOfHome; i++)
+            for (int i = 0; i < numberOfHome; i++)
             {
                 (board.GetFiels(idFild) as FieldWithCity).BuyHome(_selectedPlayer);
             }
@@ -85,14 +85,13 @@ namespace GamePlatform.Models
                 OkupowniePrzezKogo = actualField.Ower,
                 KwotaZaPostuj = actualField.StayOnFieldCost,
                 NumerAkcji = "Dsd",
-                PrawieBankrut = board.GetAllFields(_selectedPlayer).Count > 0 ,
-                Bankrut = board.GetAllFields(_selectedPlayer).Count == 0 ,
+                PrawieBankrut = board.GetAllFields(_selectedPlayer).Count > 0,
+                Bankrut = board.GetAllFields(_selectedPlayer).Count == 0,
             };
 
         }
 
-       
+
 
     }
 }
-

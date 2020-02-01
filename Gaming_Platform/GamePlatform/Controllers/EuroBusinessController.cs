@@ -17,7 +17,9 @@ namespace GamePlatform.Controllers
     public class EuroBusinessController : Controller 
     {
 
-       
+        public Game game = new Game();
+
+   
 
         public ViewResult EuroBusiness()
         {
@@ -27,16 +29,9 @@ namespace GamePlatform.Controllers
         [HttpPost]
         public JsonResult StartGame(Player[] playersData)
         {
-            Game games = new Game();
-           HttpContext.Session.SetString("Test", JsonConvert.SerializeObject(games));
-
-            Player[] a = playersData;
-            var value = HttpContext.Session.GetString("Test");
-            var game = JsonConvert.DeserializeObject<Game>(value);
-            game.InitPlayer(playersData);
-            HttpContext.Session.SetString("Test", JsonConvert.SerializeObject(game));
-            value = HttpContext.Session.GetString("Test");
-            return Json(game.Players);
+            List<Player> a = game.InitPlayer(playersData);
+            
+            return Json(a);
         }
 
         public ViewResult AddPlayers()
