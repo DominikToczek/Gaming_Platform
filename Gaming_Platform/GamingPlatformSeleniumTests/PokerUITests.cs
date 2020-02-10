@@ -11,7 +11,7 @@ namespace GamingPlatformSeleniumTests
 
         public PokerUITests()
         {
-            _driver = new ChromeDriver(".");
+            _driver = new ChromeDriver(@"C:\Users\Bezi\Desktop\AspNetProject\Gaming_Platform\Gaming_Platform\GamePlatform");
 
         }
         public void Dispose()
@@ -23,7 +23,7 @@ namespace GamingPlatformSeleniumTests
         [Fact]
         public void Home_WhenExecuted_ReturnsHomeView()
         {
-            _driver.Navigate().GoToUrl("https://localhost:44366/");
+            _driver.Navigate().GoToUrl("https://localhost:61406/");
 
             var expected = "Home Page - GamePlatform";
             var actual = _driver.Title;
@@ -34,7 +34,7 @@ namespace GamingPlatformSeleniumTests
         [Fact]
         public void Home_WhenExecuted_ContainsPokerButon()
         {
-            _driver.Navigate().GoToUrl("https://localhost:44366/");
+            _driver.Navigate().GoToUrl("https://localhost:61406/");
 
             var expected = "Poker";
             var actual = _driver.FindElement(By.ClassName("poker")).Text;
@@ -45,10 +45,10 @@ namespace GamingPlatformSeleniumTests
         [Fact]
         public void Poker_WhenExecuted_ReturnsPokerView()
         {
-            _driver.Navigate().GoToUrl("https://localhost:44366/");
+            _driver.Navigate().GoToUrl("https://localhost:61406/");
             _driver.FindElement(By.ClassName("poker")).Click();
 
-            var expected = "https://localhost:44366/Poker/Poker";
+            var expected = "https://localhost:61406/Poker/Poker";
             var actual = _driver.Url;
 
             Assert.Equal(expected, actual);
@@ -57,7 +57,7 @@ namespace GamingPlatformSeleniumTests
         [Fact]
         public void Poker_WhenExecuted_ContainsNewGameButon()
         {
-            _driver.Navigate().GoToUrl("https://localhost:44366/");
+            _driver.Navigate().GoToUrl("https://localhost:61406/");
             _driver.FindElement(By.ClassName("poker")).Click();
 
             var expected = "New Game";
@@ -69,7 +69,7 @@ namespace GamingPlatformSeleniumTests
         [Fact]
         public void Poker_WhenExecuted_ContainsCheckButon()
         {
-            _driver.Navigate().GoToUrl("https://localhost:44366/");
+            _driver.Navigate().GoToUrl("https://localhost:61406/");
             _driver.FindElement(By.ClassName("poker")).Click();
 
             var expected = "Check";
@@ -86,7 +86,7 @@ namespace GamingPlatformSeleniumTests
         [InlineData("changeCard5")]
         public void Poker_WhenExecuted_ContainsChangeCardButons(string id)
         {
-            _driver.Navigate().GoToUrl("https://localhost:44366/");
+            _driver.Navigate().GoToUrl("https://localhost:61406/");
             _driver.FindElement(By.ClassName("poker")).Click();
 
             var expected = "Change card";

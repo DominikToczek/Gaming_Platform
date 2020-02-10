@@ -17,9 +17,12 @@ namespace GamePlatform.Controllers
     public class EuroBusinessController : Controller 
     {
 
-        public Game game = new Game();
+        readonly Game _game;
 
-   
+        public EuroBusinessController(Game game)
+        {
+            _game = game;
+        }
 
         public ViewResult EuroBusiness()
         {
@@ -29,8 +32,7 @@ namespace GamePlatform.Controllers
         [HttpPost]
         public JsonResult StartGame(Player[] playersData)
         {
-            List<Player> a = game.InitPlayer(playersData);
-            
+            List<Player> a = _game.InitPlayer(playersData);
             return Json(a);
         }
 
@@ -45,63 +47,58 @@ namespace GamePlatform.Controllers
         [HttpPost]
         public JsonResult DiceThrow()
         {
-           
-            var value = HttpContext.Session.GetString("Test");
-            var game = JsonConvert.DeserializeObject<Game>(value);
             //Tej metody będę używał do wywołania rzutu kostką jako wynik będzie zwracany obiekt z flagami
-            game.DiceRoll();
-            HttpContext.Session.SetString("Test", JsonConvert.SerializeObject(game));
-
-            return Json(game.CreateObjectToView());
+            _game.DiceRoll();
+            return Json(_game.CreateObjectToView());
         }
 
-        //[HttpPost]
-        //public JsonResult BuyHouse(ObjectBuyHouse objectBuyHouse)
-        //{
+        [HttpPost]
+        public JsonResult BuyHouse(ObjectBuyHouse objectBuyHouse)
+        {
 
-        //    /*Tej metody będę używał do zakupu domków przez użytkownika. Otrzymasz taki obiekt
-        //     * {
-        //        numer_gracza: 1,
-        //        ilosc_domków: 3,
-        //        numer_pola: 31
-        //        } 
+            /*Tej metody będę używał do zakupu domków przez użytkownika. Otrzymasz taki obiekt
+             * {
+                numer_gracza: 1,
+                ilosc_domków: 3,
+                numer_pola: 31
+                } 
 
 
-        //        w odpowiedzi oczekuję
-        //        {
-        //            numer_gracza: 1,
-        //            stan_konta: 34212
-        //        }
-        //     */
-        //    game.SelectPlayer(objectBuyHouse.numer_gracza);
-        //    game.BuyHome(3, objectBuyHouse.numer_pola);
+                w odpowiedzi oczekuję
+                {
+                    numer_gracza: 1,
+                    stan_konta: 34212
+                }
+             */
+            _game.SelectPlayer(objectBuyHouse.numer_gracza);
+            _game.BuyHome(3, objectBuyHouse.numer_pola);
 
-        //    return Json(new { numer_gracza = objectBuyHouse.numer_gracza , stan_konta = game.SelectedPlayer.Money });
-        //}
+            return Json(new { numer_gracza = objectBuyHouse.numer_gracza, stan_konta = _game.SelectedPlayer.Money });
+        }
 
-        //[HttpPost]
-        //public JsonResult SellField(ObjectSellField objectSellField)
-        //{
-           
-        //    game.SelectPlayer(objectSellField.numer_gracza);
-        //    game.SellField(objectSellField.numer_pola);
-        //    //w przypadku gdy player może zostać bankrutem może sprzedać swoje pola i do tego służy ta metoda 
-        //    /*
-        //        Przesyłany obiekt:
-        //        {
-        //            numer_gracza: 1,
-        //            numer_pola: 21
-        //        }
+        [HttpPost]
+        public JsonResult SellField(ObjectSellField objectSellField)
+        {
 
-        //        w odpowiedzi oczekuję
-        //        {
-        //            numer_gracza: 1,
-        //            stan_konta: 34212
-        //        }
-        //     */
+            _game.SelectPlayer(objectSellField.numer_gracza);
+            _game.SellField(objectSellField.numer_pola);
+            //w przypadku gdy player może zostać bankrutem może sprzedać swoje pola i do tego służy ta metoda 
+            /*
+                Przesyłany obiekt:
+                {
+                    numer_gracza: 1,
+                    numer_pola: 21
+                }
 
-        //    return Json(new {numer_gracza = objectSellField.numer_gracza , stan_konta = game.SelectedPlayer.Money });
-        //}
+                w odpowiedzi oczekuję
+                {
+                    numer_gracza: 1,
+                    stan_konta: 34212
+                }
+             */
+
+            return Json(new { numer_gracza = objectSellField.numer_gracza, stan_konta = _game.SelectedPlayer.Money });
+        }
 
 
         public class ObjectBuyHouse

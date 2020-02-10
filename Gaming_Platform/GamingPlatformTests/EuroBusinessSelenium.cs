@@ -31,7 +31,7 @@ namespace GamingPlatformTests
         [Test]
         public void CheckAddPlayersToGame()
         {
-            _driver.Navigate().GoToUrl("http://localhost:5001/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
             _driver.FindElement(By.Id("eurobusiness")).Click();
             Thread.Sleep(500);
             _driver.FindElement(By.Id("player-1-name")).Click();
@@ -73,7 +73,7 @@ namespace GamingPlatformTests
         {
             IWebElement modal;
 
-            _driver.Navigate().GoToUrl("http://localhost:5001/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
             _driver.FindElement(By.Id("eurobusiness")).Click();
             modal = _driver.FindElement(By.Id("alert-not-validate"));
 
@@ -91,7 +91,7 @@ namespace GamingPlatformTests
         {
             IWebElement modal;
 
-            _driver.Navigate().GoToUrl("http://localhost:5001/EuroBusiness/AddPlayers");
+            _driver.Navigate().GoToUrl("http://localhost:61406/EuroBusiness/AddPlayers");
             //_driver.FindElement(By.Id("eurobusiness")).Click();
             modal = _driver.FindElement(By.Id("alert-max-players"));
 
@@ -108,7 +108,7 @@ namespace GamingPlatformTests
         [Test]
         public void UpdateMoney()
         {
-            _driver.Navigate().GoToUrl("http://localhost:5001/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
             _driver.FindElement(By.Id("eurobusiness")).Click();
             _driver.FindElement(By.Id("player-1-name")).Click();
             js.ExecuteScript("document.getElementById('player-1-name').value='Player 1';");
