@@ -1,98 +1,100 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-using Xunit;
+using NUnit.Framework;
 
 namespace GamingPlatformSeleniumTests
 {
     public class PokerUITests : IDisposable
     {
-        private readonly IWebDriver _driver;
+        private IWebDriver _driver;
 
-        public PokerUITests()
+        [OneTimeSetUp]
+        public void StartBrowser()
         {
             _driver = new ChromeDriver(@"C:\Users\Bezi\Desktop\AspNetProject\Gaming_Platform\Gaming_Platform\GamePlatform");
 
         }
+        [OneTimeTearDown]
         public void Dispose()
         {
             _driver.Quit();
             _driver.Dispose();
         }
 
-        [Fact]
+        [Test]
         public void Home_WhenExecuted_ReturnsHomeView()
         {
-            _driver.Navigate().GoToUrl("https://localhost:61406/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
 
             var expected = "Home Page - GamePlatform";
             var actual = _driver.Title;
 
-            Assert.Equal(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
-        [Fact]
+        [Test]
         public void Home_WhenExecuted_ContainsPokerButon()
         {
-            _driver.Navigate().GoToUrl("https://localhost:61406/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
 
             var expected = "Poker";
             var actual = _driver.FindElement(By.ClassName("poker")).Text;
 
-            Assert.Equal(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
-        [Fact]
+        [Test]
         public void Poker_WhenExecuted_ReturnsPokerView()
         {
-            _driver.Navigate().GoToUrl("https://localhost:61406/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
             _driver.FindElement(By.ClassName("poker")).Click();
 
-            var expected = "https://localhost:61406/Poker/Poker";
+            var expected = "http://localhost:61406/Poker/Poker";
             var actual = _driver.Url;
 
-            Assert.Equal(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
-        [Fact]
+        [Test]
         public void Poker_WhenExecuted_ContainsNewGameButon()
         {
-            _driver.Navigate().GoToUrl("https://localhost:61406/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
             _driver.FindElement(By.ClassName("poker")).Click();
 
             var expected = "New Game";
             var actual = _driver.FindElement(By.Id("newGame")).Text;
 
-            Assert.Equal(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
-        [Fact]
+        [Test]
         public void Poker_WhenExecuted_ContainsCheckButon()
         {
-            _driver.Navigate().GoToUrl("https://localhost:61406/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
             _driver.FindElement(By.ClassName("poker")).Click();
 
             var expected = "Check";
             var actual = _driver.FindElement(By.Id("checkGame")).Text;
 
-            Assert.Equal(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
-        [Theory]
-        [InlineData("changeCard1")]
-        [InlineData("changeCard2")]
-        [InlineData("changeCard3")]
-        [InlineData("changeCard4")]
-        [InlineData("changeCard5")]
+        
+        [TestCase("changeCard1")]
+        [TestCase("changeCard2")]
+        [TestCase("changeCard3")]
+        [TestCase("changeCard4")]
+        [TestCase("changeCard5")]
         public void Poker_WhenExecuted_ContainsChangeCardButons(string id)
         {
-            _driver.Navigate().GoToUrl("https://localhost:61406/");
+            _driver.Navigate().GoToUrl("http://localhost:61406/");
             _driver.FindElement(By.ClassName("poker")).Click();
 
             var expected = "Change card";
             var actual = _driver.FindElement(By.Id(id)).Text;
 
-            Assert.Equal(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
