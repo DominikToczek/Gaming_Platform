@@ -14,22 +14,7 @@ let diceHandle
 let Board = []
 let playerTurn
 let throwDiceButton = document.querySelector("#throw-dice-button")
-let responceOnStartTurn = {
-    idPlayer: 1,//int
-    numberOfMeshes: 2, //int
-    currentPlayerField: 25, //int
-    actionField: true,//true or false
-    actionNumber: 2,//int
-    ocupation: true,//true or false
-    ocupationByPlayerTurn: true, //true or false
-    IDOfOccupationFieldPlayer: 2,//int
-    payingForVisitOcupationField: 2,//int
-    canBuyHotel: true,//true or false
-    IDOfNextPlayer: 2,//int
-    bankrupt: true, //true or false
-    houseCost: 20,
-    hotelCost: 500
-}
+let responceOnStartTurn
 
 
 window.addEventListener('load', () => {
@@ -396,8 +381,8 @@ function showBuyFieldComunicate() {
     let titleHandle = document.querySelector(".buy-field-modal .modal-title")
     let messageHandle = document.querySelector(".buy-field-modal .modal-message")
 
-    titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField - 1].name
-    messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField - 1].fieldCost} <br> You want buy this field?`
+    titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField].name + "fsdafsdafsdds"
+    messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField].fieldCost} <br> You want buy this field?`
 
     $('.buy-field-modal').modal('show')
 }
@@ -438,7 +423,7 @@ function turnStart(responce) {
         if (responceOnStartTurn.ocupation) {        //sprawdź czy okupowane
             if (responceOnStartTurn.ocupationByPlayerTurn) {  //okupowany przez gracza do którego należy tura
                 if (responceOnStartTurn.canBuyHotel) {      //może kupić hotel tj. ma 4 domki
-                    if (playersDataFromServer[responceFromServer.idPlayer - 1].money >= responceOnStartTurn.hotelCost) { //jeżeli stać cię na hotel
+                    if (playersDataFromServer[responceOnStartTurn.idPlayer - 1].money >= responceOnStartTurn.hotelCost) { //jeżeli stać cię na hotel
                         showBuyHotelComunicate()
                     }
                     else {   //zbyt mało pieniędzy aby kupić hotel
@@ -451,7 +436,7 @@ function turnStart(responce) {
                     }
                 }
                 else {      //nie możesz kupić hotelu to może domek
-                    if (playersDataFromServer[responceFromServer.idPlayer - 1].money >= responceOnStartTurn.houseCost) { //jeżeli stać cię na domek
+                    if (playersDataFromServer[responceOnStartTurn.idPlayer - 1].money >= responceOnStartTurn.houseCost) { //jeżeli stać cię na domek
                         showBuyHouseComunicate()
                     }
                     else {
@@ -472,7 +457,7 @@ function turnStart(responce) {
                 else {
                     let title = "Fee for stop"
                     let photo = ""  //dodać zdjęcie gdy będzie gotowe
-                    let message = `This field belongs to ${playersDataFromServer[responceOnStartTurn.IDOfOccupationFieldPlayer].name}. You must pay a ${responceOnStartTurn.payingForVisitOcupationField} fee!`
+                    let message = `This field belongs to ${playersDataFromServer[responceOnStartTurn.idOfOccupationFieldPlayer].name}. You must pay a ${responceOnStartTurn.payingForVisitOcupationField} fee!`
                     showComunicate(title, photo, message)
                 }
             }
@@ -530,16 +515,16 @@ function buyField() {
 
     $.ajax({
         type: "POST",
-        data: { buyFieldData: a },
         url: "/EuroBusiness/BuyField",
         success: function (responce) {
             let title = Board[responceOnStartTurn.currentPlayerField].name
             let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
             let message = `You have bought ${Board[responceOnStartTurn.currentPlayerField].name}`
-            playersHandle[responceOnStartTurn.idPlayer].children[1].children[1].innerHTML = responce.money
-            playersDataFromServer[responceOnStartTurn.idPlayer].money = responce.money
-
+            playersHandle[responceOnStartTurn.idPlayer - 1].children[1].children[1].innerHTML = responce.money
+            playersDataFromServer[responceOnStartTurn.idPlayer - 1].money = responce.money
             showComunicate(title, photo, message)
+
+            console.log("Kasa po kupnie" + JSON.stringify(responce))
         },
         error: function (response) {
             console.log("Coś poszło nie tak" + response.error)

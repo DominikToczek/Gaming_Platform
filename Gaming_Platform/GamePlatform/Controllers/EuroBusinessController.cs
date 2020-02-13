@@ -79,7 +79,7 @@ namespace GamePlatform.Controllers
         {
             _game.BuyField();
 
-            return Json(new { mony = _game.SelectedPlayer.Money } );
+            return Json(new { money = _game.SelectedPlayer.Money } );
         }
 
 
