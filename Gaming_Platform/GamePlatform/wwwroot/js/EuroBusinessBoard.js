@@ -16,7 +16,7 @@ let playerTurn
 let throwDiceButton = document.querySelector("#throw-dice-button")
 let responceFromServer
 let responceOnStartTurn = {
-    IDPlayer: 1,//int
+    idPlayer: 1,//int
     numberOfMeshes: 2, //int
     currentPlayerField: 25, //int
     actionField: true,//true or false
@@ -39,10 +39,10 @@ window.addEventListener('load', () => {
     let comunicateModalButton = document.querySelector("#comunication-modal-close-button")
     let buyHouseModalButtonYes = document.querySelector(".buy-field-modal .buy-field-modal-button-yes")
     let buyHouseModalButtonNo = document.querySelector(".buy-field-modal .buy-field-modal-button-no")
-    let buyHotelModalButtonYes = document.querySelector(".buy-field-modal .buy-hotel-modal-button-yes")
-    let buyHotelModalButtonNo = document.querySelector(".buy-field-modal .buy-hotel-modal-button-no")
-    let buyFieldModalButtonYes = document.querySelector(".buy-field-modal .buy-house-modal-button-yes")
-    let buyFieldModalButtonNo = document.querySelector(".buy-field-modal .buy-house-modal-button-no")
+    let buyHotelModalButtonYes = document.querySelector(".buy-hotel-modal .buy-hotel-modal-button-yes")
+    let buyHotelModalButtonNo = document.querySelector(".buy-hotel-modal .buy-hotel-modal-button-no")
+    let buyFieldModalButtonYes = document.querySelector(".buy-house-modal .buy-house-modal-button-yes")
+    let buyFieldModalButtonNo = document.querySelector(".buy-house-modal .buy-house-modal-button-no")
 
     players = JSON.parse(players)
     startGame(players)
@@ -66,20 +66,20 @@ function startGame(a) {
         data: { playersData: a },
         url: "/EuroBusiness/StartGame",
         success: function (response) {
-            response.forEach(a => {
+            response.players.forEach(a => {
                 addPlayer(a)
             })
 
             let count = 0;
-            response.forEach(a => {
-                let a = new field(count, response.name, response.fieldCost)
+            response.fields.forEach(b => {
+                let a = new field(count, b.name, b.fieldCost)
 
                 Board.push(a)
                 count++
             })
 
 
-            playersDataFromServer = response
+            playersDataFromServer = response.players
             configGame()
 
             console.log(response)
@@ -151,7 +151,6 @@ function movePawn(pawn, space) {
     let rotateX = 0
     let rotateY = 0
     let scale = document.querySelector(".board").offsetWidth / 650
-    let currentPosition = pawn.dataset.currentPosition
 
     if (pawn.dataset.pawnNumber == 1) {
         rotateX = [40 * scale, -20 * scale, 45 * scale, 30 * scale]
@@ -433,7 +432,7 @@ function showBuyHotelComunicate() {
 function turnStart(responce) {
     diceHandle.style.display = "block"
     diceHandle.classList.add(`throw-${responceOnStartTurn.numberOfMeshes}`)
-    movePawn(pawnHandle[responceOnStartTurn.IDPlayer - 1], responceOnStartTurn.currentPlayerField)
+    movePawn(pawnHandle[responceOnStartTurn.idPlayer - 1], responceOnStartTurn.currentPlayerField)
     console.log("turn start:" + responce)
     if (responce.RodzajPola) {
         startAction(responce) //funkcja do dopisania
@@ -442,7 +441,7 @@ function turnStart(responce) {
         if (responceOnStartTurn.ocupation) {
             if (responceOnStartTurn.ocupationByPlayerTurn) {  //okupowany przez gracza do którego należy tura
                 if (responceOnStartTurn.canBuyHotel) {      //może kupić hotel tj. ma 4 domki
-                    if (playersDataFromServer[responceFromServer.IDPlayer - 1].money >= responceOnStartTurn.hotelCost) { //jeżeli stać cię na hotel
+                    if (playersDataFromServer[responceFromServer.idPlayer - 1].money >= responceOnStartTurn.hotelCost) { //jeżeli stać cię na hotel
                         showBuyHotelComunicate()
                     }
                     else {   //zbyt mało pieniędzy aby kupić hotel
@@ -513,6 +512,17 @@ function nextTurn() {
     playersHandle[responceOnStartTurn.IDOfNextPlayer - 1].setAttribute("id", "player--active")
 
     playerTurn.innerHTML = `Turn ${playersDataFromServer[responceOnStartTurn.IDOfNextPlayer - 1].name}`
+
+    $.ajax({
+        type: "POST",
+        url: "/EuroBusiness/NextTurn",
+        success: function (a) {
+            
+        },
+        error: function (a) {
+            console.log("Coś poszło nie tak przejściem do następnej tury" + a)
+        }
+    })
 }
 
 function buyField() {
