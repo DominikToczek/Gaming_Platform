@@ -60,24 +60,24 @@ namespace GamePlatform.Controllers
         }
 
         [HttpPost]
-        public JsonResult BuyHouse(ObjectBuySell objectBuySell)
+        public JsonResult BuyHouse()
         {
-            _game.BuyHome(1, objectBuySell.FieldNumber);
+            _game.BuyHome(1);
 
             return Json(new {mony = _game.SelectedPlayer.Money });
         }
 
         [HttpPost]
-        public JsonResult BuyHotel(ObjectBuySell objectBuySell)
+        public JsonResult BuyHotel()
         {
-            _game.BuyHotel(objectBuySell.FieldNumber);
+            _game.BuyHotel();
             return Json(new { mony = _game.SelectedPlayer.Money });
         }
 
         [HttpPost]
         public JsonResult BuyField(ObjectBuySell objectBuySell)
         {
-            _game.BuyField(objectBuySell.FieldNumber);
+            _game.BuyField();
 
             return Json(new { mony = _game.SelectedPlayer.Money } );
         }

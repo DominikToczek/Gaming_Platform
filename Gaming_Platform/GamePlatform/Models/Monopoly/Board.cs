@@ -63,6 +63,7 @@ namespace GamePlatform.Models
             _fields.Add(new FieldWithCity("Karkow", 1000, 1000));
             _fields.Add(new EmptyField());
             _fields.Add(new FieldWithCity("Warszawa", 1000, 1000));
+            _fields.Add(new EmptyField());
         }
 
     }

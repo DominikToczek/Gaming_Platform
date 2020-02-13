@@ -51,20 +51,20 @@ namespace GamePlatform.Models
             _selectedPlayer.Pawn.Move(dice.Rol(), board.NumberOfField);
         }
 
-        public void BuyField(int idFild)
+        public void BuyField()
         {
-            (board.GetFiels(idFild) as FieldWithCity).BuyField(_selectedPlayer);    
+            (board.GetFiels(_selectedPlayer.Pawn.ActualPosition) as FieldWithCity).BuyField(_selectedPlayer);    
         }
-        public void BuyHotel(int idFild)
+        public void BuyHotel()
         {
-            (board.GetFiels(idFild) as FieldWithCity).BuyHotel(_selectedPlayer);
+            (board.GetFiels(_selectedPlayer.Pawn.ActualPosition) as FieldWithCity).BuyHotel(_selectedPlayer);
         }
 
-        public void BuyHome(int numberOfHome, int idFild)
+        public void BuyHome(int numberOfHome)
         {
             for (int i = 0; i < numberOfHome; i++)
             {
-                (board.GetFiels(idFild) as FieldWithCity).BuyHome(_selectedPlayer);
+                (board.GetFiels(_selectedPlayer.Pawn.ActualPosition) as FieldWithCity).BuyHotel(_selectedPlayer);
             }
         }
 
@@ -83,7 +83,7 @@ namespace GamePlatform.Models
             List<Player> players = new List<Player>();
             for (int i = 0; i < playersData.Length; i++)
             {
-                Pawn pawn = new Pawn(playersData[i].Pawn.Color, i + 1, 1);
+                Pawn pawn = new Pawn(playersData[i].Pawn.Color, i + 1, 0);
                 players.Add(new Player(i + 1, playersData[i].Name, playersData[i].Avatar, 10000, pawn));
             }
             _selectedPlayer = players[0];
