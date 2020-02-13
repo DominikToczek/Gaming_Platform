@@ -46,9 +46,9 @@ namespace GamePlatform.Models
 
 
 
-        public int DiceRoll()
+        public void DiceRoll()
         {
-            return dice.Rol();
+            _selectedPlayer.Pawn.Move(dice.Rol(), board.NumberOfField);
         }
 
         public void BuyField(int idFild)
@@ -100,8 +100,8 @@ namespace GamePlatform.Models
             {
                 IDPlayer = SelectedPlayer.Id,
                 numberOfMeshes = dice.LastRoll,
-                currentPlayerField = 13,
-                actionField = false,
+                currentPlayerField = SelectedPlayer.Pawn.ActualPosition,
+                actionField = (actualField is EmptyField)?true:false,
                 actioNumber = 0,
                 ocupation = actualField.IsOcupation,
                 ocupationByPlayerTurn = (actualField.IsOcupation) ? (actualField as FieldWithCity).Ower.Id == SelectedPlayer.Id : false,
