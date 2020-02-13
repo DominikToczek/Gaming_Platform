@@ -29,20 +29,20 @@ namespace GamePlatform.Controllers
             return View();
         }
 
+        public ViewResult AddPlayers()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public JsonResult StartGame(Player[] playersData)
         {
-            List<Player> a = _game.InitPlayer(playersData);
-            return Json(a);
+            List<Player> _players = _game.InitPlayer(playersData);
+            List<IField> _fields = _game.board.GetAllField;
+            return Json(new { players = _players , fields = _fields });
         }
 
-        public ViewResult AddPlayers()
-        {
-
-            
-          
-            return View();
-        }
 
         [HttpPost]
         public JsonResult DiceThrow()
@@ -54,7 +54,7 @@ namespace GamePlatform.Controllers
         }
 
         [HttpPost]
-        public JsonResult BuyHouse(ObjectBuyHouse objectBuyHouse)
+        public JsonResult BuyHouse(ObjectBuySell objectBuySell)
         {
 
             /*Tej metody będę używał do zakupu domków przez użytkownika. Otrzymasz taki obiekt
@@ -71,49 +71,39 @@ namespace GamePlatform.Controllers
                     stan_konta: 34212
                 }
              */
-            _game.SelectPlayer(objectBuyHouse.numer_gracza);
-            _game.BuyHome(3, objectBuyHouse.numer_pola);
+            _game.BuyHome(1, objectBuySell.FieldNumber);
 
-            return Json(new { numer_gracza = objectBuyHouse.numer_gracza, stan_konta = _game.SelectedPlayer.Money });
+            return Json(new { idPlayer = _game.SelectedPlayer.Id, mony = _game.SelectedPlayer.Money });
         }
 
         [HttpPost]
-        public JsonResult BuyField(ObjectBuyField objectBuyHouse)
+        public JsonResult BuyField(ObjectBuySell objectBuySell)
         {
             //tej metody będę używał do kupowania pól
             /* {
             IDplayer: responceOnStartTurn.IDPlayer,
             numer_pola: responceOnStartTurn.currentPlayerField
 
-
+            
             oczekuję tylko aktualnego stanu konta
             {
                 money: xxxx
             }
         }*/
+            _game.BuyField(objectBuySell.FieldNumber);
 
-            return Json("fdsa");
+            return Json(new { mony = _game.SelectedPlayer.Money } );
         }
 
 
-        public class ObjectBuyHouse
-        {
-            public int numer_gracza { get; set; }
-            public int ilosc_domkow { get; set; }
-            public int numer_pola { get; set; }
+     
+
+        public class ObjectBuySell
+        { 
+            public int FieldNumber { get; set; }
         }
 
-        public class ObjectBuyField
-        {
-            public int IDPlayer { get; set; }
-            public int fieldNumber { get; set; }
-        }
-
-        public class ObjectSellField
-        {
-            public int numer_gracza { get; set; }
-            public int numer_pola { get; set; }
-        }
+      
 
     }
 }

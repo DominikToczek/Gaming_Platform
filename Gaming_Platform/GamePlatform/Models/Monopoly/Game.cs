@@ -25,9 +25,35 @@ namespace GamePlatform.Models
             return Players[id - 1];
         }
 
+        public void SetPlayer( int idPlayer)
+        {
+            _selectedPlayer = Players[idPlayer-1];
+        }
+
+        public void SetPlayer()
+        {
+            _selectedPlayer = Players[NextPlayerId() - 1];
+        }
+        
+
+        public int NextPlayerId()
+        {
+            if (_selectedPlayer.Id < Players.Count)
+                return _selectedPlayer.Id + 1;
+            else
+                return 1;
+        }
+
+
+
         public int DiceRoll()
         {
             return dice.Rol();
+        }
+
+        public void BuyField(int idFild)
+        {
+            (board.GetFiels(idFild) as FieldWithCity).BuyField(_selectedPlayer);    
         }
 
         public void BuyHome(int numberOfHome, int idFild)
@@ -41,11 +67,6 @@ namespace GamePlatform.Models
         public void MovePawn(int number)
         {
             _selectedPlayer.Pawn.Move(number, board.NumberOfField);
-        }
-
-        public void SelectPlayer(int number)
-        {
-            _selectedPlayer = Players[number];
         }
 
         public void SellField(int idFild)
@@ -69,28 +90,37 @@ namespace GamePlatform.Models
         public object CreateObjectToView()
         {
             var actualField = board.GetFiels(_selectedPlayer.Pawn.ActualPosition);
+            var actualFiladType = actualField.Fieldtype;
 
             return new
             {
-                NumerPola = _selectedPlayer.Pawn.ActualPosition,
-                TuraGracza = (_selectedPlayer.Id + 1) % 3,
-                Gracze = new
-                {
-                    NumerGracza = _selectedPlayer.Id,
-                    AktualnyStanKonat = _selectedPlayer.Money,
-                    ListaPolGracza = board.GetAllFields(_selectedPlayer)
-                },
-                RodzajPola = "Dsd",
-                Okupowanie = (actualField.Ower is null) ? false : true,
-                OkupowniePrzezKogo = actualField.Ower,
-                KwotaZaPostuj = actualField.StayOnFieldCost,
-                NumerAkcji = "Dsd",
-                PrawieBankrut = board.GetAllFields(_selectedPlayer).Count > 0,
-                Bankrut = board.GetAllFields(_selectedPlayer).Count == 0,
+                IDPlayer = SelectedPlayer.Id,
+                numberOfMeshes = dice.LastRoll,
+                currentPlayerField = 13,
+                actionField = false,
+                actioNumber = 0,
+                ocupation = actualField.IsOcupation,
+                ocupationByPlayerTurn = (actualField.IsOcupation) ? (actualField as FieldWithCity).Ower.Id == SelectedPlayer.Id : false,
+                IDOfOccupationFieldPlayer = (actualField.IsOcupation) ? (actualField as FieldWithCity).Ower?.Id : -1,
+                payingForVisitOcupationField = (actualField.IsOcupation) ? (actualField as FieldWithCity).StayOnFieldCost : -1,
+                canBuyHotel = (actualField.Fieldtype == FieldType.City) ? (actualField as FieldWithCity).CanBuyHotel : false,
+                IDOfNextPlayer = NextPlayerId(),
+                bankrupt = _selectedPlayer.Money <= 0,
             };
 
         }
-
+    //IDPlayer: 1,//int
+    //numberOfMeshes: 2, //int
+    //currentPlayerField: 25, //int
+    //actionField: true,//true or false
+    //actioNumber: 2,//int
+    //ocupation: true,//true or false
+    //ocupationByPlayerTurn: true, //true or false
+    //IDOfOccupationFieldPlayer: 2,//int
+    //payingForVisitOcupationField: 2,//int
+    //canBuyHotel: true,//true or false
+    //IDOfNextPlayer: 2,//int
+    //bankrupt: true, //true or false
 
 
     }

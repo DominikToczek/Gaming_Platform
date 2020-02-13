@@ -10,7 +10,11 @@ namespace GamePlatform.Models
     public interface IField
     {
          string Name { get;  }
-         Player Ower { get;  }
-         int StayOnFieldCost { get;  }
+         FieldType Fieldtype { get; }
+         bool IsOcupation { get; }
+         int FieldCost { get; }
+         int StayOnFieldCost { get; }
+        
+
     }
 }

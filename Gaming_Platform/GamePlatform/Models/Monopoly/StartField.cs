@@ -8,9 +8,14 @@ namespace GamePlatform.Models
     public class StartField : IField
     {
         public string Name { get; private set; }
-        public bool IsOccupied { get ; set ; }
-        public Player Ower => null;
+
+        public new object GetType => typeof(StartField);
+
+        public FieldType Fieldtype => FieldType.Start;
+
+        public int FieldCost => 0;
         public int StayOnFieldCost => 0;
+        public bool IsOcupation => false;
 
         int _moneyForStay = 1000;
 
