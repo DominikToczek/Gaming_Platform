@@ -1,8 +1,7 @@
-﻿class field {
-    constructor(fieldID, name, houseCost, hotelCost, fieldCost) {
+﻿//Poprawić funkcje które korzystają z ceny domków
+class field {
+    constructor(fieldID, name, fieldCost) {
         this.name = name
-        this.houseCost = houseCost
-        this.hotelCost = hotelCost
         this.fieldCost = fieldCost
         this.handle = document.querySelector(`#space-${fieldID}`)
     }
@@ -12,7 +11,7 @@ let playersDataFromServer
 let playersHandle
 let pawnHandle
 let diceHandle
-let Board
+let Board = []
 let playerTurn
 let throwDiceButton = document.querySelector("#throw-dice-button")
 let responceFromServer
@@ -21,7 +20,7 @@ let responceOnStartTurn = {
     numberOfMeshes: 2, //int
     currentPlayerField: 25, //int
     actionField: true,//true or false
-    actioNumber: 2,//int
+    actionNumber: 2,//int
     ocupation: true,//true or false
     ocupationByPlayerTurn: true, //true or false
     IDOfOccupationFieldPlayer: 2,//int
@@ -29,6 +28,8 @@ let responceOnStartTurn = {
     canBuyHotel: true,//true or false
     IDOfNextPlayer: 2,//int
     bankrupt: true, //true or false
+    houseCost: 20,
+    hotelCost: 500
 }
 
 
@@ -36,6 +37,12 @@ window.addEventListener('load', () => {
     let players = localStorage.getItem('players')
     let bankruptButton = document.querySelector(".bankrut-button")
     let comunicateModalButton = document.querySelector("#comunication-modal-close-button")
+    let buyHouseModalButtonYes = document.querySelector(".buy-field-modal .buy-field-modal-button-yes")
+    let buyHouseModalButtonNo = document.querySelector(".buy-field-modal .buy-field-modal-button-no")
+    let buyHotelModalButtonYes = document.querySelector(".buy-field-modal .buy-hotel-modal-button-yes")
+    let buyHotelModalButtonNo = document.querySelector(".buy-field-modal .buy-hotel-modal-button-no")
+    let buyFieldModalButtonYes = document.querySelector(".buy-field-modal .buy-house-modal-button-yes")
+    let buyFieldModalButtonNo = document.querySelector(".buy-field-modal .buy-house-modal-button-no")
 
     players = JSON.parse(players)
     startGame(players)
@@ -45,6 +52,12 @@ window.addEventListener('load', () => {
     throwDiceButton.addEventListener("click", throwDice)
     bankruptButton.addEventListener("click", playerIsBankrupt)
     comunicateModalButton.addEventListener("click", nextTurn)
+    buyHouseModalButtonYes.addEventListener("click", buyHouse)
+    buyHouseModalButtonNo.addEventListener("click", nextTurn)
+    buyHotelModalButtonYes.addEventListener("click", buyHotel)
+    buyHotelModalButtonNo.addEventListener("click", nextTurn)
+    buyFieldModalButtonYes.addEventListener("click", buyField)
+    buyFieldModalButtonNo.addEventListener("click", nextTurn)
 })
 
 function startGame(a) {
@@ -57,13 +70,31 @@ function startGame(a) {
                 addPlayer(a)
             })
 
+            let count = 0;
+            response.forEach(a => {
+                let a = new field(count, response.name, response.fieldCost)
+
+                Board.push(a)
+                count++
+            })
+
+
             playersDataFromServer = response
             configGame()
+
+            console.log(response)
         },
         error: function (response) {
             console.log("Coś poszło nie tak" + response.error)
         }
     })
+}
+
+function configGame() {
+    playersHandle = document.querySelectorAll(".player")
+    playersHandle[0].setAttribute("id", "player--active")
+    pawnHandle = document.querySelectorAll(".pawn")
+    diceHandle = document.querySelector(".dice")
 }
 
 function addPlayer(a) {
@@ -108,8 +139,8 @@ function addPawn(c, b) {
     pawn.style.backgroundColor = `${c}`
     pawn.dataset.pawnNumber = b
     pawn.dataset.currentPosition = 1
-    pawn.dataset.currentPositionX = pawnPosition[b-1][0]
-    pawn.dataset.currentPositionY = pawnPosition[b-1][1]
+    pawn.dataset.currentPositionX = pawnPosition[b - 1][0]
+    pawn.dataset.currentPositionY = pawnPosition[b - 1][1]
     pawnContainer.appendChild(pawn)
 }
 
@@ -331,16 +362,7 @@ function movePawn(pawn, space) {
 }
 
 
-function configGame() {
-    playersHandle = document.querySelectorAll(".player")
-    playersHandle[0].setAttribute("id", "player--active")
-    pawnHandle = document.querySelectorAll(".pawn")
-    diceHandle = document.querySelector(".dice")
-    Board = document.querySelectorAll(".space")
-}
-
-
-function throwDice(){
+function throwDice() {
     $.ajax({
         type: "POST",
         url: "/EuroBusiness/DiceThrow",
@@ -358,12 +380,12 @@ function throwDice(){
 ///////////Comunicate functions////////////////
 ///////////////////////////////////////////////
 
-function showComunicate(title, photo, message){
+function showComunicate(title, photo, message) {
     let titleHandle = document.querySelector(".comunication-modal .modal-title")
     let bodyHandle = document.querySelector(".comunication-modal .modal-body .modal-message")
     let photoHandle = document.querySelector(".comunication-modal .modal-body .modal-body-photo")
 
-    
+
     photoHandle.style.backgroundImage = `url(${photo})`
     titleHandle.innerHTML = title
     bodyHandle.innerHTML = message
@@ -420,17 +442,31 @@ function turnStart(responce) {
         if (responceOnStartTurn.ocupation) {
             if (responceOnStartTurn.ocupationByPlayerTurn) {  //okupowany przez gracza do którego należy tura
                 if (responceOnStartTurn.canBuyHotel) {      //może kupić hotel tj. ma 4 domki
-                    if (playersDataFromServer[responceFromServer.IDPlayer - 1].money >= Board[responceFromServer.currentPlayerField].hotelCost) { //jeżeli stać cię na hotel
+                    if (playersDataFromServer[responceFromServer.IDPlayer - 1].money >= responceOnStartTurn.hotelCost) { //jeżeli stać cię na hotel
                         showBuyHotelComunicate()
                     }
+                    else {   //zbyt mało pieniędzy aby kupić hotel
+                        let title = "To little money"
+                        let photo = ""  //dodać jakieś zdjęcie jak będzie gotowe
+                        let message = "You don't have enough money to buy a hotel on this field"
+
+
+                        showComunicate(title, photo, message)
+                    }
                 }
-                else {      //nie stać cię na hotel
-                    let title = "To little money"
-                    let photo = ""  //dodać jakieś zdjęcie jak będzie gotowe
-                    let message = "You don't have enough money to buy a hotel in this field"
+                else {      //nie możesz kupić hotelu to może domek
+                    if (playersDataFromServer[responceFromServer.IDPlayer - 1].money >= responceOnStartTurn.houseCost) { //jeżeli stać cię na domek
+                        showBuyHouseComunicate()
+                    }
+                    else {
+                        let title = "To little money"
+                        let photo = ""  //dodać jakieś zdjęcie jak będzie gotowe
+                        let message = "You don't have enough money to buy a house on this field"
 
 
-                    showComunicate(title, photo, message)
+                        showComunicate(title, photo, message)
+                    }
+
                 }
             }
             else {          //okupowany przez innego gracza
@@ -469,7 +505,7 @@ function startAction(a) {
 }
 
 function playerIsBankrupt() {
-    playersHandle[responceOnStartTurn.IDPlayer-1].remove()
+    playersHandle[responceOnStartTurn.IDPlayer - 1].remove()
 }
 
 function nextTurn() {
@@ -513,7 +549,7 @@ function buyHouse() {
     $.ajax({
         type: "POST",
         data: { buyFieldData: a },
-        url: "/EuroBusiness/BuyField",
+        url: "/EuroBusiness/BuyHouse",
         success: function (responce) {
             let title = Board[responceOnStartTurn.currentPlayerField].name
             let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
@@ -539,7 +575,7 @@ function buyHotel() {
     $.ajax({
         type: "POST",
         data: { buyFieldData: a },
-        url: "/EuroBusiness/BuyField",
+        url: "/EuroBusiness/BuyHotel",
         success: function (responce) {
             let title = Board[responceOnStartTurn.currentPlayerField].name
             let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
