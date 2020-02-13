@@ -28,15 +28,12 @@ namespace GamePlatform.Models
         public string Name { get; }
         public Player Ower { get; private set; }
         public FieldState GetFieldState => _fieldState;
-
+        public int HouseCost => _fieldCost * ((int)_fieldState + 1);
+        public int HotelCost => _fieldCost * (int)FieldState.Hotel;
         public bool CanBuyHotel => GetFieldState == FieldState.Home3;
-
         public FieldType Fieldtype => FieldType.City;
-
         public new object GetType =>  typeof(FieldWithCity);
-
         public bool IsOcupation => !(Ower is null);
-
         private FieldState _fieldState;
 
 

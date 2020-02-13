@@ -47,49 +47,36 @@ namespace GamePlatform.Controllers
         [HttpPost]
         public JsonResult DiceThrow()
         {
-            //Tej metody będę używał do wywołania rzutu kostką jako wynik będzie zwracany obiekt z flagami
             _game.DiceRoll();
             object a = _game.CreateObjectToView();
             return Json(a);
         }
 
         [HttpPost]
+        public JsonResult NextTurn()
+        {
+            _game.NextPlayer();
+            return Json(null);
+        }
+
+        [HttpPost]
         public JsonResult BuyHouse(ObjectBuySell objectBuySell)
         {
-
-            /*Tej metody będę używał do zakupu domków przez użytkownika. Otrzymasz taki obiekt
-             * {
-                numer_gracza: 1,
-                ilosc_domków: 3,
-                numer_pola: 31
-                } 
-
-
-                w odpowiedzi oczekuję
-                {
-                    numer_gracza: 1,
-                    stan_konta: 34212
-                }
-             */
             _game.BuyHome(1, objectBuySell.FieldNumber);
 
-            return Json(new { idPlayer = _game.SelectedPlayer.Id, mony = _game.SelectedPlayer.Money });
+            return Json(new {mony = _game.SelectedPlayer.Money });
+        }
+
+        [HttpPost]
+        public JsonResult BuyHotel(ObjectBuySell objectBuySell)
+        {
+            _game.BuyHotel(objectBuySell.FieldNumber);
+            return Json(new { mony = _game.SelectedPlayer.Money });
         }
 
         [HttpPost]
         public JsonResult BuyField(ObjectBuySell objectBuySell)
         {
-            //tej metody będę używał do kupowania pól
-            /* {
-            IDplayer: responceOnStartTurn.IDPlayer,
-            numer_pola: responceOnStartTurn.currentPlayerField
-
-            
-            oczekuję tylko aktualnego stanu konta
-            {
-                money: xxxx
-            }
-        }*/
             _game.BuyField(objectBuySell.FieldNumber);
 
             return Json(new { mony = _game.SelectedPlayer.Money } );

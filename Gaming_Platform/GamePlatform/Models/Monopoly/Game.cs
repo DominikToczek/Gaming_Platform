@@ -30,7 +30,7 @@ namespace GamePlatform.Models
             _selectedPlayer = Players[idPlayer-1];
         }
 
-        public void SetPlayer()
+        public void NextPlayer()
         {
             _selectedPlayer = Players[NextPlayerId() - 1];
         }
@@ -54,6 +54,10 @@ namespace GamePlatform.Models
         public void BuyField(int idFild)
         {
             (board.GetFiels(idFild) as FieldWithCity).BuyField(_selectedPlayer);    
+        }
+        public void BuyHotel(int idFild)
+        {
+            (board.GetFiels(idFild) as FieldWithCity).BuyHotel(_selectedPlayer);
         }
 
         public void BuyHome(int numberOfHome, int idFild)
@@ -106,6 +110,8 @@ namespace GamePlatform.Models
                 canBuyHotel = (actualField.Fieldtype == FieldType.City) ? (actualField as FieldWithCity).CanBuyHotel : false,
                 IDOfNextPlayer = NextPlayerId(),
                 bankrupt = _selectedPlayer.Money <= 0,
+                houseCost = (actualField.Fieldtype == FieldType.City) ? (actualField as FieldWithCity).HouseCost:-1,
+                hotelCost = (actualField.Fieldtype == FieldType.City) ? (actualField as FieldWithCity).HotelCost:-1,
             };
 
         }
