@@ -49,7 +49,8 @@ namespace GamePlatform.Controllers
         {
             //Tej metody będę używał do wywołania rzutu kostką jako wynik będzie zwracany obiekt z flagami
             _game.DiceRoll();
-            return Json(_game.CreateObjectToView());
+            object a = _game.CreateObjectToView();
+            return Json(a);
         }
 
         [HttpPost]
@@ -77,27 +78,21 @@ namespace GamePlatform.Controllers
         }
 
         [HttpPost]
-        public JsonResult SellField(ObjectSellField objectSellField)
+        public JsonResult BuyField(ObjectBuyField objectBuyHouse)
         {
+            //tej metody będę używał do kupowania pól
+            /* {
+            IDplayer: responceOnStartTurn.IDPlayer,
+            numer_pola: responceOnStartTurn.currentPlayerField
 
-            _game.SelectPlayer(objectSellField.numer_gracza);
-            _game.SellField(objectSellField.numer_pola);
-            //w przypadku gdy player może zostać bankrutem może sprzedać swoje pola i do tego służy ta metoda 
-            /*
-                Przesyłany obiekt:
-                {
-                    numer_gracza: 1,
-                    numer_pola: 21
-                }
 
-                w odpowiedzi oczekuję
-                {
-                    numer_gracza: 1,
-                    stan_konta: 34212
-                }
-             */
+            oczekuję tylko aktualnego stanu konta
+            {
+                money: xxxx
+            }
+        }*/
 
-            return Json(new { numer_gracza = objectSellField.numer_gracza, stan_konta = _game.SelectedPlayer.Money });
+            return Json("fdsa");
         }
 
 
@@ -106,6 +101,12 @@ namespace GamePlatform.Controllers
             public int numer_gracza { get; set; }
             public int ilosc_domkow { get; set; }
             public int numer_pola { get; set; }
+        }
+
+        public class ObjectBuyField
+        {
+            public int IDPlayer { get; set; }
+            public int fieldNumber { get; set; }
         }
 
         public class ObjectSellField

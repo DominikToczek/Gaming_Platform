@@ -1,18 +1,50 @@
-﻿let playersDataFromServer
+﻿class field {
+    constructor(fieldID, name, houseCost, hotelCost, fieldCost) {
+        this.name = name
+        this.houseCost = houseCost
+        this.hotelCost = hotelCost
+        this.fieldCost = fieldCost
+        this.handle = document.querySelector(`#space-${fieldID}`)
+    }
+}
+
+let playersDataFromServer
 let playersHandle
 let pawnHandle
 let diceHandle
 let Board
+let playerTurn
 let throwDiceButton = document.querySelector("#throw-dice-button")
+let responceFromServer
+let responceOnStartTurn = {
+    IDPlayer: 1,//int
+    numberOfMeshes: 2, //int
+    currentPlayerField: 25, //int
+    actionField: true,//true or false
+    actioNumber: 2,//int
+    ocupation: true,//true or false
+    ocupationByPlayerTurn: true, //true or false
+    IDOfOccupationFieldPlayer: 2,//int
+    payingForVisitOcupationField: 2,//int
+    canBuyHotel: true,//true or false
+    IDOfNextPlayer: 2,//int
+    bankrupt: true, //true or false
+}
 
 
 window.addEventListener('load', () => {
     let players = localStorage.getItem('players')
-    configGame()
+    let bankruptButton = document.querySelector(".bankrut-button")
+    let comunicateModalButton = document.querySelector("#comunication-modal-close-button")
+
     players = JSON.parse(players)
     startGame(players)
 
+    playerTurn = document.querySelector(".player-turn")
+
     throwDiceButton.addEventListener("click", throwDice)
+    bankruptButton.addEventListener("click", playerIsBankrupt)
+    comunicateModalButton.addEventListener("click", nextTurn)
 })
 
 function startGame(a) {
@@ -298,41 +330,33 @@ function movePawn(pawn, space) {
     }
 }
 
-function loadWelcomeScreen() {
-    showComunicate("Welcome!", "/photo/fdsa", "Welcome to eurobusiness. Have fun!")
-}
 
 function configGame() {
     playersHandle = document.querySelectorAll(".player")
+    playersHandle[0].setAttribute("id", "player--active")
     pawnHandle = document.querySelectorAll(".pawn")
     diceHandle = document.querySelector(".dice")
     Board = document.querySelectorAll(".space")
-    loadWelcomeScreen()
-
-
-
-    console.log(playersHandle)
-    console.log(pawnHandle)
-    console.log(diceHandle)
-    console.log(Board)
 }
 
 
 function throwDice(){
-    let responceFromServer
     $.ajax({
         type: "POST",
         url: "/EuroBusiness/DiceThrow",
-        success: function (response) {
-            responceFromServer = responce
+        success: function (a) {
+            responceFromServer = JSON.parse(JSON.stringify(a))
+            turnStart(responceFromServer)
         },
-        error: function (response) {
-            console.log("Coś poszło nie tak z rzutem kostką" + response)
+        error: function (a) {
+            console.log("Coś poszło nie tak z rzutem kostką" + a)
         }
     })
-
-    turnStart(responceFromServer)
 }
+
+
+///////////Comunicate functions////////////////
+///////////////////////////////////////////////
 
 function showComunicate(title, photo, message){
     let titleHandle = document.querySelector(".comunication-modal .modal-title")
@@ -340,27 +364,221 @@ function showComunicate(title, photo, message){
     let photoHandle = document.querySelector(".comunication-modal .modal-body .modal-body-photo")
 
     
-    console.log(photoHandle)
     photoHandle.style.backgroundImage = `url(${photo})`
     titleHandle.innerHTML = title
     bodyHandle.innerHTML = message
     $('.comunication-modal').modal('show')
 }
 
-function turnStart(responce){
-    diceHandle.classList.add(`throw-${responceFromServer.iloscOczek}`)
+function showBankrutComunicate() {
+    $('.bankrut-modal').modal('show')
+}
+
+function showBuyFieldComunicate() {
+    let titleHandle = document.querySelector(".buy-field-modal .modal-title")
+    let messageHandle = document.querySelector(".buy-field-modal .modal-message")
+
+    titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField - 1].name
+    messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField - 1].fieldCost} <br> You want buy this field?`
+
+    $('.buy-field-modal').modal('show')
+}
+
+function showBuyHouseComunicate() {
+    let titleHandle = document.querySelector(".buy-field-modal .modal-title")
+    let messageHandle = document.querySelector(".buy-field-modal .modal-message")
+
+    titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField - 1].name
+    messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField - 1].fieldCost} <br> You want buy new house on this field?`
+
+    $('.buy-field-modal').modal('show')
+}
+
+function showBuyHotelComunicate() {
+    let titleHandle = document.querySelector(".buy-field-modal .modal-title")
+    let messageHandle = document.querySelector(".buy-field-modal .modal-message")
+
+    titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField - 1].name
+    messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField - 1].fieldCost} <br> You want buy hotel on this field?`
+
+    $('.buy-field-modal').modal('show')
+}
+
+//////////////*************TURN START FUNCTION*********************///////////////
+/********************************************************************************/
+
+
+function turnStart(responce) {
+    diceHandle.style.display = "block"
+    diceHandle.classList.add(`throw-${responceOnStartTurn.numberOfMeshes}`)
+    movePawn(pawnHandle[responceOnStartTurn.IDPlayer - 1], responceOnStartTurn.currentPlayerField)
+    console.log("turn start:" + responce)
     if (responce.RodzajPola) {
-        checkField()
+        startAction(responce) //funkcja do dopisania
     }
     else {
-        startAction() //funkcja do dopisania
+        if (responceOnStartTurn.ocupation) {
+            if (responceOnStartTurn.ocupationByPlayerTurn) {  //okupowany przez gracza do którego należy tura
+                if (responceOnStartTurn.canBuyHotel) {      //może kupić hotel tj. ma 4 domki
+                    if (playersDataFromServer[responceFromServer.IDPlayer - 1].money >= Board[responceFromServer.currentPlayerField].hotelCost) { //jeżeli stać cię na hotel
+                        showBuyHotelComunicate()
+                    }
+                }
+                else {      //nie stać cię na hotel
+                    let title = "To little money"
+                    let photo = ""  //dodać jakieś zdjęcie jak będzie gotowe
+                    let message = "You don't have enough money to buy a hotel in this field"
+
+
+                    showComunicate(title, photo, message)
+                }
+            }
+            else {          //okupowany przez innego gracza
+                if (responceOnStartTurn.bankrupt) {
+                    showBankrutComunicate()
+                }
+                else {
+                    let title = "Fee for stop"
+                    let photo = ""  //dodać zdjęcie gdy będzie gotowe
+                    let message = `This field belongs to ${playersDataFromServer[responceOnStartTurn.IDOfOccupationFieldPlayer].name}. You must pay a ${responceOnStartTurn.payingForVisitOcupationField} fee!`
+                    showComunicate(title, photo, message)
+                }
+            }
+        }
+
+        else {      //jeśli nie okupowany
+            if (Board[responceOnStartTurn.currentPlayerField].fieldCost <= playersDataFromServer.money) {   //jeśli stać na zakup pola
+                showBuyFieldComunicate()
+            }
+            else {      //jeśli nie stać na zakup pola
+                let title = "Too little money"
+                let photo = ""  //dodać zdjęcie gdy będzie gotowe
+                let message = `You don't have enough money to buy this field`
+                showComunicate(title, photo, message)
+            }
+        }
     }
 
 }
 
-function addMoney(player, money) {
-    let actualMoney = parseInt(player.children[1].children[1].innerHTML)
-    let newMoney = actualMoney + money
+///////////Actions functions////////////////
+///////////////////////////////////////////////
 
-    player.children[1].children[1].innerHTML = newMoney
+function startAction(a) {
+    console.log(a)
 }
+
+function playerIsBankrupt() {
+    playersHandle[responceOnStartTurn.IDPlayer-1].remove()
+}
+
+function nextTurn() {
+    playersHandle[responceOnStartTurn.IDPlayer - 1].removeAttribute("id", "player--active")
+    playersHandle[responceOnStartTurn.IDOfNextPlayer - 1].setAttribute("id", "player--active")
+
+    playerTurn.innerHTML = `Turn ${playersDataFromServer[responceOnStartTurn.IDOfNextPlayer - 1].name}`
+}
+
+function buyField() {
+    let a = {
+        IDplayer: responceOnStartTurn.IDPlayer,
+        numer_pola: responceOnStartTurn.currentPlayerField
+    }
+
+    $.ajax({
+        type: "POST",
+        data: { buyFieldData: a },
+        url: "/EuroBusiness/BuyField",
+        success: function (responce) {
+            let title = Board[responceOnStartTurn.currentPlayerField].name
+            let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
+            let message = `You have bought ${Board[responceOnStartTurn.currentPlayerField].name}`
+            playersHandle[responceOnStartTurn.IDPlayer].children[1].children[1].innerHTML = responce.money
+            playersDataFromServer[responceOnStartTurn.IDPlayer].money = responce.money
+
+            showComunicate(title, photo, message)
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak" + response.error)
+        }
+    })
+}
+
+function buyHouse() {
+    let a = {
+        IDplayer: responceOnStartTurn.IDPlayer,
+        numer_pola: responceOnStartTurn.currentPlayerField
+    }
+
+    $.ajax({
+        type: "POST",
+        data: { buyFieldData: a },
+        url: "/EuroBusiness/BuyField",
+        success: function (responce) {
+            let title = Board[responceOnStartTurn.currentPlayerField].name
+            let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
+            let message = `You have bought new house`
+            playersHandle[responceOnStartTurn.IDPlayer].children[1].children[1].innerHTML = responce.money
+            playersDataFromServer[responceOnStartTurn.IDPlayer].money = responce.money
+            addBuildToField(true)
+
+            showComunicate(title, photo, message)
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak" + response.error)
+        }
+    })
+}
+
+function buyHotel() {
+    let a = {
+        IDplayer: responceOnStartTurn.IDPlayer,
+        numer_pola: responceOnStartTurn.currentPlayerField
+    }
+
+    $.ajax({
+        type: "POST",
+        data: { buyFieldData: a },
+        url: "/EuroBusiness/BuyField",
+        success: function (responce) {
+            let title = Board[responceOnStartTurn.currentPlayerField].name
+            let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
+            let message = `You have bought new hotel`
+            playersHandle[responceOnStartTurn.IDPlayer].children[1].children[1].innerHTML = responce.money
+
+            playersDataFromServer[responceOnStartTurn.IDPlayer].money = responce.money
+            addBuildToField(false)
+
+            showComunicate(title, photo, message)
+        },
+        error: function (response) {
+            console.log("Coś poszło nie tak" + response.error)
+        }
+    })
+}
+
+//true = house false = hotel
+
+function addBuildToField(a) {
+    let field = Board[responceOnStartTurn.currentPlayerField - 1].handle
+
+    if (a) {
+        let container = createElement("div")
+        let house = '<i class="fas fa-home"></i>'
+        container.classList.add("house")
+        container.appendChild(house)
+
+        field.appendChild(container)
+    }
+
+    else {
+        let containerHotel = createElement("div")
+        let hotel = '<i class="fas fa-hotel"></i>'
+
+        field.childNodes.forEach(e => e.remove())
+        containerHotel.appendChild(hotel)
+
+        field.appendChild(containerHotel)
+    }
+}
+

@@ -123,6 +123,10 @@
 
 </div>
 
+<div class="player-turn">
+
+</div>
+
 <button id="throw-dice-button">Throw Dice</button>
 
 <div class="modal fade comunication-modal" id="exampleModalCenter" tabindex="-1" data-backdrop="static"
@@ -160,8 +164,50 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-success btn-lg">Yes</button>
-                <button type="button" data-dismiss="modal" class="btn btn-danger btn-lg">No</button>
+                <button type="button" data-dismiss="modal" class="btn btn-success btn-lg buy-field-modal-button-yes">Yes</button>
+                <button type="button" data-dismiss="modal" class="btn btn-danger btn-lg buy-field-modal-button-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade buy-house-modal" id="exampleModalCenter" tabindex="-1" data-backdrop="static"
+     data-keyboard="false" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mx-auto" id="exampleModalLongTitle">Barcelona</h5>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-photo mx-auto"></div>
+                <div class="modal-message mx-auto text-center">
+                    You want to buy this field?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-success btn-lg buy-field-modal-button-yes">Yes</button>
+                <button type="button" data-dismiss="modal" class="btn btn-danger btn-lg buy-field-modal-button-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade buy-hotel-modal" id="exampleModalCenter" tabindex="-1" data-backdrop="static"
+     data-keyboard="false" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mx-auto" id="exampleModalLongTitle">Barcelona</h5>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body-photo mx-auto"></div>
+                <div class="modal-message mx-auto text-center">
+                    You want to buy this field?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-success btn-lg buy-field-modal-button-yes">Yes</button>
+                <button type="button" data-dismiss="modal" class="btn btn-danger btn-lg buy-field-modal-button-no">No</button>
             </div>
         </div>
     </div>
@@ -175,18 +221,7 @@
                 <h5 class="modal-title mx-auto" id="exampleModalLongTitle">Buy House</h5>
             </div>
             <div class="modal-body">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
-                    <label class="form-check-label" for="defaultCheck2">
-                        Disabled checkbox
-                    </label>
-                </div>
+                You want to buy house on this field?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info dont-buy" data-dismiss="modal">Don't buy House</button>
@@ -210,24 +245,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-warning mx-auto" data-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade sell-field-modal" id="exampleModalCenter" tabindex="-1" data-backdrop="static"
-     data-keyboard="false" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-warning mx-auto bankrut-button" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
