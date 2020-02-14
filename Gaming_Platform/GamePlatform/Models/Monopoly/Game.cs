@@ -71,6 +71,13 @@ namespace GamePlatform.Models
         public void MovePawn(int number)
         {
             _selectedPlayer.Pawn.Move(number, board.NumberOfField);
+            var actualField = board.GetFiels(_selectedPlayer.Pawn.ActualPosition);
+            if(actualField.IsOcupation)
+            {
+                var fieldCity = actualField as FieldWithCity;
+                if (fieldCity.Ower.Id != _selectedPlayer.Id)
+                    fieldCity.PayForStay(_selectedPlayer);
+            }
         }
 
         public void SellField(int idFild)
@@ -101,7 +108,7 @@ namespace GamePlatform.Models
                 IDPlayer = SelectedPlayer.Id,
                 numberOfMeshes = dice.LastRoll,
                 currentPlayerField = SelectedPlayer.Pawn.ActualPosition,
-                actionField = (actualField is EmptyField)?true:false,
+                actionField = (actualField is FieldWithCity) ?false:true,
                 actioNumber = 0,
                 ocupation = actualField.IsOcupation,
                 ocupationByPlayerTurn = (actualField.IsOcupation) ? (actualField as FieldWithCity).Ower.Id == SelectedPlayer.Id : false,

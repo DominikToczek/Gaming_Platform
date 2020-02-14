@@ -10,6 +10,6 @@ namespace GamePlatform.Models
         Start,
         City,
         Empty,
-    
+        Action
     }
 }

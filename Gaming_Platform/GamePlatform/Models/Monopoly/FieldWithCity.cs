@@ -114,6 +114,7 @@ namespace GamePlatform.Models
                 if (player.Money >= StayOnFieldCost)
                 {
                     player.spendMoney(StayOnFieldCost);
+                    Ower.AddMoney(StayOnFieldCost);
                     return true;
                 }
                 else
