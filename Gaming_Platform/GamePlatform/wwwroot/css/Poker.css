@@ -13,7 +13,7 @@
     background-color: green;
     position: relative;
     margin: 40px;
-    height: 420px;
+    height: 550px;
     border: 1px solid;
     padding: 50px
 }
@@ -27,10 +27,14 @@
     margin: 4px;
     border-radius: 14px;
     background-size: cover;
+    margin-top: 30px;
+    transition: linear 0.3s;
 }
 
 .buttons-container {
     text-align: center;
+    bottom: 100px;
+    position: relative;
 }
 
 .change-card {
@@ -50,6 +54,10 @@
     font-weight: 500;
 }
 
+.card-game-button:hover {
+    transform: scale(1.05);
+}
+
 .change-card-button {
     background-color: #77000b;
     color: white;
@@ -66,4 +74,26 @@
 .card-container {
     position: absolute;
     padding: 20px;
+}
+
+#poker-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(30, 39, 29, 0.8);
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 220px;
+    display: none;
+}
+
+.poker-popup {
+    height: 100px;
+    width: 500px;
+    font-size: 40px;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    color: chartreuse;
 }

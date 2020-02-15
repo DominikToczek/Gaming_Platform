@@ -112,7 +112,7 @@ namespace GamePlatform.Controllers
             else
                 winnerLayout = computerHand;
 
-            return Json("The winner is: " + winner + "!! Cards Layout: " + winnerLayout.ToString());
+            return Json(winner + ";" + winnerLayout.ToString());
         }
     }
 }

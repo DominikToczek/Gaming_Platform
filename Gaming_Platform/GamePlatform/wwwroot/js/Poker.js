@@ -3,10 +3,12 @@ let cardClicked2 = false;
 let cardClicked3 = false;
 let cardClicked4 = false;
 let cardClicked5 = false;
+let isCheckBlocked = true;
 
 async function newGame() {
     await dealCards();
     await resetChangeCardsButtons()
+    isCheckBlocked = false
     await changeCard1()
     await changeCard2()
     await changeCard3()
@@ -16,16 +18,31 @@ async function newGame() {
 }
 
 function checkGame() {
-    $.ajax({
-        type: "POST",
-        url: "/Poker/CheckGame",
-        success: function (response) {
-            console.log(response)
-        },
-        error: function (response) {
-            console.log("Coś poszło nie tak" + response)
-        }
-    })
+    if (!isCheckBlocked) {
+        $.ajax({
+            type: "POST",
+            url: "/Poker/CheckGame",
+            success: function (response) {
+                showWinner(response)
+            },
+            error: function (response) {
+                console.log("Coś poszło nie tak" + response)
+            }
+        })
+        isCheckBlocked = true
+    }
+
+}
+
+function showWinner(response) {
+    let respArray = response.split(";")
+    document.getElementById("poker-overlay").style.display = "block";
+    document.getElementById("poker-winner").innerHTML = "The winner is " + respArray[0];
+    document.getElementById("poker-layout").innerHTML = "With " + respArray[1] + " cards layout";
+}
+
+function closeOverlay() {
+    document.getElementById("poker-overlay").style.display = "none";
 }
 
 function resetChangeCardsButtons() {
@@ -37,35 +54,35 @@ function resetChangeCardsButtons() {
 }
 
 function changeCard1() {
-    if (!cardClicked1) {
+    if (!cardClicked1 && !isCheckBlocked) {
         changeCard(1);
         cardClicked1 = true;
     }
 }
 
 function changeCard2() {
-    if (!cardClicked2) {
+    if (!cardClicked2 && !isCheckBlocked) {
         changeCard(2);
         cardClicked2 = true;
     }
 }
 
 function changeCard3() {
-    if (!cardClicked3) {
+    if (!cardClicked3 && !isCheckBlocked) {
         changeCard(3);
         cardClicked3 = true;
     }
 }
 
 function changeCard4() {
-    if (!cardClicked4) {
+    if (!cardClicked4 && !isCheckBlocked) {
         changeCard(4);
         cardClicked4 = true;
     }
 }
 
 function changeCard5() {
-    if (!cardClicked5) {
+    if (!cardClicked5 && !isCheckBlocked) {
         changeCard(5);
         cardClicked5 = true;
     }
@@ -76,7 +93,6 @@ function dealCards() {
         type: "POST",
         url: "/Poker/DealCards",
         success: function (response) {
-            console.log(response)
         },
         error: function (response) {
             console.log("Coś poszło nie tak" + response)
@@ -89,7 +105,6 @@ function getPlayerHand() {
         type: "POST",
         url: "/Poker/GetPlayerHand",
         success: function (response) {
-            console.log(response)
         },
         error: function (response) {
             console.log("Coś poszło nie tak" + response)
@@ -103,7 +118,6 @@ function getComputerHand() {
         url: "/Poker/GetComputerHand",
         success: function (response) {
             displayCards(response)
-            console.log(response)
         },
         error: function (response) {
             console.log("Coś poszło nie tak" + response)
@@ -117,7 +131,6 @@ function changeCard(Id) {
         data: { Id },
         url: "/Poker/changeCard",
         success: function (response) {
-            console.log(response)
             displayCards(response)
         },
         error: function (response) {
@@ -135,7 +148,6 @@ function displayCards(response) {
 }
 
 function setBackgroundCard(cardId) {
-    console.log(cardId);
     switch (cardId) {
         case 'CLUBSTWO':
             return "url('/assets/cards/2C.jpg')";
