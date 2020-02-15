@@ -5,10 +5,13 @@ let cardClicked4 = false;
 let cardClicked5 = false;
 
 function newGame() {
-    dealCards();
-    getPlayerHand();
-    getComputerHand();
-    resetChangeCardsButtons();
+    resetChangeCardsButtons()
+    changeCard1()
+    changeCard2()
+    changeCard3()
+    changeCard4()
+    changeCard5()
+    resetChangeCardsButtons()
 }
 
 function checkGame() {
@@ -114,6 +117,7 @@ function changeCard(Id) {
         url: "/Poker/changeCard",
         success: function (response) {
             console.log(response)
+            displayCards(response)
         },
         error: function (response) {
             console.log("Coś poszło nie tak" + response)

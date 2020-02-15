@@ -57,6 +57,7 @@ namespace GamePlatform.Models
 
         public void ChangeCard(int cardNumber)
         {
+            if (counter > 51) counter = 10;
             if (cardNumber < 1 || cardNumber > 5)
                 throw new ArgumentOutOfRangeException();
             playerHand[cardNumber - 1] = Deck[counter];
