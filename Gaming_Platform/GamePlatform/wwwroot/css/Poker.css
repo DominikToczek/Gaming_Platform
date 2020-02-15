@@ -59,9 +59,9 @@
     font-weight: 500;
 }
 
-    .change-card-button:hover {
-        transform: scale(1.05);
-    }
+.change-card-button:hover {
+    transform: scale(1.05);
+}
 
 .card-container {
     position: absolute;

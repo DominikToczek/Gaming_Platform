@@ -56,12 +56,20 @@ body {
 }
 
 
-.game-button{
+.game-button {
     display: block;
     text-align: center;
     color: #fff;
-    height: 100px;
-    padding: 30px 0;
+    height: 150px;
+    padding: 35px 0;
+    font-size: 40px;
+    margin-top: 100px;
+}
+
+.game-button:hover{
+    color: white;
+    text-decoration: none;
+    transform: scale(1.02);
 }
 
 .eurobusiness {
@@ -69,5 +77,5 @@ body {
 }
 
 .poker {
-    background-color: #82d4bb;
+    background-color: green;
 }

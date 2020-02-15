@@ -4,14 +4,14 @@ let cardClicked3 = false;
 let cardClicked4 = false;
 let cardClicked5 = false;
 
-function newGame() {
-    dealCards();
-    resetChangeCardsButtons()
-    changeCard1()
-    changeCard2()
-    changeCard3()
-    changeCard4()
-    changeCard5()
+async function newGame() {
+    await dealCards();
+    await resetChangeCardsButtons()
+    await changeCard1()
+    await changeCard2()
+    await changeCard3()
+    await changeCard4()
+    await changeCard5()
     resetChangeCardsButtons()
 }
 
