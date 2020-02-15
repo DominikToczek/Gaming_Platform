@@ -6,9 +6,13 @@ let cardClicked5 = false;
 
 function newGame() {
     dealCards();
-    getPlayerHand();
-    getComputerHand();
-    resetChangeCardsButtons();
+    resetChangeCardsButtons()
+    changeCard1()
+    changeCard2()
+    changeCard3()
+    changeCard4()
+    changeCard5()
+    resetChangeCardsButtons()
 }
 
 function checkGame() {
