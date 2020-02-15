@@ -5,12 +5,11 @@ namespace GamePlatform.Controllers
 {
     public class PokerController : Controller
     {
-        private IDeal deal;
+        private readonly IDeal deal;
 
-        public PokerController()
+        public PokerController(Deal deal)
         {
-            deal = new Deal();
-            deal.DealCards();
+            this.deal = deal;
         }
 
         public ViewResult Poker()
@@ -19,9 +18,9 @@ namespace GamePlatform.Controllers
         }
 
         [HttpPost]
-        public JsonResult DealCards()
+        public void DealCards()
         {
-            return Json(null);
+            deal.DealCards();
         }
 
         [HttpPost]
@@ -65,9 +64,24 @@ namespace GamePlatform.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangeCard(int? Id)
+        public ActionResult ChangeCard(int id)
         {
-            return Json("index to " + Id);
+            deal.ChangeCard(id);
+            var playerHand = deal.GetPlayerHand();
+            var jsonCards = new
+            {
+                card1Suit = playerHand[0].CardSuit.ToString(),
+                card1Value = playerHand[0].CardValue.ToString(),
+                card2Suit = playerHand[1].CardSuit.ToString(),
+                card2Value = playerHand[1].CardValue.ToString(),
+                card3Suit = playerHand[2].CardSuit.ToString(),
+                card3Value = playerHand[2].CardValue.ToString(),
+                card4Suit = playerHand[3].CardSuit.ToString(),
+                card4Value = playerHand[3].CardValue.ToString(),
+                card5Suit = playerHand[4].CardSuit.ToString(),
+                card5Value = playerHand[4].CardValue.ToString(),
+            };
+            return Json(jsonCards);
         }
 
         [HttpPost]
@@ -98,7 +112,7 @@ namespace GamePlatform.Controllers
             else
                 winnerLayout = computerHand;
 
-            return Json("The winner is: " + winner + "!! Cards Layout: " + winnerLayout.ToString());
+            return Json(winner + ";" + winnerLayout.ToString());
         }
     }
 }
