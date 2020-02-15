@@ -12,6 +12,13 @@ namespace GamePlatform.Models
         private int counter;
         private readonly Layout layout = new Layout();
 
+        public Deal()
+        {
+            CreateDeck();
+            ShuffleDeck();
+            GetHand();
+        }
+
         public Card[] GetPlayerHand()
         {
             if (playerHand is null)
@@ -43,7 +50,7 @@ namespace GamePlatform.Models
 
         public void DealCards()
         {
-            CreateDeck();
+            counter = 0;
             ShuffleDeck();
             GetHand();
         }

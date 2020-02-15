@@ -18,10 +18,9 @@ namespace GamePlatform.Controllers
         }
 
         [HttpPost]
-        public JsonResult DealCards()
+        public void DealCards()
         {
             deal.DealCards();
-            return Json(null);
         }
 
         [HttpPost]
