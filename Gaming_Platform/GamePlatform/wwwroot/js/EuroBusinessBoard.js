@@ -135,9 +135,6 @@ function movePawn(pawn, space) {
     let rotateY = 0
     let scale = document.querySelector(".board").offsetWidth / 650
 
-    console.log("PIONEK: " + pawn)
-    console.log("ID POLA: " + space)
-
     if (pawn.dataset.pawnNumber == 1) {
         rotateX = [40 * scale, -20 * scale, 45 * scale, 30 * scale]
         rotateY = [20 * scale, 45 * scale, -20 * scale, 10 * scale]
@@ -430,7 +427,7 @@ function turnStart(responce) {
     diceHandle.classList.add(`throw-${responceOnStartTurn.numberOfMeshes}`)
     console.log("PIONEK z turn start: " + responce)
 
-    movePawn(pawnHandle[responceOnStartTurn.idPlayer - 1], responceOnStartTurn.currentPlayerField)
+    movePawn(pawnHandle[responceOnStartTurn.idPlayer - 1], responceOnStartTurn.currentPlayerField + 1)
 
     setTimeout(() => {
         if (responce.actionField) {
