@@ -37,7 +37,11 @@ function checkGame() {
 function showWinner(response) {
     let respArray = response.split(";")
     document.getElementById("poker-overlay").style.display = "block";
-    document.getElementById("poker-winner").innerHTML = "The winner is " + respArray[0];
+    if (respArray[0] === "draw") {
+        document.getElementById("poker-winner").innerHTML = "Draw";
+    } else {
+       document.getElementById("poker-winner").innerHTML = "The winner is " + respArray[0];
+    }
     document.getElementById("poker-layout").innerHTML = "With " + respArray[1] + " cards layout";
 }
 
