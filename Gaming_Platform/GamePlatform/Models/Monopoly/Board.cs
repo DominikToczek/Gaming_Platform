@@ -33,37 +33,46 @@ namespace GamePlatform.Models
         {
             _fields = new List<IField>();
             _fields.Add(new StartField());
-            _fields.Add(new FieldWithCity("Brenada", 1000, 1000));
             _fields.Add(new FieldWithCity("Sewilla", 1000, 1000));
-            _fields.Add(new FieldWithCity("Madryt", 1000, 1000));
+            _fields.Add(new FieldWithCity("Venecja", 1000, 1000));
+            _fields.Add(new FieldWithCity("Honk Kang", 1000, 1000));
             _fields.Add(new ActionField("Action"));
-            _fields.Add(new FieldWithCity("Hongkong", 1000, 1000));
-            _fields.Add(new FieldWithCity("Pekin", 1000, 1000));
-            _fields.Add(new FieldWithCity("Szanghaj", 1000, 1000));
+            _fields.Add(new FieldWithCity("Londyn", 2000, 2000));
+            _fields.Add(new FieldWithCity("Madryt", 2000, 2000));
+            _fields.Add(new FieldWithCity("Milan", 2000, 2000));
+            _fields.Add(new FieldWithCity("Barcelona", 2000, 2000));
             _fields.Add(new EmptyField());
-            _fields.Add(new FieldWithCity("Wenecja", 1000, 1000));
-            _fields.Add(new FieldWithCity("Mediolan", 1000, 1000));
-            _fields.Add(new FieldWithCity("Rzym", 1000, 1000));
             _fields.Add(new EmptyField());
-            _fields.Add(new FieldWithCity("Hamburg", 1000, 1000));
+            _fields.Add(new FieldWithCity("Rome", 3000, 3000));
+            _fields.Add(new FieldWithCity("Beijing", 3000, 3000));
+            _fields.Add(new FieldWithCity("Birminghan", 3000, 3000));
+            _fields.Add(new EmptyField());
+            _fields.Add(new FieldWithCity("Hamburg", 4000, 4000));
             _fields.Add(new ActionField("Action"));
-            _fields.Add(new FieldWithCity("Berlin", 1000, 1000));
+            _fields.Add(new FieldWithCity("Leeds", 4000, 4000));
+            _fields.Add(new FieldWithCity("Shanghaj", 4000, 4000));
+            _fields.Add(new FieldWithCity("Berlin", 5000, 5000));
             _fields.Add(new EmptyField());
-            _fields.Add(new FieldWithCity("Londyn", 1000, 1000));
+            _fields.Add(new FieldWithCity("Sydnej", 6000, 6000));
+            _fields.Add(new FieldWithCity("Chicago", 6000, 6000));
+            _fields.Add(new FieldWithCity("Warsawa", 6000, 6000));
             _fields.Add(new EmptyField());
-            _fields.Add(new FieldWithCity("Sydnej", 1000, 1000));
+            _fields.Add(new FieldWithCity("Brisbane", 7000, 7000));
+            _fields.Add(new FieldWithCity("Las Vegas", 7000, 7000));
+            _fields.Add(new FieldWithCity("Rio De Janero", 8000, 8000));
+            _fields.Add(new FieldWithCity("New York", 8000, 8000));
+            _fields.Add(new FieldWithCity("Franfurt", 9000, 9000));
             _fields.Add(new EmptyField());
-            _fields.Add(new FieldWithCity("Chicago", 1000, 1000));
-            _fields.Add(new FieldWithCity("LasVegas", 1000, 1000));
-            _fields.Add(new FieldWithCity("NewYork", 1000, 1000));
+            _fields.Add(new EmptyField());
+            _fields.Add(new FieldWithCity("Paris", 10000, 10000));
+            _fields.Add(new FieldWithCity("Melbourne", 10000, 10000));
+            _fields.Add(new FieldWithCity("Cracow", 10000, 10000));
+            _fields.Add(new FieldWithCity("Marsselle", 12000, 12000));    
             _fields.Add(new ActionField("Action"));
-            _fields.Add(new FieldWithCity("Londyn", 1000, 1000));
-            _fields.Add(new FieldWithCity("Paryż", 1000, 1000));
-            _fields.Add(new EmptyField());
-            _fields.Add(new FieldWithCity("Karkow", 1000, 1000));
-            _fields.Add(new ActionField("Action"));
-            _fields.Add(new FieldWithCity("Warszawa", 1000, 1000));
-            _fields.Add(new EmptyField());
+            _fields.Add(new FieldWithCity("Sbo Paulo", 11000, 11000));
+            _fields.Add(new FieldWithCity("Wroclaw", 12000, 12000));
+            _fields.Add(new FieldWithCity("Londyn", 13000, 13000));
+      
         }
 
     }

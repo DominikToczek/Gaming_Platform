@@ -106,6 +106,7 @@ namespace GamePlatform.Models
             return new
             {
                 IDPlayer = SelectedPlayer.Id,
+                players = Players,
                 numberOfMeshes = dice.LastRoll,
                 currentPlayerField = SelectedPlayer.Pawn.ActualPosition,
                 actionField = (actualField is FieldWithCity) ?false:true,
