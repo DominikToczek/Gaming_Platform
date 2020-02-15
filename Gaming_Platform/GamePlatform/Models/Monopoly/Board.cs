@@ -36,7 +36,7 @@ namespace GamePlatform.Models
             _fields.Add(new FieldWithCity("Brenada", 1000, 1000));
             _fields.Add(new FieldWithCity("Sewilla", 1000, 1000));
             _fields.Add(new FieldWithCity("Madryt", 1000, 1000));
-            _fields.Add(new EmptyField());
+            _fields.Add(new ActionField("Action"));
             _fields.Add(new FieldWithCity("Hongkong", 1000, 1000));
             _fields.Add(new FieldWithCity("Pekin", 1000, 1000));
             _fields.Add(new FieldWithCity("Szanghaj", 1000, 1000));
@@ -46,7 +46,7 @@ namespace GamePlatform.Models
             _fields.Add(new FieldWithCity("Rzym", 1000, 1000));
             _fields.Add(new EmptyField());
             _fields.Add(new FieldWithCity("Hamburg", 1000, 1000));
-            _fields.Add(new EmptyField());
+            _fields.Add(new ActionField("Action"));
             _fields.Add(new FieldWithCity("Berlin", 1000, 1000));
             _fields.Add(new EmptyField());
             _fields.Add(new FieldWithCity("Londyn", 1000, 1000));
@@ -56,12 +56,12 @@ namespace GamePlatform.Models
             _fields.Add(new FieldWithCity("Chicago", 1000, 1000));
             _fields.Add(new FieldWithCity("LasVegas", 1000, 1000));
             _fields.Add(new FieldWithCity("NewYork", 1000, 1000));
-            _fields.Add(new EmptyField());
+            _fields.Add(new ActionField("Action"));
             _fields.Add(new FieldWithCity("Londyn", 1000, 1000));
             _fields.Add(new FieldWithCity("Paryż", 1000, 1000));
             _fields.Add(new EmptyField());
             _fields.Add(new FieldWithCity("Karkow", 1000, 1000));
-            _fields.Add(new EmptyField());
+            _fields.Add(new ActionField("Action"));
             _fields.Add(new FieldWithCity("Warszawa", 1000, 1000));
             _fields.Add(new EmptyField());
         }
