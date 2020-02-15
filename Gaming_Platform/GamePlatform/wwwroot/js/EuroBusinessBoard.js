@@ -87,8 +87,6 @@ function addPlayer(a) {
     let playerName = document.createElement("div")
     let playerMoney = document.createElement("div")
 
-    console.log(a)
-
     playerContainer.classList.add("player", `player-${a.pawn.number}`)
     playerContainer.style.backgroundColor = a.pawn.color
     playerAvatar.classList.add("player-avatar")
@@ -229,8 +227,8 @@ function movePawn(pawn, space) {
                 moveY += rotateY[3]
                 break
         }
-        pawn.style.right = moveX
-        pawn.style.bottom = moveY
+        pawn.style.right = `${moveX}px`
+        pawn.style.bottom = `${moveY}px`
         pawn.dataset.currentPosition = a
     }
 
@@ -267,8 +265,8 @@ function movePawn(pawn, space) {
                 moveX += 0
                 moveY += smallSpaceWidth / 2 * 3
         }
-        pawn.style.right = moveX
-        pawn.style.bottom = moveY
+        pawn.style.right = `${moveX}px`
+        pawn.style.bottom = `${moveY}px`
         pawn.dataset.currentPosition = a
     }
 
@@ -306,8 +304,8 @@ function movePawn(pawn, space) {
                 moveY += 0
         }
 
-        pawn.style.right = moveX
-        pawn.style.bottom = moveY
+        pawn.style.right = `${moveX}px`
+        pawn.style.bottom = `${moveY}px`
         pawn.dataset.currentPosition = a
     }
 
@@ -341,11 +339,15 @@ function movePawn(pawn, space) {
                 moveX -= 0
                 moveY -= smallSpaceWidth / 2 * 3
         }
-
-        pawn.style.right = moveX
-        pawn.style.bottom = moveY
+        pawn.style.right = `${moveX}px`
+        pawn.style.bottom = `${moveY}px`
         pawn.dataset.currentPosition = a
+
+
     }
+
+    console.log("MOVEX: " + moveX)
+    console.log("MOVEX: " + moveY)
 }
 
 
@@ -358,7 +360,6 @@ function throwDice() {
             
             turnStart(responceOnStartTurn)
 
-            console.log(responceOnStartTurn)
         },
         error: function (a) {
             console.log("Coś poszło nie tak z rzutem kostką" + a)
@@ -373,10 +374,10 @@ function throwDice() {
 function showComunicate(title, photo, message) {
     let titleHandle = document.querySelector(".comunication-modal .modal-title")
     let bodyHandle = document.querySelector(".comunication-modal .modal-body .modal-message")
-    let photoHandle = document.querySelector(".comunication-modal .modal-body .modal-body-photo")
+    //let photoHandle = document.querySelector(".comunication-modal .modal-body .modal-body-photo")
 
 
-    photoHandle.style.backgroundImage = `url(${photo})`
+    //photoHandle.style.background = `url(${photo})`
     titleHandle.innerHTML = title
     bodyHandle.innerHTML = message
     $('.comunication-modal').modal('show')
@@ -389,7 +390,10 @@ function showBankrutComunicate() {
 function showBuyFieldComunicate() {
     let titleHandle = document.querySelector(".buy-field-modal .modal-title")
     let messageHandle = document.querySelector(".buy-field-modal .modal-message")
+    //let photo = document.querySelector(".buy-field-modal .modal-body-photo")
 
+
+    //photo.style.background = `url(./assets/img/board/space_${responceOnStartTurn.currentPlayerField - 1}.jpg)`
     titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField].name
     messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField].fieldCost} <br> You want buy this field?`
 
@@ -502,6 +506,7 @@ function turnStart(responce) {
 
 function startAction(a) {
     console.log(a)
+    nextTurn()
 }
 
 function playerIsBankrupt() {
@@ -532,7 +537,7 @@ function buyField() {
         url: "/EuroBusiness/BuyField",
         success: function (responce) {
             let title = Board[responceOnStartTurn.currentPlayerField].name
-            let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
+            let photo = `./assets/img/board/space_${responceOnStartTurn.currentPlayerField - 1}.jpg`  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
             let message = `You have bought ${Board[responceOnStartTurn.currentPlayerField].name}`
             playersHandle[responceOnStartTurn.idPlayer - 1].children[1].children[1].innerHTML = responce.money
             playersDataFromServer[responceOnStartTurn.idPlayer - 1].money = responce.money
@@ -552,7 +557,7 @@ function buyHouse() {
         url: "/EuroBusiness/BuyHouse",
         success: function (responce) {
             let title = Board[responceOnStartTurn.currentPlayerField].name
-            let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
+            let photo = `./assets/img/board/space_${responceOnStartTurn.currentPlayerField - 1}.jpg`  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
             let message = `You have bought new house`
             playersHandle[responceOnStartTurn.idPlayer - 1].children[1].children[1].innerHTML = responce.money
             playersDataFromServer[responceOnStartTurn.idPlayer - 1].money = responce.money
@@ -572,7 +577,7 @@ function buyHotel() {
         url: "/EuroBusiness/BuyHotel",
         success: function (responce) {
             let title = Board[responceOnStartTurn.currentPlayerField].name
-            let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
+            let photo = `./assets/img/board/space_${responceOnStartTurn.currentPlayerField - 1}.jpg`  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
             let message = `You have bought new hotel`
             playersHandle[responceOnStartTurn.idPlayer - 1].children[1].children[1].innerHTML = responce.money
 
