@@ -123,8 +123,6 @@ function changeCard(Id) {
 }
 
 function displayCards(response) {
-    document.getElementById("card-1").style.backgroundImage = "url('/assets/cards/10C.jpg')";
-
     document.getElementById("card-1").style.backgroundImage = setBackgroundCard(response.card1Suit + response.card1Value);
     document.getElementById("card-2").style.backgroundImage = setBackgroundCard(response.card2Suit + response.card2Value);
     document.getElementById("card-3").style.backgroundImage = setBackgroundCard(response.card3Suit + response.card3Value);
