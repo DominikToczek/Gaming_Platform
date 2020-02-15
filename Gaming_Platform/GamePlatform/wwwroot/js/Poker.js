@@ -5,6 +5,7 @@ let cardClicked4 = false;
 let cardClicked5 = false;
 
 function newGame() {
+    dealCards();
     resetChangeCardsButtons()
     changeCard1()
     changeCard2()
