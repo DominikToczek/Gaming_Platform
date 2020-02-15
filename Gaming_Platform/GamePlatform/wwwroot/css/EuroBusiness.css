@@ -73,112 +73,112 @@
 
             .board-container .board .board-section-1 #space-1, .board-container .board .board-section-3 #space-1 {
                 background: url(../assets/img/board/space_01.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-2, .board-container .board .board-section-3 #space-2 {
                 background: url(../assets/img/board/space_02.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-3, .board-container .board .board-section-3 #space-3 {
                 background: url(../assets/img/board/space_03.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-4, .board-container .board .board-section-3 #space-4 {
                 background: url(../assets/img/board/space_04.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-5, .board-container .board .board-section-3 #space-5 {
                 background: url(../assets/img/board/space_05.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-6, .board-container .board .board-section-3 #space-6 {
                 background: url(../assets/img/board/space_06.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-7, .board-container .board .board-section-3 #space-7 {
                 background: url(../assets/img/board/space_07.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-8, .board-container .board .board-section-3 #space-8 {
                 background: url(../assets/img/board/space_08.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-9, .board-container .board .board-section-3 #space-9 {
                 background: url(../assets/img/board/space_09.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-10, .board-container .board .board-section-3 #space-10 {
                 background: url(../assets/img/board/space_10.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-11, .board-container .board .board-section-3 #space-11 {
                 background: url(../assets/img/board/space_11.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-21, .board-container .board .board-section-3 #space-21 {
                 background: url(../assets/img/board/space_21.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-22, .board-container .board .board-section-3 #space-22 {
                 background: url(../assets/img/board/space_22.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-23, .board-container .board .board-section-3 #space-23 {
                 background: url(../assets/img/board/space_23.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-24, .board-container .board .board-section-3 #space-24 {
                 background: url(../assets/img/board/space_24.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-25, .board-container .board .board-section-3 #space-25 {
                 background: url(../assets/img/board/space_25.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-26, .board-container .board .board-section-3 #space-26 {
                 background: url(../assets/img/board/space_26.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-27, .board-container .board .board-section-3 #space-27 {
                 background: url(../assets/img/board/space_27.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-28, .board-container .board .board-section-3 #space-28 {
                 background: url(../assets/img/board/space_28.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-29, .board-container .board .board-section-3 #space-29 {
                 background: url(../assets/img/board/space_29.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-30, .board-container .board .board-section-3 #space-30 {
                 background: url(../assets/img/board/space_30.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
             .board-container .board .board-section-1 #space-31, .board-container .board .board-section-3 #space-31 {
                 background: url(../assets/img/board/space_31.jpg);
-                background-size: cover
+                background-size: cover;
             }
 
         .board-container .board .board-section-2 {
@@ -193,104 +193,104 @@
                     width: 100px;
                     height: 50px;
                     border: 1px solid #000;
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-12, .board-container .board .board-section-2 .subsection-2 #space-12, .board-container .board .board-section-2 .subsection-3 #space-12 {
                     background: url(../assets/img/board/space_12.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-13, .board-container .board .board-section-2 .subsection-2 #space-13, .board-container .board .board-section-2 .subsection-3 #space-13 {
                     background: url(../assets/img/board/space_13.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-14, .board-container .board .board-section-2 .subsection-2 #space-14, .board-container .board .board-section-2 .subsection-3 #space-14 {
                     background: url(../assets/img/board/space_14.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-15, .board-container .board .board-section-2 .subsection-2 #space-15, .board-container .board .board-section-2 .subsection-3 #space-15 {
                     background: url(../assets/img/board/space_15.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-16, .board-container .board .board-section-2 .subsection-2 #space-16, .board-container .board .board-section-2 .subsection-3 #space-16 {
                     background: url(../assets/img/board/space_16.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-17, .board-container .board .board-section-2 .subsection-2 #space-17, .board-container .board .board-section-2 .subsection-3 #space-17 {
                     background: url(../assets/img/board/space_17.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-18, .board-container .board .board-section-2 .subsection-2 #space-18, .board-container .board .board-section-2 .subsection-3 #space-18 {
                     background: url(../assets/img/board/space_18.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-19, .board-container .board .board-section-2 .subsection-2 #space-19, .board-container .board .board-section-2 .subsection-3 #space-19 {
                     background: url(../assets/img/board/space_19.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-20, .board-container .board .board-section-2 .subsection-2 #space-20, .board-container .board .board-section-2 .subsection-3 #space-20 {
                     background: url(../assets/img/board/space_20.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-32, .board-container .board .board-section-2 .subsection-2 #space-32, .board-container .board .board-section-2 .subsection-3 #space-32 {
                     background: url(../assets/img/board/space_32.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-33, .board-container .board .board-section-2 .subsection-2 #space-33, .board-container .board .board-section-2 .subsection-3 #space-33 {
                     background: url(../assets/img/board/space_33.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-34, .board-container .board .board-section-2 .subsection-2 #space-34, .board-container .board .board-section-2 .subsection-3 #space-34 {
                     background: url(../assets/img/board/space_34.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-35, .board-container .board .board-section-2 .subsection-2 #space-35, .board-container .board .board-section-2 .subsection-3 #space-35 {
                     background: url(../assets/img/board/space_35.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-36, .board-container .board .board-section-2 .subsection-2 #space-36, .board-container .board .board-section-2 .subsection-3 #space-36 {
                     background: url(../assets/img/board/space_36.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-37, .board-container .board .board-section-2 .subsection-2 #space-37, .board-container .board .board-section-2 .subsection-3 #space-37 {
                     background: url(../assets/img/board/space_37.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-38, .board-container .board .board-section-2 .subsection-2 #space-38, .board-container .board .board-section-2 .subsection-3 #space-38 {
                     background: url(../assets/img/board/space_38.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-39, .board-container .board .board-section-2 .subsection-2 #space-39, .board-container .board .board-section-2 .subsection-3 #space-39 {
                     background: url(../assets/img/board/space_39.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
                 .board-container .board .board-section-2 .subsection-1 #space-40, .board-container .board .board-section-2 .subsection-2 #space-40, .board-container .board .board-section-2 .subsection-3 #space-40 {
                     background: url(../assets/img/board/space_40.jpg);
-                    background-size: cover
+                    background-size: cover;
                 }
 
             .board-container .board .board-section-2 .subsection-2 {
                 width: 450px;
                 height: 450px;
                 background: url(../assets/img/board/center.jpg);
-                background-size: cover
+                background-size: cover;:
             }
 
         .board-container .board .dice {
@@ -526,7 +526,7 @@
             left: 5px;
             top: 5px;
             background-position: top;
-            background-size: cover
+            background-size: cover;
         }
 
         .player-container .player .player-data {

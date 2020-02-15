@@ -596,9 +596,9 @@ function addBuildToField(a) {
         let container = document.createElement("div")
         let house = '<i class="fas fa-home"></i>'
         container.classList.add("house")
-        container.appendChild(house)
+        //container.appendChild(house)
 
-        field.appendChild(container)
+        //field.appendChild(container)
     }
 
     else {
@@ -606,9 +606,9 @@ function addBuildToField(a) {
         let hotel = '<i class="fas fa-hotel"></i>'
 
         field.childNodes.forEach(e => e.remove())
-        containerHotel.appendChild(hotel)
+        //containerHotel.appendChild(hotel)
 
-        field.appendChild(containerHotel)
+        //field.appendChild(containerHotel)
     }
 }
 

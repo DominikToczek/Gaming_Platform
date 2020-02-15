@@ -48,6 +48,7 @@ namespace GamePlatform.Controllers
         public JsonResult DiceThrow()
         {
             _game.DiceRoll();
+            _game.MovePawn();
             object a = _game.CreateObjectToView();
             return Json(a);
         }

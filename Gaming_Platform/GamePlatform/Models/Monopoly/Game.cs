@@ -48,7 +48,7 @@ namespace GamePlatform.Models
 
         public void DiceRoll()
         {
-            _selectedPlayer.Pawn.Move(dice.Rol(), board.NumberOfField);
+            dice.Rol();
         }
 
         public void BuyField()
@@ -62,21 +62,21 @@ namespace GamePlatform.Models
 
         public void BuyHome(int numberOfHome)
         {
-            for (int i = 0; i < numberOfHome; i++)
-            {
-                (board.GetFiels(_selectedPlayer.Pawn.ActualPosition) as FieldWithCity).BuyHotel(_selectedPlayer);
-            }
+            (board.GetFiels(_selectedPlayer.Pawn.ActualPosition) as FieldWithCity).BuyHotel(_selectedPlayer);   
         }
 
-        public void MovePawn(int number)
+        public void MovePawn()
         {
-            _selectedPlayer.Pawn.Move(number, board.NumberOfField);
+            _selectedPlayer.Pawn.Move(dice.LastRoll, board.NumberOfField);
             var actualField = board.GetFiels(_selectedPlayer.Pawn.ActualPosition);
             if(actualField.IsOcupation)
             {
                 var fieldCity = actualField as FieldWithCity;
                 if (fieldCity.Ower.Id != _selectedPlayer.Id)
+                {
                     fieldCity.PayForStay(_selectedPlayer);
+                }
+                   
             }
         }
 
