@@ -17,6 +17,44 @@
         transform: perspective(1300px) rotateX(45deg) rotate(25deg)
     }
 
+        .board-container .board .board-section-1 i {
+            color: #fff;
+            font-size: 9.5px;
+            margin: 85px .5px 0;
+            display: block;
+            float: left;
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg)
+        }
+
+        .board-container .board .board-section-2 .subsection-1 i {
+            color: #fff;
+            font-size: 9.5px;
+            margin: 2px 2px 2px 85px;
+            display: block;
+            float: bottom;
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg)
+        }
+
+        .board-container .board .board-section-2 .subsection-3 i {
+            color: #fff;
+            font-size: 9.5px;
+            margin: 2px 85px 2px 0;
+            display: block;
+            float: bottom;
+            -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg)
+        }
+
+        .board-container .board .board-section-3 i {
+            color: #fff;
+            font-size: 9.5px;
+            margin: 5px .5px;
+            display: block;
+            float: left
+        }
+
         .board-container .board .board-section-1, .board-container .board .board-section-3 {
             height: 100px
         }
@@ -33,6 +71,116 @@
                 width: 100px
             }
 
+            .board-container .board .board-section-1 #space-1, .board-container .board .board-section-3 #space-1 {
+                background: url(../assets/img/board/space_01.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-2, .board-container .board .board-section-3 #space-2 {
+                background: url(../assets/img/board/space_02.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-3, .board-container .board .board-section-3 #space-3 {
+                background: url(../assets/img/board/space_03.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-4, .board-container .board .board-section-3 #space-4 {
+                background: url(../assets/img/board/space_04.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-5, .board-container .board .board-section-3 #space-5 {
+                background: url(../assets/img/board/space_05.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-6, .board-container .board .board-section-3 #space-6 {
+                background: url(../assets/img/board/space_06.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-7, .board-container .board .board-section-3 #space-7 {
+                background: url(../assets/img/board/space_07.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-8, .board-container .board .board-section-3 #space-8 {
+                background: url(../assets/img/board/space_08.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-9, .board-container .board .board-section-3 #space-9 {
+                background: url(../assets/img/board/space_09.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-10, .board-container .board .board-section-3 #space-10 {
+                background: url(../assets/img/board/space_10.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-11, .board-container .board .board-section-3 #space-11 {
+                background: url(../assets/img/board/space_11.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-21, .board-container .board .board-section-3 #space-21 {
+                background: url(../assets/img/board/space_21.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-22, .board-container .board .board-section-3 #space-22 {
+                background: url(../assets/img/board/space_22.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-23, .board-container .board .board-section-3 #space-23 {
+                background: url(../assets/img/board/space_23.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-24, .board-container .board .board-section-3 #space-24 {
+                background: url(../assets/img/board/space_24.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-25, .board-container .board .board-section-3 #space-25 {
+                background: url(../assets/img/board/space_25.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-26, .board-container .board .board-section-3 #space-26 {
+                background: url(../assets/img/board/space_26.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-27, .board-container .board .board-section-3 #space-27 {
+                background: url(../assets/img/board/space_27.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-28, .board-container .board .board-section-3 #space-28 {
+                background: url(../assets/img/board/space_28.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-29, .board-container .board .board-section-3 #space-29 {
+                background: url(../assets/img/board/space_29.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-30, .board-container .board .board-section-3 #space-30 {
+                background: url(../assets/img/board/space_30.jpg);
+                background-size: cover
+            }
+
+            .board-container .board .board-section-1 #space-31, .board-container .board .board-section-3 #space-31 {
+                background: url(../assets/img/board/space_31.jpg);
+                background-size: cover
+            }
+
         .board-container .board .board-section-2 {
             height: 450px
         }
@@ -44,14 +192,105 @@
                 .board-container .board .board-section-2 .subsection-1 .space, .board-container .board .board-section-2 .subsection-2 .space, .board-container .board .board-section-2 .subsection-3 .space {
                     width: 100px;
                     height: 50px;
-                    background-color: green;
-                    border: 1px solid #000
+                    border: 1px solid #000;
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-12, .board-container .board .board-section-2 .subsection-2 #space-12, .board-container .board .board-section-2 .subsection-3 #space-12 {
+                    background: url(../assets/img/board/space_12.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-13, .board-container .board .board-section-2 .subsection-2 #space-13, .board-container .board .board-section-2 .subsection-3 #space-13 {
+                    background: url(../assets/img/board/space_13.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-14, .board-container .board .board-section-2 .subsection-2 #space-14, .board-container .board .board-section-2 .subsection-3 #space-14 {
+                    background: url(../assets/img/board/space_14.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-15, .board-container .board .board-section-2 .subsection-2 #space-15, .board-container .board .board-section-2 .subsection-3 #space-15 {
+                    background: url(../assets/img/board/space_15.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-16, .board-container .board .board-section-2 .subsection-2 #space-16, .board-container .board .board-section-2 .subsection-3 #space-16 {
+                    background: url(../assets/img/board/space_16.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-17, .board-container .board .board-section-2 .subsection-2 #space-17, .board-container .board .board-section-2 .subsection-3 #space-17 {
+                    background: url(../assets/img/board/space_17.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-18, .board-container .board .board-section-2 .subsection-2 #space-18, .board-container .board .board-section-2 .subsection-3 #space-18 {
+                    background: url(../assets/img/board/space_18.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-19, .board-container .board .board-section-2 .subsection-2 #space-19, .board-container .board .board-section-2 .subsection-3 #space-19 {
+                    background: url(../assets/img/board/space_19.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-20, .board-container .board .board-section-2 .subsection-2 #space-20, .board-container .board .board-section-2 .subsection-3 #space-20 {
+                    background: url(../assets/img/board/space_20.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-32, .board-container .board .board-section-2 .subsection-2 #space-32, .board-container .board .board-section-2 .subsection-3 #space-32 {
+                    background: url(../assets/img/board/space_32.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-33, .board-container .board .board-section-2 .subsection-2 #space-33, .board-container .board .board-section-2 .subsection-3 #space-33 {
+                    background: url(../assets/img/board/space_33.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-34, .board-container .board .board-section-2 .subsection-2 #space-34, .board-container .board .board-section-2 .subsection-3 #space-34 {
+                    background: url(../assets/img/board/space_34.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-35, .board-container .board .board-section-2 .subsection-2 #space-35, .board-container .board .board-section-2 .subsection-3 #space-35 {
+                    background: url(../assets/img/board/space_35.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-36, .board-container .board .board-section-2 .subsection-2 #space-36, .board-container .board .board-section-2 .subsection-3 #space-36 {
+                    background: url(../assets/img/board/space_36.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-37, .board-container .board .board-section-2 .subsection-2 #space-37, .board-container .board .board-section-2 .subsection-3 #space-37 {
+                    background: url(../assets/img/board/space_37.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-38, .board-container .board .board-section-2 .subsection-2 #space-38, .board-container .board .board-section-2 .subsection-3 #space-38 {
+                    background: url(../assets/img/board/space_38.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-39, .board-container .board .board-section-2 .subsection-2 #space-39, .board-container .board .board-section-2 .subsection-3 #space-39 {
+                    background: url(../assets/img/board/space_39.jpg);
+                    background-size: cover
+                }
+
+                .board-container .board .board-section-2 .subsection-1 #space-40, .board-container .board .board-section-2 .subsection-2 #space-40, .board-container .board .board-section-2 .subsection-3 #space-40 {
+                    background: url(../assets/img/board/space_40.jpg);
+                    background-size: cover
                 }
 
             .board-container .board .board-section-2 .subsection-2 {
                 width: 450px;
                 height: 450px;
-                background-color: red
+                background: url(../assets/img/board/center.jpg);
+                background-size: cover
             }
 
         .board-container .board .dice {
@@ -62,7 +301,7 @@
             left: 325px;
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
-            display: none;
+            display: none
         }
 
             .board-container .board .dice .side {
@@ -339,8 +578,87 @@
     position: absolute;
     bottom: 50px;
     left: 50px;
-    width: 100px;
-    height: 40px
+    width: 150px;
+    height: 60px;
+    background: -webkit-gradient(linear,left top,left bottom,from(#1bbcc2),to(#18a3a8));
+    background: linear-gradient(#1bbcc2,#18a3a8);
+    border: solid rgba(0,0,0,.21);
+    border-width: 1px 1px 4px;
+    border-radius: 4px;
+    text-shadow: 0 1px 0 rgba(0,0,0,.15);
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none
+}
+
+.comunication-modal .modal-title {
+    font-size: 2em
+}
+
+.comunication-modal .modal-body .modal-body-photo {
+    width: 150px;
+    height: 200px;
+    background-color: grey
+}
+
+.buy-field-modal .modal-title {
+    font-size: 2em
+}
+
+.buy-field-modal .modal-body .modal-body-photo {
+    width: 150px;
+    height: 200px;
+    background-color: grey
+}
+
+.buy-field-modal .modal-footer .button {
+    margin: 0 20px
+}
+
+.buy-field-modal .modal-footer .btn-success {
+    position: relative;
+    margin-right: 50%
+}
+
+.buy-field-modal .modal-footer .btn-danger {
+    margin-right: 12.5%
+}
+
+.bankrut-modal .modal-title {
+    font-size: 2em
+}
+
+.bankrut-modal .modal-body .modal-body-photo {
+    width: 150px;
+    height: 200px;
+    background-color: grey
+}
+
+.bankrut-modal .modal-footer .button {
+    margin: 0 20px
+}
+
+.bankrut-modal .modal-footer .btn-success {
+    position: relative;
+    margin-right: 50%
+}
+
+.bankrut-modal .modal-footer .btn-danger {
+    margin-right: 12.5%
+}
+
+.buy-houses-modal .modal-footer .buy, .buy-houses-modal .modal-footer .dont-buy {
+    margin-right: 15%
+}
+
+.player-turn {
+    bottom: 50px;
+    left: 300px;
+    position: absolute;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: Arial,Helvetica,sans-serif
 }
 
 @-webkit-keyframes throw-1 {

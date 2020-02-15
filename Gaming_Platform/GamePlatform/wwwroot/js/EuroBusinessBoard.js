@@ -87,7 +87,10 @@ function addPlayer(a) {
     let playerName = document.createElement("div")
     let playerMoney = document.createElement("div")
 
+    console.log(a)
+
     playerContainer.classList.add("player", `player-${a.pawn.number}`)
+    playerContainer.style.backgroundColor = a.pawn.color
     playerAvatar.classList.add("player-avatar")
     playerAvatar.style.backgroundImage = `url(${a.avatar})`
     playerData.classList.add("player-data")
@@ -133,6 +136,9 @@ function movePawn(pawn, space) {
     let rotateX = 0
     let rotateY = 0
     let scale = document.querySelector(".board").offsetWidth / 650
+
+    console.log("PIONEK: " + pawn)
+    console.log("ID POLA: " + space)
 
     if (pawn.dataset.pawnNumber == 1) {
         rotateX = [40 * scale, -20 * scale, 45 * scale, 30 * scale]
@@ -349,7 +355,10 @@ function throwDice() {
         url: "/EuroBusiness/DiceThrow",
         success: function (a) {
             responceOnStartTurn = JSON.parse(JSON.stringify(a))
+            
             turnStart(responceOnStartTurn)
+
+            console.log(responceOnStartTurn)
         },
         error: function (a) {
             console.log("Coś poszło nie tak z rzutem kostką" + a)
@@ -381,30 +390,30 @@ function showBuyFieldComunicate() {
     let titleHandle = document.querySelector(".buy-field-modal .modal-title")
     let messageHandle = document.querySelector(".buy-field-modal .modal-message")
 
-    titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField].name + "fsdafsdafsdds"
+    titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField].name
     messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField].fieldCost} <br> You want buy this field?`
 
     $('.buy-field-modal').modal('show')
 }
 
 function showBuyHouseComunicate() {
-    let titleHandle = document.querySelector(".buy-field-modal .modal-title")
-    let messageHandle = document.querySelector(".buy-field-modal .modal-message")
+    let titleHandle = document.querySelector(".buy-house-modal .modal-title")
+    let messageHandle = document.querySelector(".buy-house-modal .modal-message")
 
     titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField - 1].name
     messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField - 1].fieldCost} <br> You want buy new house on this field?`
 
-    $('.buy-field-modal').modal('show')
+    $('.buy-house-modal').modal('show')
 }
 
 function showBuyHotelComunicate() {
-    let titleHandle = document.querySelector(".buy-field-modal .modal-title")
-    let messageHandle = document.querySelector(".buy-field-modal .modal-message")
+    let titleHandle = document.querySelector(".buy-hotel-modal .modal-title")
+    let messageHandle = document.querySelector(".buy-hotel-modal .modal-message")
 
     titleHandle.innerHTML = Board[responceOnStartTurn.currentPlayerField - 1].name
     messageHandle.innerHTML = `Price: ${Board[responceOnStartTurn.currentPlayerField - 1].fieldCost} <br> You want buy hotel on this field?`
 
-    $('.buy-field-modal').modal('show')
+    $('.buy-hotel-modal').modal('show')
 }
 
 //////////////*************TURN START FUNCTION*********************///////////////
@@ -413,68 +422,78 @@ function showBuyHotelComunicate() {
 
 function turnStart(responce) {
     diceHandle.style.display = "block"
+    diceHandle.classList.remove(diceHandle.classList[1])
     diceHandle.classList.add(`throw-${responceOnStartTurn.numberOfMeshes}`)
+    console.log("PIONEK z turn start: " + responce)
+
     movePawn(pawnHandle[responceOnStartTurn.idPlayer - 1], responceOnStartTurn.currentPlayerField)
-    if (responce.actionField) {
-        startAction(responce) //funkcja do dopisania
-        console.log("Rodzaj pola: " + responce.actionField)
-    }
-    else {          //Jeżeli jest to miasto
-        if (responceOnStartTurn.ocupation) {        //sprawdź czy okupowane
-            if (responceOnStartTurn.ocupationByPlayerTurn) {  //okupowany przez gracza do którego należy tura
-                if (responceOnStartTurn.canBuyHotel) {      //może kupić hotel tj. ma 4 domki
-                    if (playersDataFromServer[responceOnStartTurn.idPlayer - 1].money >= responceOnStartTurn.hotelCost) { //jeżeli stać cię na hotel
-                        showBuyHotelComunicate()
+
+    setTimeout(() => {
+        if (responce.actionField) {
+            startAction(responce) //funkcja do dopisania
+            console.log("Rodzaj pola: " + responce.actionField)
+            nextTurn()
+        }
+        else {          //Jeżeli jest to miasto
+            if (responceOnStartTurn.ocupation) {        //sprawdź czy okupowane
+                if (responceOnStartTurn.ocupationByPlayerTurn) {  //okupowany przez gracza do którego należy tura
+                    if (responceOnStartTurn.canBuyHotel) {      //może kupić hotel tj. ma 4 domki
+                        if (playersDataFromServer[responceOnStartTurn.idPlayer - 1].money >= responceOnStartTurn.hotelCost) { //jeżeli stać cię na hotel
+                            showBuyHotelComunicate()
+                        }
+                        else {   //zbyt mało pieniędzy aby kupić hotel
+                            let title = "To little money"
+                            let photo = ""  //dodać jakieś zdjęcie jak będzie gotowe
+                            let message = "You don't have enough money to buy a hotel on this field"
+
+
+                            showComunicate(title, photo, message)
+                        }
                     }
-                    else {   //zbyt mało pieniędzy aby kupić hotel
-                        let title = "To little money"
-                        let photo = ""  //dodać jakieś zdjęcie jak będzie gotowe
-                        let message = "You don't have enough money to buy a hotel on this field"
+                    else {      //nie możesz kupić hotelu to może domek
+                        if (playersDataFromServer[responceOnStartTurn.idPlayer - 1].money >= responceOnStartTurn.houseCost) { //jeżeli stać cię na domek
+                            showBuyHouseComunicate()
+                        }
+                        else {
+                            let title = "To little money"
+                            let photo = ""  //dodać jakieś zdjęcie jak będzie gotowe
+                            let message = "You don't have enough money to buy a house on this field"
 
 
-                        showComunicate(title, photo, message)
+                            showComunicate(title, photo, message)
+                        }
+
                     }
                 }
-                else {      //nie możesz kupić hotelu to może domek
-                    if (playersDataFromServer[responceOnStartTurn.idPlayer - 1].money >= responceOnStartTurn.houseCost) { //jeżeli stać cię na domek
-                        showBuyHouseComunicate()
+                else {          //okupowany przez innego gracza
+                    if (responceOnStartTurn.bankrupt) {
+                        showBankrutComunicate()
                     }
                     else {
-                        let title = "To little money"
-                        let photo = ""  //dodać jakieś zdjęcie jak będzie gotowe
-                        let message = "You don't have enough money to buy a house on this field"
-
-
+                        let title = "Fee for stop"
+                        let photo = ""  //dodać zdjęcie gdy będzie gotowe
+                        let message = `This field belongs to ${playersDataFromServer[responceOnStartTurn.idOfOccupationFieldPlayer - 1].name}. You must pay a ${responceOnStartTurn.payingForVisitOcupationField} fee!`
                         showComunicate(title, photo, message)
-                    }
 
+                        updatePlayersMoney()
+                    }
                 }
             }
-            else {          //okupowany przez innego gracza
-                if (responceOnStartTurn.bankrupt) {
-                    showBankrutComunicate()
+
+            else {      //jeśli nie okupowany
+                if (Board[responceOnStartTurn.currentPlayerField].fieldCost <= playersDataFromServer[responceOnStartTurn.idPlayer - 1].money) {   //jeśli stać na zakup pola
+                    showBuyFieldComunicate()
                 }
-                else {
-                    let title = "Fee for stop"
+                else {      //jeśli nie stać na zakup pola
+                    let title = "Too little money"
                     let photo = ""  //dodać zdjęcie gdy będzie gotowe
-                    let message = `This field belongs to ${playersDataFromServer[responceOnStartTurn.idOfOccupationFieldPlayer].name}. You must pay a ${responceOnStartTurn.payingForVisitOcupationField} fee!`
+                    let message = `You don't have enough money to buy this field`
                     showComunicate(title, photo, message)
                 }
             }
         }
-
-        else {      //jeśli nie okupowany
-            if (Board[responceOnStartTurn.currentPlayerField].fieldCost <= playersDataFromServer[responceOnStartTurn.idPlayer - 1].money) {   //jeśli stać na zakup pola
-                showBuyFieldComunicate()
-            }
-            else {      //jeśli nie stać na zakup pola
-                let title = "Too little money"
-                let photo = ""  //dodać zdjęcie gdy będzie gotowe
-                let message = `You don't have enough money to buy this field`
-                showComunicate(title, photo, message)
-            }
-        }
-    }
+    }, 1000)
+    
 
 }
 
@@ -508,11 +527,6 @@ function nextTurn() {
 }
 
 function buyField() {
-    let a = {
-        IDplayer: responceOnStartTurn.idPlayer,
-        numer_pola: responceOnStartTurn.currentPlayerField
-    }
-
     $.ajax({
         type: "POST",
         url: "/EuroBusiness/BuyField",
@@ -533,21 +547,15 @@ function buyField() {
 }
 
 function buyHouse() {
-    let a = {
-        IDplayer: responceOnStartTurn.idPlayer,
-        numer_pola: responceOnStartTurn.currentPlayerField
-    }
-
     $.ajax({
         type: "POST",
-        data: { buyFieldData: a },
         url: "/EuroBusiness/BuyHouse",
         success: function (responce) {
             let title = Board[responceOnStartTurn.currentPlayerField].name
             let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
             let message = `You have bought new house`
-            playersHandle[responceOnStartTurn.idPlayer].children[1].children[1].innerHTML = responce.money
-            playersDataFromServer[responceOnStartTurn.idPlayer].money = responce.money
+            playersHandle[responceOnStartTurn.idPlayer - 1].children[1].children[1].innerHTML = responce.money
+            playersDataFromServer[responceOnStartTurn.idPlayer - 1].money = responce.money
             addBuildToField(true)
 
             showComunicate(title, photo, message)
@@ -559,22 +567,16 @@ function buyHouse() {
 }
 
 function buyHotel() {
-    let a = {
-        IDplayer: responceOnStartTurn.idPlayer,
-        numer_pola: responceOnStartTurn.currentPlayerField
-    }
-
     $.ajax({
         type: "POST",
-        data: { buyFieldData: a },
         url: "/EuroBusiness/BuyHotel",
         success: function (responce) {
             let title = Board[responceOnStartTurn.currentPlayerField].name
             let photo = ""  //dodać jakieś zdjęcie do tego  /assets/img/buyFiled.jpg
             let message = `You have bought new hotel`
-            playersHandle[responceOnStartTurn.idPlayer].children[1].children[1].innerHTML = responce.money
+            playersHandle[responceOnStartTurn.idPlayer - 1].children[1].children[1].innerHTML = responce.money
 
-            playersDataFromServer[responceOnStartTurn.idPlayer].money = responce.money
+            playersDataFromServer[responceOnStartTurn.idPlayer - 1].money = responce.money
             addBuildToField(false)
 
             showComunicate(title, photo, message)
@@ -591,7 +593,7 @@ function addBuildToField(a) {
     let field = Board[responceOnStartTurn.currentPlayerField - 1].handle
 
     if (a) {
-        let container = createElement("div")
+        let container = document.createElement("div")
         let house = '<i class="fas fa-home"></i>'
         container.classList.add("house")
         container.appendChild(house)
@@ -610,3 +612,6 @@ function addBuildToField(a) {
     }
 }
 
+function updatePlayersMoney() {
+    //dopisać
+}
